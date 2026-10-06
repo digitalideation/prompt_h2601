@@ -26,7 +26,7 @@ Each session lasts **2 h 30 min, including a 10-minute break**. All sessions can
 
 Start with Replicate's web UI, then use a prepared Jupyter Notebook to record prompts, generate images, and compare iterations. Artistic Telephone makes interpretation drift visible; a storyboard and refinement task introduce deliberate consistency. Video generation is an instructor demonstration, with an optional student extension.
 
-[Open the Week 5 session plan](./day01.md). The supporting H26 notebook and detailed activity guide are in preparation.
+[Open the Week 5 session plan](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). The [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) builds on it. See the [game guide](./notes/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
 
 ### Week 6: Prompting for Audio, Music & Multimodal Workflows
 
@@ -68,7 +68,7 @@ The planned clinic connects Arena comparisons with human ratings, a prepared Rag
 ## Working tools
 
 - **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
-- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. The H26 notebooks are being prepared; students will use supplied cells rather than write Python from scratch.
+- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Week 5 includes [two prepared notebooks](./notebooks/README.md); students edit prompts and run supplied cells. Later weeks' notebooks will follow.
 - **Model selection:** the instructor will provide a curated list for each activity.
 - **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 

@@ -7,7 +7,7 @@
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
 **Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
 
-> This is the H26 session plan. The supporting notebook and detailed game instructions are the next development step. The linked previous-semester guide is background material, not the current H26 running order.
+Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class. [Teaching notes](./notes/day01.md) provide demonstration cues and preparation checks.
 
 ## Focus
 
@@ -85,10 +85,10 @@ Use prepared outputs for optional comparisons across models so the class can dis
 
 ## Block 3: Notebook walkthrough and first generation
 
-Continue the same task in Jupyter using prepared cells:
+Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb). It starts with an offline practice diagram; switch to live mode for real generation with the instructor:
 
 1. Enter your API token privately using the supplied setup method.
-2. Select an instructor-approved model and edit the prompt.
+2. Use the initial class model example and edit the prompt. The basics notebook uses one model; the Telephone notebook adds a curated dropdown.
 3. Run the generation cell.
 4. Display and save the image.
 5. Record the prompt, model, relevant settings, and a short observation.
@@ -121,13 +121,13 @@ The working H26 format uses five rounds with everyone active. Each student start
 
 Use one shared, instructor-selected image model during the game. Do not pass a Replicate generation-page link, because it may reveal the prompt. Keep prompt records private until the reveal.
 
-Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. Detailed file assignment and notebook export support will be specified in the updated guide. Shared folders rely on the rule to open only the assigned image.
+Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. The Telephone notebook calculates file assignments and exports a PNG without embedded prompt metadata. Students transfer it through SWITCHdrive. Shared folders rely on the rule to open only the assigned image.
 
 Starter themes can include *Serenity*, *Ritual*, *Metropolis*, *Decay*, *Connection*, and *Chaos*. Encourage playful drift: ambiguity and unexpected interpretation are part of the activity.
 
 The 45-minute block includes instructions and image transfers. Round pacing will be checked with the chosen model before teaching.
 
-[Previous-semester Artistic Telephone guide](./notes/artistic_telephone.md): useful for starter ideas and the original notation; its class size and timing have not yet been updated for H26.
+[Artistic Telephone guide](./notes/artistic_telephone.md): the five-round flow, original notation, starter themes, and handoff instructions for 30 students.
 
 ## Block 5: Chain reveal and discussion
 
@@ -181,4 +181,4 @@ Preserve the first and revised outputs where available. Selected visuals can gui
 
 Use breakout rooms online or table groups in person. The same notebooks, SWITCHdrive folders, image-passing rules, and digital submissions apply in both settings. Use screen sharing or projection for the gallery and video demonstration.
 
-Before teaching, check the notebook setup, one complete group handoff, and model latency. Prepare image/video examples and provide the class folder links. Model choices and notebook downloads will be added when the supporting materials are ready.
+Before teaching, check the notebook setup, one complete group handoff, and model latency. Prepare image/video examples and provide the class folder links. The initial API example uses FLUX.1 schnell from the previous guide; confirm the final model choice and live behaviour before class. The notebooks' offline diagrams rehearse mechanics and do not replace prepared generated examples.
