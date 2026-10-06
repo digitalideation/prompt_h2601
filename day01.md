@@ -1,98 +1,184 @@
-# Day 01 — Prompting for Image & Video Generation
+# Week 5: Image & Video Prompting and Workflow Design
 
-**Duration:** 2 h 30 min.  
-**Focus:** Understanding how text-to-image models interpret prompts and practicing expressive scene design through the _Artistic Telephone_ exercise.  
-**Mode:** Browser-only (Replicate pages) — small groups of ≈ 6.
+[Back to the course homepage](./readme.md)
 
-| Block | Activity                          | Duration       |
-| :---- | :-------------------------------- | :------------- |
-| 1     | Foundations & Demo                | 15 min         |
-| 2     | Tools & Prompt Craft              | 15 min         |
-| 3     | Writing Visual Scene Descriptions | 20 min         |
-|       | Break                             | 10 min         |
-| 4     | Artistic Telephone Exercise       | 60 min         |
-| 5     | Mini-Gallery & Wrap-Up            | 20 min         |
-|       | **Total**                         | **2 h 20 min** |
+**Duration:** 2 h 30 min, including a 10-minute break.  
+**Delivery:** Online or in person, to be confirmed. Activities and learning goals are the same in either format.  
+**Class:** 30 students, working in six groups of five for Artistic Telephone.  
+**Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
 
-## 🧱️ Block 1 — Foundations & Demo
+> This is the H26 session plan. The supporting notebook and detailed game instructions are the next development step. The linked previous-semester guide is background material, not the current H26 running order.
 
-### 1. How Text-to-Image / Video Models Work
+## Focus
 
-- **Key concepts:** diffusion, latent space, conditioning, tokenization, attention.
-- **Typical models:** DALL·E 3, Midjourney, Stable Diffusion XL, Runway, Pika Labs, Sora (conceptual).
-- **Visual pipeline:** prompt → text embedding → latent noise → progressive denoising → image/video.
+- Prompt structure and techniques for image and video generation
+- Storyboarding, scene descriptions, and visual consistency
+- Designing and iterating multi-step image/video workflows
 
-### 2. Prompt Parameters (Quick Demo)
+We will follow a concrete process:
 
-- **Structure:** _subject → medium → style → lighting → composition → mood_.
-- **Modifiers:** camera angle, aspect ratio, render engine, realism vs stylization.
-- **Negative prompts:** exclude undesired features.
+**Concept → storyboard → scene prompts → generated images/video → refinement**
 
-## 🧱️ Block 2 — Tools & Prompt Craft
+Artistic Telephone explores how meaning changes through reinterpretation. We then use that experience to decide which details to preserve deliberately.
 
-### 3. Tools Overview
+## Learning goals
 
-- **Images:** Replicate pages for different image models.
-- **Videos:** Runway ML, Pika Labs, Kaiber.
-- **Workflow helpers:** ComfyUI, Automatic1111 (for later exploration).  
-  🔘 Compare one identical prompt across two models → observe aesthetic bias and parameter defaults.
+By the end of the session, you should be able to:
 
-### 4. Effective Prompts for Art Styles
+- Write scene prompts describing subject, style, lighting, composition, and camera position.
+- Distinguish an image description from instructions for subject motion and camera movement.
+- Observe and explain interpretation drift in a chain of generated images.
+- Plan a short visual sequence and identify what should remain consistent.
+- Document an iteration and explain why you changed the prompt.
 
-- **Example:**
+## Session schedule
 
-  - “A portrait of a young woman” → baseline.
-  - “Cinematic portrait of a young woman, shot on 35 mm film, soft lighting, shallow depth of field, realistic skin texture” → refined.
+| Block | Activity | Duration |
+| --- | --- | --- |
+| 1 | Visual workflow introduction | 10 min |
+| 2 | Replicate web UI and visual prompt craft | 20 min |
+| 3 | Notebook walkthrough and first generation | 20 min |
+| | Break | 10 min |
+| 4 | Artistic Telephone | 45 min |
+| 5 | Chain reveal and discussion | 15 min |
+| 6 | Storyboard, refinement, and video demonstration | 20 min |
+| 7 | Save work and wrap up | 10 min |
+| | **Total** | **150 min** |
 
-- **Mini task:** rewrite a plain prompt in three styles (realistic / surreal / graphic).
-- **Discuss:** which words shift mood, depth, or color palette?
+## Block 1: Visual workflow introduction
 
-## 🧱️ Block 3 — Writing Visual Scene Descriptions
+Start with a completed example: **a quiet city gradually waking up**.
 
-### 5. Scene Construction & Narrative Detail
+A three-shot sequence might move from a wide view of a misty street, to a cyclist crossing a bridge, to a close-up of a bicycle wheel on the wet pavement. Show the concept, storyboard, scene prompts, generated images, and one short video result.
 
-- **Think like a director:** Who / What / Where / When / How.
-- Encourage multi-sentence prompts: _“At dawn, a cyclist crosses a foggy bridge, warm orange light cutting through mist, cinematic composition.”_
-- **Pair activity:** expand a one-line scenario into a 3-line scene prompt.
-- **Group demo:** generate a few examples → discuss clarity vs ambiguity.
+Ask: what connects the shots? What must stay the same, and what changes from one scene to the next?
 
-## [🧱️ Block 4 — Artistic Telephone Exercise](./notes/artistic_telephone.md)
+Keep the model explanation brief. The practical focus is how a description guides an output, how the model interprets it, and where it fails to match our intention.
 
-### 6. Collaborative Prompt Drift Game — Overview
+## Block 2: Replicate web UI and visual prompt craft
 
-**Purpose:** Practice scene and style prompting while experiencing how meaning shifts through iterative reinterpretation.
+### Build a scene prompt
 
-**Structure:**
+Use this structure as a starting point, not a mandatory formula:
 
-- Form 6–7 groups of ~6 participants each (≈38 total).
-- Each group runs a 6-step image-passing chain — every student interprets the previous image and generates a new one.
-- One shared folder per group; consistent naming system.
-- Class uses one diffusion model (e.g., Fux @ 1024px) for uniformity.
+**Subject and action → setting → medium/style → lighting → composition/camera → mood**
 
-**Timing:** ~75–85 min total for the full chain + gallery.
+Think like a director: **Who? What? Where? When? How?**
 
-**Example Flow:**
+Compare a plain prompt:
 
-1. Round 1: Write & generate first prompt.
-2. Rounds 2–6: Each student reinterprets only from the received image.
-3. Upload all images sequentially for gallery comparison.
+> A cyclist crosses a bridge.
 
-**In-Class Focus:**
+With a more specific scene:
 
-- Emphasize prompt clarity, stylistic vocabulary, and visual storytelling.
-- Encourage playful drift — ambiguity and misinterpretation are expected.
+> At dawn, a cyclist wearing a mustard-yellow raincoat crosses a foggy stone bridge. Warm orange light cuts through the mist. Wide shot from street level, muted blue-grey palette, cinematic photography.
 
-**Further Details:**
-👉 Full step-by-step timing, starter themes, and instructor guidance available in [`Artistic Telephone Guide`](./notes/artistic_telephone.md).
+Identify which details describe content, which describe visual treatment, and which may be ambiguous.
 
-## 🧱️ Block 5 — Mini-Gallery & Wrap-Up
+### Explore style and composition
 
-- Each group shows its three-image chain side by side.
-- Lightning discussion: _Which details persisted? Which words caused surprising changes?_
-- Optional quick votes: Most Surprising Transformation / Best Scene Composition.
+In pairs, rewrite a plain scene in three styles: realistic, surreal, and graphic. Generate one selected version and discuss what changed.
 
-### ✅ Learning Outcomes
+Demonstrate the instructor-selected model in Replicate's web UI. Distinguish prompt descriptions from actual model settings, such as image dimensions when supported. Negative prompts and other controls should only be demonstrated when the selected model supports them.
 
-- Design scene-based prompts that control style and composition.
-- Compare how different models interpret identical language.
-- Experience and analyze interpretation drift in generative chains.
+Use prepared outputs for optional comparisons across models so the class can discuss differences without waiting for extra generations.
+
+## Block 3: Notebook walkthrough and first generation
+
+Continue the same task in Jupyter using prepared cells:
+
+1. Enter your API token privately using the supplied setup method.
+2. Select an instructor-approved model and edit the prompt.
+3. Run the generation cell.
+4. Display and save the image.
+5. Record the prompt, model, relevant settings, and a short observation.
+
+The notebook should make the relationship between web UI inputs and API inputs visible. Students edit text and a few settings; they do not need to write Python from scratch.
+
+Keep a baseline and one revised prompt in the record. Choose one intentional change, such as camera angle or lighting, and explain what you expected it to do. A single pair of outputs is an observation, not proof that a prompt change always works.
+
+Use provided example images if generation is unavailable. Never include API tokens in saved notebooks or submissions.
+
+## Block 4: Artistic Telephone
+
+**Purpose:** practice scene and style prompting while experiencing how meaning shifts through reinterpretation.
+
+### Group structure
+
+Form six groups of five. All passing stays within each group, following a fixed circular order:
+
+**S01 → S02 → S03 → S04 → S05 → S01**
+
+The working H26 format uses five rounds with everyone active. Each student starts a separate chain in round one. In subsequent rounds, they describe the image received from the previous student and generate a new interpretation.
+
+### Each round
+
+1. Inspect only the image assigned to you.
+2. Write your own scene description without seeing the previous prompt.
+3. Generate a new image from that description.
+4. Save the prompt and output in your own notebook.
+5. Upload only the image to your group's SWITCHdrive folder for the next participant.
+
+Use one shared, instructor-selected image model during the game. Do not pass a Replicate generation-page link, because it may reveal the prompt. Keep prompt records private until the reveal.
+
+Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. Detailed file assignment and notebook export support will be specified in the updated guide. Shared folders rely on the rule to open only the assigned image.
+
+Starter themes can include *Serenity*, *Ritual*, *Metropolis*, *Decay*, *Connection*, and *Chaos*. Encourage playful drift: ambiguity and unexpected interpretation are part of the activity.
+
+The 45-minute block includes instructions and image transfers. Round pacing will be checked with the chosen model before teaching.
+
+[Previous-semester Artistic Telephone guide](./notes/artistic_telephone.md): useful for starter ideas and the original notation; its class size and timing have not yet been updated for H26.
+
+## Block 5: Chain reveal and discussion
+
+Reveal the image chains alongside their prompts. Each group selects one chain to discuss.
+
+- Which subjects, colours, or compositions persisted?
+- Which details disappeared or changed?
+- Where did wording suggest a change, and where might generation variability have contributed?
+- When was drift interesting, and when did it conflict with the intended result?
+
+Keep the mini-gallery playful, with optional highlights for Most Surprising Transformation or Best Scene Composition.
+
+## Block 6: Storyboard, refinement, and video demonstration
+
+Use a prepared three-shot template to keep this segment focused.
+
+### Plan and refine (12 minutes)
+
+Choose a group image and sketch a short sequence around it. Simple boxes and written descriptions are sufficient.
+
+| Shot | Scene and composition | What stays consistent? | What changes? |
+| --- | --- | --- | --- |
+| 1 | Establish the location | Palette, style, subject descriptors | Wide framing |
+| 2 | Show an action | Same selected descriptors | Action and viewpoint |
+| 3 | Show a detail | Same selected descriptors | Close-up framing |
+
+Identify one detail lost during the game, or one inconsistency to repair. Revise a scene prompt to address it. Generate one refinement if time permits and record the result; otherwise save the revised prompt and what you would check next.
+
+### Image-to-video demonstration (8 minutes)
+
+The instructor uses a selected image to demonstrate a short video request. Make the distinction between **subject movement** and **camera movement** explicit:
+
+> The cyclist moves slowly across the bridge while the camera tracks alongside. Mist drifts above the water; retain the dawn lighting and muted palette.
+
+Show how the starting image, motion description, and supported model settings feed into the next workflow step. Discuss unexpected motion, changes to appearance, and what to revise. Keep a prepared video available so the demonstration does not depend on generation finishing live.
+
+Student video generation is an optional extension. A completed video is not required.
+
+## Block 7: Save work and wrap up
+
+Keep the following together:
+
+- Your image-chain contributions and associated prompts.
+- Model/settings information and short observations.
+- A three-shot storyboard with consistency notes.
+- One revised prompt, why you changed it, and an output comparison if generated.
+
+Preserve the first and revised outputs where available. Selected visuals can guide the audio work in Week 6 and support discussion in Week 8.
+
+## Delivery and preparation notes
+
+Use breakout rooms online or table groups in person. The same notebooks, SWITCHdrive folders, image-passing rules, and digital submissions apply in both settings. Use screen sharing or projection for the gallery and video demonstration.
+
+Before teaching, check the notebook setup, one complete group handoff, and model latency. Prepare image/video examples and provide the class folder links. Model choices and notebook downloads will be added when the supporting materials are ready.
