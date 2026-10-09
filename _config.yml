@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+title: Prompt Engineering (PROMPT)
+show_downloads: "true"
+plugins:
+  - jemoji
