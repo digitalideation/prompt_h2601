@@ -10,11 +10,13 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 from zipfile import ZipFile
 
 import nbformat
 from nbclient import NotebookClient
 from PIL import Image, PngImagePlugin
+from IPython.core.inputtransformer2 import TransformerManager
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOKS = ROOT / "notebooks"
@@ -25,6 +27,11 @@ import telephone_helpers as helper
 def sources(name):
     return [cell.source for cell in nbformat.read(NOTEBOOKS / name, as_version=4).cells
             if cell.cell_type == "code"]
+
+
+def basic_cells():
+    return {cell.id: cell.source for cell in nbformat.read(
+        NOTEBOOKS / "01_replicate_basics.ipynb", as_version=4).cells if cell.cell_type == "code"}
 
 
 def context(group="A", seat=1, round_number=1, mode="practice"):
@@ -119,7 +126,7 @@ class TestNotebooks(unittest.TestCase):
                 if cell.cell_type == "code":
                     self.assertIsNone(cell.execution_count)
                     self.assertEqual(cell.outputs, [])
-                    compile(cell.source, str(path), "exec")
+                    compile(TransformerManager().transform_cell(cell.source), str(path), "exec")
 
     def test_all_offline_cells_execute_in_order(self):
         import replicate
@@ -128,8 +135,10 @@ class TestNotebooks(unittest.TestCase):
                 with working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
                     with patch.object(replicate.Client, "run", side_effect=AssertionError("Offline API call")):
                         namespace = {}
-                        for source in sources(path.name):
-                            exec(source, namespace)
+                        notebook = nbformat.read(path, as_version=4)
+                        for cell in notebook.cells:
+                            if cell.cell_type == "code" and "setup" not in cell.metadata.get("tags", []):
+                                exec(cell.source, namespace)
                         self.assertTrue(list(Path(folder).rglob("image.png")))
                         self.assertTrue(list(Path(folder).rglob("*.json")))
 
@@ -139,6 +148,7 @@ class TestNotebooks(unittest.TestCase):
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
                 shutil.copy(NOTEBOOKS / "telephone_helpers.py", folder)
                 nb = nbformat.read(path, as_version=4)
+                nb.cells = [cell for cell in nb.cells if "setup" not in cell.metadata.get("tags", [])]
                 # Assert even an accidental SDK call cannot contact Replicate.
                 nb.cells.insert(0, nbformat.v4.new_code_cell(
                     "import replicate\n"
@@ -149,36 +159,85 @@ class TestNotebooks(unittest.TestCase):
                 self.assertTrue(list(Path(folder).rglob("*.json")))
 
     def test_basic_live_call_and_save_are_separate(self):
-        cells = sources("01_replicate_basics.ipynb")
+        cells = basic_cells()
         with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
             ns = {}
-            exec(cells[0], ns)
-            exec(cells[2], ns)
+            exec(cells["cell-02"], ns)
+            exec(cells["cell-06"], ns)
+            exec(cells["9a01ba4e"], ns)
             calls = []
+            prediction = SimpleNamespace(id="test-success", status="succeeded",
+                output=["https://example.invalid/image.png"], wait=lambda: None)
 
-            class FileOutput:
-                def read(self):
-                    return helper.practice_image()
+            def create(**kwargs):
+                calls.append(kwargs)
+                return prediction
 
-            class FakeClient:
-                def run(self, model, **kwargs):
-                    calls.append((model, kwargs))
-                    return [FileOutput()]
-
-            ns.update(LIVE=True, client=FakeClient())
+            client = SimpleNamespace(
+                models=SimpleNamespace(get=lambda _: SimpleNamespace(latest_version=SimpleNamespace(id="test-version"))),
+                predictions=SimpleNamespace(create=create))
+            ns.update(LIVE=True, client=client)
             with patch.object(builtins, "input", return_value="GENERATE"):
-                exec(cells[3], ns)
+                exec(cells["cell-08"], ns)
             ns["inputs"]["prompt"] = "Changed after generation"
-            exec(cells[4], ns)
-            exec(cells[4], ns)
+            ns["LIVE"] = False  # Saving must use the captured mode, not this switch.
+            with patch("urllib.request.urlretrieve", side_effect=lambda url, target: Path(target).write_bytes(helper.practice_image())) as download:
+                exec(cells["cell-10"], ns)
+                exec(cells["cell-10"], ns)
+                self.assertEqual(download.call_count, 2)
             self.assertEqual(len(calls), 1)
             record = json.loads((ns["run_folder"] / "prompt.json").read_text())
             self.assertNotEqual(record["inputs"]["prompt"], "Changed after generation")
-            self.assertEqual(calls[0][1]["use_file_output"], True)
+            self.assertEqual(calls[0]["version"], "test-version")
+            ns["LIVE"] = True
             with patch.object(builtins, "input", return_value="CANCEL"):
-                exec(cells[3], ns)
+                exec(cells["cell-08"], ns)
             self.assertEqual(len(calls), 1)
             self.assertIsNone(ns["run_context"])
+            self.assertIsNone(ns["saved_image"])
+            exec(cells["cell-10"], ns)
+            exec(cells["cell-12"], ns)
+
+    def test_basic_failed_cancelled_and_empty_predictions(self):
+        cells = basic_cells()
+        for status, output in [("failed", None), ("canceled", None), ("succeeded", []), ("succeeded", None)]:
+            with self.subTest(status=status, output=output), contextlib.redirect_stdout(io.StringIO()) as printed:
+                ns = {}
+                exec(cells["cell-02"], ns)
+                exec(cells["cell-06"], ns)
+                exec(cells["9a01ba4e"], ns)
+                prediction = SimpleNamespace(id="test-failure", status=status, output=output, wait=lambda: None)
+                ns.update(LIVE=True, client=SimpleNamespace(
+                    models=SimpleNamespace(get=lambda _: SimpleNamespace(latest_version=SimpleNamespace(id="v1"))),
+                    predictions=SimpleNamespace(create=lambda **_: prediction)))
+                with patch.object(builtins, "input", return_value="GENERATE"):
+                    exec(cells["cell-08"], ns)
+                self.assertIsNone(ns["run_context"])
+                self.assertIsNone(ns["saved_image"])
+                exec(cells["cell-10"], ns)
+                exec(cells["cell-12"], ns)
+                self.assertNotIn("Generation returned", printed.getvalue())
+                self.assertIn("test-failure", printed.getvalue())
+
+    def test_basic_first_cancel_and_download_failure_clear_image(self):
+        cells = basic_cells()
+        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
+            ns = {}
+            exec(cells["cell-02"], ns)
+            exec(cells["cell-06"], ns)
+            exec(cells["9a01ba4e"], ns)
+            ns.update(LIVE=True, client=object())
+            with patch.object(builtins, "input", return_value="CANCEL"):
+                exec(cells["cell-08"], ns)
+            exec(cells["cell-10"], ns)
+            exec(cells["cell-12"], ns)
+            self.assertIsNone(ns["saved_image"])
+            ns.update(run_context={"mode": "live"}, run_folder=Path("failed-download"),
+                      output=["https://example.invalid/image.png"], saved_image=Path("old-image.png"))
+            with patch("urllib.request.urlretrieve", side_effect=OSError("download interrupted")):
+                exec(cells["cell-10"], ns)
+            self.assertIsNone(ns["saved_image"])
+            exec(cells["cell-12"], ns)
 
     def test_telephone_live_flow_requires_incoming_and_does_not_send_it(self):
         cells = sources("02_artistic_telephone.ipynb")
@@ -227,3 +286,4 @@ class TestNotebooks(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
