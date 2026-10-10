@@ -1,112 +1,127 @@
-# Teaching Notes — Day 01 (Blocks 1–3)
+# Week 5 teaching notes
 
-These notes provide additional examples, prompts, and cues for **Blocks 1–3**. Use them for live demos, warm-up prompts, or guided discussions.
+[Session plan](../day01.md) | [Notebook setup](../notebooks/README.md) | [Artistic Telephone](./artistic_telephone.md)
 
-## Block 1 — Foundations & Demo
+These notes support the 150-minute session. Use the same learning sequence online or in person. Group discussion happens in breakout rooms or around tables; media sharing stays digital in both formats.
 
-### Key Concepts Recap
+## Prepare before class
 
-- **Diffusion models:** explain how noise is iteratively removed to reveal an image.
-- **Latent space:** where the model encodes abstract ideas of form, color, and composition.
-- **Conditioning:** how the text prompt influences sampling.
-- **Attention:** the mechanism aligning words to image features.
+1. Confirm students can open Jupyter and have individual Replicate accounts with API access.
+2. Download the repository so the notebooks, helpers, and requirements file stay together. Follow the notebook setup guide and rehearse offline mode.
+3. Confirm the instructor's model choice. The initial example is `black-forest-labs/flux-schnell`, already linked in the previous game guide. This is a provisional starting point, not a final curated list.
+4. Make one instructor live test with that model, checking the returned image, save/export, latency and account cost. Repeat after changes to the model inputs or environment.
+5. Prepare six SWITCHdrive group folders with student upload/download access, a separate practice folder, and a final-submission location. Supply links through the normal class channel.
+6. Prepare a three-shot storyboard example, actual generated comparison images, and a short video result. The notebooks' labelled offline diagram only rehearses mechanics; it is not a creative-generation demonstration.
+7. Rehearse multiple attempts, selection of an earlier attempt, one handoff, and instructor decoding. Check widgets, original PNG transfer, filenames, and timing. Keep all five rounds in each group folder; never resize or convert handoffs.
 
-**Talking Points:**
+## Block 1: Workflow, 10 minutes
 
-- Relate model stages to traditional art: _latent space = sketch stage_, _denoising = refinement_, _sampling = rendering_.
-- Clarify that models don’t “see” like humans — they map statistical patterns.
+Show a finished example and walk backwards through its decisions:
 
-### Quick Demo Ideas
+**Concept → storyboard → scene prompts → images/video → refinement**
 
-1. **Baseline demo:**
+Suggested concept: a quiet city waking up. Ask students to name the features connecting the shots before showing the prompt text.
 
-   - Prompt: `A cat sitting on a chair.`
-   - Show the output — note how generic and underspecified it is.
+Explain only enough model background to support decisions. A model interprets descriptions through learned patterns; it does not guarantee every requested detail. Avoid extended diffusion/latent-space teaching here because this session focuses on creative practice and connects to the technical lecturer's material.
 
-2. **Modifier layering:**
+## Block 2: Prompt craft in the web UI, 20 minutes
 
-   - Prompt: `A cat sitting on a vintage armchair, sunlight streaming through a window, cinematic lighting, detailed textures.`
-   - Discuss how adding medium and lighting words improves coherence.
+### Keep the useful scene-writing exercise
 
-3. **Negative prompts:**
+Think **Who / What / Where / When / How**. Expand a one-line situation into a short scene description. Ask a partner to describe the imagined framing before generating.
 
-   - Add: `--no text, --no watermark, --no blurry background.`
-   - Observe differences and note where the model still fails.
+| Starting idea | Detail to explore |
+| --- | --- |
+| A cyclist crosses a bridge | Time of day, lighting, clothing, camera position |
+| A street musician plays at sunset | Subject placement, setting, colour palette |
+| A small boat approaches an iceberg | Scale, fog, framing, mood |
+| An astronaut plants a tree | Material, environment, visual contrast |
+| A dancer stands on an empty stage | Light source, pose, negative space |
 
-### Optional Quick Exercise
+### Style comparison
 
-- Modify the same subject three ways:
+Reuse one subject across realistic, surreal, and graphic versions. Ask what descriptors specify observable qualities rather than simply adding praise such as "beautiful" or "high quality".
 
-  1. Realistic photo
-  2. 3D render
-  3. Pencil sketch
+| Visual treatment | Example direction |
+| --- | --- |
+| Cinematic photography | Low camera angle, warm side lighting, shallow depth of field |
+| Watercolour | Soft washes, pastel palette, visible paper texture |
+| Graphic poster | Flat colours, simple geometry, strong negative space |
 
-- Discuss how each descriptor changes tone and form.
+Use supported model fields only. Do not copy tool-specific negative-prompt syntax into another model. A camera/lens description is a visual request, not a physical camera setting. Longer prompts are not automatically more controllable.
 
-## Block 2 — Tools & Prompt Craft
+## Block 3: Simple API notebook, 20 minutes
 
-### Example Prompts for Art Styles
+Open [01_replicate_basics.ipynb](../notebooks/01_replicate_basics.ipynb).
 
-| Style                           | Example Prompt                                                                                         | Discussion Focus                                                                          |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| **Cyberpunk / Digital Art**     | `A futuristic cityscape at night, digital art, neon lighting, rain reflections, ultra-detailed`        | Focus on lighting, atmosphere, and medium keywords (`digital art`, `neon`, `cinematic`).  |
-| **Impressionist Painting**      | `A quiet village in watercolor at sunrise, soft brush strokes, pastel colors, atmospheric perspective` | Use of medium and texture; color tone shaping the emotional feel.                         |
-| **Surreal Photography**         | `A floating whale above desert dunes, golden hour light, wide-angle lens, photo-realistic style`       | How realism terms (`photo-realistic`, `lens`, `lighting`) blend with dream-like elements. |
-| **Graphic Poster / Minimalist** | `Abstract geometric shapes forming a sunset, flat colors, vector art, minimalist composition`          | Shape and composition vocabulary — introduce `vector`, `flat color`, `negative space`.    |
+| Time | Teaching action |
+| --- | --- |
+| 3 min | Show the same model and inputs used in the web UI |
+| 4 min | Run offline setup; explain private token entry for live mode |
+| 5 min | Edit the prompt and inspect prediction creation and waiting |
+| 5 min | Generate once, save locally, display and download |
+| 3 min | Change one descriptor or discuss a prepared baseline/revision pair |
 
-💡 **Tip:**
+Explain the four useful objects: model identifier, input dictionary, returned image URL, local saved image. Keep attention on these rather than library internals.
 
-- Generate one scene (e.g., “a forest clearing at dawn”) in multiple styles above to visualize how adjectives change the composition.
-- Identify which words _anchor_ realism and which drive _style_.
+Paid generation is isolated in one cell and requires typing GENERATE. Display and export cells do not call the model. If a request is interrupted or fails, check the account before another attempt. Students should not share tokens or paste them into code.
 
-### Comparison Prompts — Tone & Texture
+The notebook saves each attempt in its own folder. Students can change a prompt without losing the first output. In practice mode, changes to the prompt do not change the test diagram.
 
-Show how small changes transform results:
+## Break, 10 minutes
 
-- `A forest path at night, mysterious atmosphere` → darker, moody lighting.
-- `A forest path at night, whimsical atmosphere` → glowing elements, fantasy cues.
-- `A forest path at night, photorealistic style` → natural shadows and detail.
+## Block 4: Artistic Telephone, 45 minutes
 
-**Prompt exercise suggestion:** Have each group rewrite “portrait of an old sailor” into three versions:
+Use the [updated game guide](./artistic_telephone.md) and [Telephone notebook](../notebooks/02_artistic_telephone.ipynb).
 
-1. _Oil painting on canvas, 19th century realism._
-2. _Comic book panel, dramatic lighting, expressive lines._
-3. _3D render, cinematic light, detailed textures._
+Six groups of five; five chains circulate simultaneously within each group. Keep the model fixed. Everyone describes and regenerates an image every round. Retain the original seat-sequence filenames.
 
-Compare how the model shifts medium and emotion.
+Allow five minutes for setup reminder, five seven-minute rounds, then five minutes to check uploads. All seven-minute slots include transfer time. Appoint a coordinator per group and announce rounds with a visible timer.
 
-## Block 3 — Writing Visual Scene Descriptions
+The notebook calculates routing and retains every completed attempt privately. Students revise, compare, and explicitly choose an attempt. Export hides that selected attempt's prompt and settings in the PNG pixels. Set a small attempt/spending budget from the pilot, leaving the final minute of each round for transfer. Students still transfer files through the SWITCHdrive web interface. No private chat or direct storage integration is required.
 
-### Cues
+## Block 5: Reveal, 15 minutes
 
-Encourage students to think like directors — emphasize **Who, What, Where, When, How.**
+Download all original group PNGs and open [the instructor reveal notebook](../notebooks/03_telephone_reveal.ipynb). Confirm all six groups are present, resolve duplicates and inspect missing positions. Reveal prompts only now. Show one chain per group, or select fewer for deeper discussion if transitions take time. Use the same questions as the guide and distinguish human reinterpretation from model variability. Do not describe every difference as an error: drift is part of the activity.
 
-**Mini scenarios for practice:**
+## Block 6: Storyboard, repair and video, 20 minutes
 
-1. A street musician playing saxophone under a streetlamp at sunset.
-2. A small boat approaching an iceberg in fog.
-3. A child releasing balloons in a busy market.
-4. An astronaut planting a tree on Mars at dawn.
-5. A dancer moving through beams of light on an empty stage.
+### Student planning and repair, 12 minutes
 
-### Example 3-Line Scene Prompts
+Provide this template. Students can write or sketch; a polished storyboard is not expected.
 
-Use these to illustrate descriptive richness and spatial detail:
+| Shot | Subject/action | Framing | Fixed descriptors | Change from previous shot |
+| --- | --- | --- | --- | --- |
+| 1 | | Establishing view | | |
+| 2 | | Medium view | | |
+| 3 | | Close-up | | |
 
-1. _“At dawn, a cyclist crosses a foggy bridge, warm orange light cutting through the mist. Wide cinematic frame, lens flare, backlit composition.”_
-2. _“Inside an abandoned theater, dust particles float through a single beam of light. A solitary dancer stretches, reflected in broken mirrors.”_
-3. _“A red umbrella lies open on a rainy Tokyo street, neon reflections on wet pavement, captured from a low camera angle.”_
+Example fixed descriptors: mustard-yellow raincoat, misty stone bridge, warm dawn light, muted blue-grey palette. State that repeating descriptors helps communicate consistency but does not guarantee it.
 
-**Teaching Tip:**
+Choose one detail lost during the game and write a repair prompt. Use the basics notebook for an optional new generation, so no handoff image is overwritten. Save the reason for the revision even if there is no time to generate.
 
-- Show how adding _time of day_, _light source_, and _camera angle_ deepens storytelling.
-- Have students create a short description, then ask their peers to sketch or imagine the composition before generating it — emphasizing clarity of visualization.
+### Instructor video demonstration, 8 minutes
 
-### Outcome for Blocks 1–3
+Use a prepared image and a preselected video tool/model. The video model is not yet specified; verify its supported inputs before teaching. Demonstrate the handoff from still image to motion instructions:
 
-After these sections, you should be able to:
+> The cyclist rides slowly across the bridge. The camera tracks alongside at street level. Mist drifts above the water. Retain the raincoat, dawn lighting, and muted palette.
 
-- Explain core principles of text-to-image generation.
-- Use descriptive modifiers that clearly communicate style and mood.
-- Translate conceptual or emotional ideas into visual cues.
-- Write multi-sentence prompts that create coherent, story-driven imagery.
+Ask students to separate subject movement, environmental movement, and camera movement. Show a prepared video promptly rather than waiting for a live request. Discuss whether subject appearance and scene details persisted, and how to revise the request.
+
+No student video generation is required. Do not add p5.js or a full editing task.
+
+## Block 7: Save and wrap up, 10 minutes
+
+Students retain image-chain contributions, prompts/settings, observations, a three-shot plan and a repair prompt. The shared PNGs supply the selected-chain gallery without collecting private logs. Students keep their local attempt folders and submit reflection/storyboard/refinement work through the usual class location.
+
+Explain that Week 6 can use one visual as the audio brief, and Week 8 will distinguish preference from adherence to a task. Do not teach the full evaluation clinic here.
+
+## Still to verify with the instructor
+
+- Actual Jupyter deployment and widget/file-transfer behaviour.
+- Final approved image and video models, allowed settings, cost and latency.
+- SWITCHdrive links and permissions, exact submission location.
+- Live Replicate smoke test and representative generated demo media.
+
+Technical validation completed for the draft is recorded in the [notebook setup guide](../notebooks/README.md). Treat offline/mocked testing separately from live generation.
+

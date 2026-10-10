@@ -1,43 +1,63 @@
-# 📘 Prompt Engineering (PROMPT)
+# 📘 Prompt Engineering (PROMPT H26)
 
-This repository contains materials for the **Prompt Engineering** class. It focuses on practical skills for generating text, images, video, and sound using AI tools — with a strong emphasis on creative experimentation and critical reflection.
+Practical prompting for images, video, music, sound, and text, with an emphasis on creative experimentation, documented workflows, and critical reflection.
 
-![image](./assets/landing.jpg)
+![Generative media course illustration](./assets/landing.jpg)
 
-## 📚 Table of Contents
+## Overview
 
-1. [Overview](#-overview)
-2. [Competencies](#-competencies)
-3. Session Summaries
-   - [Day 01 — Prompting for Image & Video Generation](#️-day-01--prompting-for-image--video-generation)
-   - [Day 02 — Prompting for Music & Sound Generation](#-day-02--prompting-for-music--sound-generation)
-   - [Day 03 — VibeCoding & Video Interpretation](#-day-03--vibecoding--video-interpretation)
-4. [Tools & Resources](#️-tools--resources)
-5. [Ethics & Reflection](#️-ethics--reflection)
+These pages cover GM's sessions in Weeks 5, 6, and 8. We move from visual generation to multimodal creation, then evaluate whether changes to prompts and workflows improve the results.
 
----
+Each session lasts **2 h 30 min, including a 10-minute break**. All sessions can run **online or in person**, with the same activities and learning goals. The delivery format will be confirmed before each session.
 
-## 🧭 Overview
+## Sessions
 
-**Prompt Engineering (PROMPT)** equips students with hands-on prompting techniques for different modalities: text, image, music, and video generation. Emphasis is placed on both _creative craft_ and _responsible use_.
+| Week | Topic | Main activity | Materials |
+| --- | --- | --- | --- |
+| 5 | Image & Video Prompting and Workflow Design | Artistic Telephone, storyboard, and visual refinement | [Session plan](./day01.md) |
+| 6 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: an AI Eurovision-style creation sprint | H26 session materials coming next |
+| 8 | Generative AI Evaluation Clinic | Human and automated evaluation of generated outputs | H26 session materials coming next |
 
-Each week includes mini-projects that simulate real-world creative workflows, supported by ethical discussion and critical reflection.
+### Week 5: Image & Video Prompting and Workflow Design
 
----
+- Prompt structure and techniques for image and video generation
+- Storyboarding, scene descriptions, and visual consistency
+- Designing and iterating multi-step image/video workflows
 
-## 🧩 Competencies
+Start with Replicate's web UI, then use a prepared Jupyter Notebook to record prompts, generate images, and compare iterations. Artistic Telephone makes interpretation drift visible; a storyboard and refinement task introduce deliberate consistency. Video generation is an instructor demonstration, with an optional student extension.
+
+[Open the Week 5 session plan](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). The [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) adds iteration, comparison and selected-image passing. The [instructor reveal notebook](./notebooks/03_telephone_reveal.ipynb) assembles the shared PNGs into complete image chains with revealable prompts. See the [game guide](./notes/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
+
+### Week 6: Prompting for Audio, Music & Multimodal Workflows
+
+- Prompting for music and sound: genre, mood, tempo, voice, and other characteristics
+- Combining text, image, audio, and video in multimodal workflows
+- Choosing and iterating with the right media and tools for a project
+
+PromptVision keeps the creative sprint, listening party, and voting. Teams use a W5 visual to guide their audio and document iterations in a notebook. Detailed H26 materials will follow the Week 5 update.
+
+### Week 8: Generative AI Evaluation Clinic
+
+- Evaluation approaches across text, image, audio, and video generation
+- Hands-on evaluation of text outputs, with image evaluation as a secondary focus
+- Human feedback and simple automated evaluation to compare and improve prompts/workflows
+
+The planned clinic connects Arena comparisons with human ratings, a prepared Ragas text-evaluation exercise, and an ImageReward demonstration. Audio and video evaluation receive a short conceptual overview. Detailed H26 materials are in preparation.
+
+## Competencies
 
 **Professional**
 
 - Design effective prompts for diverse AI tools and contexts.
 - Adapt prompts to different models and use cases.
 - Understand the limits and appropriate use of generative systems.
-- Recognize privacy, security, and IP risks when using AI.
+- Recognize privacy, security, and intellectual-property risks when using AI.
 
 **Methodological**
 
 - Test, compare, and refine prompts systematically.
-- Analyze structure and wording to improve outputs.
+- Document the inputs, outputs, and decisions in a creative workflow.
+- Choose evaluation criteria appropriate to the medium and task.
 
 **Personal**
 
@@ -45,76 +65,16 @@ Each week includes mini-projects that simulate real-world creative workflows, su
 - Communicate transparently about AI-assisted work.
 - Reflect on ethical and societal implications.
 
----
+## Working tools
 
-## [🖼️ Day 01 — Prompting for Image & Video Generation](./day01.md)
+- **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
+- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Week 5 includes [two student notebooks and an instructor reveal notebook](./notebooks/README.md); students edit prompts and run supplied cells. Later weeks' notebooks will follow.
+- **Model selection:** the instructor will provide a curated list for each activity.
+- **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 
-**Focus:** Understanding visual generation models and mastering descriptive, stylistic prompting through the _Artistic Telephone_ game.
+Keep API tokens private and out of notebooks, screenshots, and submissions.
 
-### Learning Goals
+## Ethics & Reflection
 
-- Understand how text-to-image/video models interpret language.
-- Construct scene-based prompts that define subject, style, and mood.
-- Observe interpretation drift and prompt clarity in creative chains.
+Topics across the sessions include copyright and dataset provenance; bias and representation; disclosure of AI-assisted work; and authorship and responsibility when combining generated media.
 
-### Key Activities
-
-- Model demo & style comparison (Replicate / SDXL / Pika Labs)
-- Crafting effective art-style prompts
-- Writing full visual scene descriptions
-- _Artistic Telephone_ collaborative exercise
-
----
-
-## [🎵 Day 02 — Prompting for Music & Sound Generation](./day02.md)
-
-**Focus:** Exploring AI music and sound generation — prompting for genre, tempo, and mood across different models through the _PromptVision_ contest.
-
-### Learning Goals
-
-- Understand how AI systems synthesize and remix audio.
-- Write structured prompts for mood, genre, and tempo.
-- Evaluate and compare audio outputs for coherence and style.
-- Collaborate in creative “AI Eurovision”-style performance.
-
----
-
-## [💫 Day 03 — VibeCoding & Video Interpretation](./day03.md)
-
-**Focus:** Translating aesthetic “vibes” into generative logic using **p5.js** and interpreting those human-coded rhythms through **AI video generation** inspired by Rafael Lozano-Hemmer’s _Internet_.
-
-### Learning Goals
-
-- Express mood, rhythm, and motion through parameter-based “vibe coding.”
-- Understand how procedural systems embody aesthetic language.
-- Generate visual outputs and transform them into AI video interpretations.
-- Compare human vs. AI perception of visual rhythm and motion.
-
-### Key Activities
-
-- VibeCoding exercise in p5.js (no prior coding required)
-- Group reinterpretations of _Internet_
-- Frame capture and AI video generation on Replicate
-- Reflection on motion, authorship, and interpretation drift
-
----
-
-## 🛠️ Tools & Resources
-
-- **Image Generation:** Stable Diffusion XL, Kandinsky 3, PixArt, DALL·E 3, Midjourney  
-- **Video Generation:** Runway ML, Pika Labs, Kaiber, Sora (conceptual), Replicate video models  
-- **Audio Generation:** MusicLM, AudioLDM, Mubert, Suno.ai  
-- **Creative Coding:** [p5.js](https://p5js.org) (browser editor)  
-- **Experimentation Platform:** [Replicate](https://replicate.com)  
-- **Workflow UIs:** Automatic1111, ComfyUI  
-
----
-
-## ⚖️ Ethics & Reflection
-
-Topics covered across sessions:
-
-- Copyright and dataset provenance  
-- Bias, representation, and inclusivity in generative media  
-- Disclosure and transparency in AI-assisted work  
-- Synthetic reality, interpretation, and creative responsibility
