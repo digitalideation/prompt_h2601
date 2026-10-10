@@ -7,12 +7,12 @@ These notes support the 150-minute session. Use the same learning sequence onlin
 ## Prepare before class
 
 1. Confirm students can open Jupyter and have individual Replicate accounts with API access.
-2. Download the repository so the notebooks, helper, and requirements file stay together. Follow the notebook setup guide and rehearse offline mode.
+2. Download the repository so the notebooks, helpers, and requirements file stay together. Follow the notebook setup guide and rehearse offline mode.
 3. Confirm the instructor's model choice. The initial example is `black-forest-labs/flux-schnell`, already linked in the previous game guide. This is a provisional starting point, not a final curated list.
 4. Make one instructor live test with that model, checking the returned image, save/export, latency and account cost. Repeat after changes to the model inputs or environment.
 5. Prepare six SWITCHdrive group folders with student upload/download access, a separate practice folder, and a final-submission location. Supply links through the normal class channel.
 6. Prepare a three-shot storyboard example, actual generated comparison images, and a short video result. The notebooks' labelled offline diagram only rehearses mechanics; it is not a creative-generation demonstration.
-7. Rehearse one handoff between two student notebooks. Check widgets, filenames, and timing.
+7. Rehearse multiple attempts, selection of an earlier attempt, one handoff, and instructor decoding. Check widgets, original PNG transfer, filenames, and timing. Keep all five rounds in each group folder; never resize or convert handoffs.
 
 ## Block 1: Workflow, 10 minutes
 
@@ -58,11 +58,11 @@ Open [01_replicate_basics.ipynb](../notebooks/01_replicate_basics.ipynb).
 | --- | --- |
 | 3 min | Show the same model and inputs used in the web UI |
 | 4 min | Run offline setup; explain private token entry for live mode |
-| 5 min | Edit the prompt and inspect the visible `client.run(...)` call |
+| 5 min | Edit the prompt and inspect prediction creation and waiting |
 | 5 min | Generate once, save locally, display and download |
 | 3 min | Change one descriptor or discuss a prepared baseline/revision pair |
 
-Explain the four useful objects: model identifier, input dictionary, returned file, local saved image. Keep attention on these rather than library internals.
+Explain the four useful objects: model identifier, input dictionary, returned image URL, local saved image. Keep attention on these rather than library internals.
 
 Paid generation is isolated in one cell and requires typing GENERATE. Display and export cells do not call the model. If a request is interrupted or fails, check the account before another attempt. Students should not share tokens or paste them into code.
 
@@ -78,11 +78,11 @@ Six groups of five; five chains circulate simultaneously within each group. Keep
 
 Allow five minutes for setup reminder, five seven-minute rounds, then five minutes to check uploads. All seven-minute slots include transfer time. Appoint a coordinator per group and announce rounds with a visible timer.
 
-The notebook calculates routing, stores prompt history privately, and exports a clean PNG. Students still transfer files through the SWITCHdrive web interface. No private chat or direct storage integration is required.
+The notebook calculates routing and retains every completed attempt privately. Students revise, compare, and explicitly choose an attempt. Export hides that selected attempt's prompt and settings in the PNG pixels. Set a small attempt/spending budget from the pilot, leaving the final minute of each round for transfer. Students still transfer files through the SWITCHdrive web interface. No private chat or direct storage integration is required.
 
 ## Block 5: Reveal, 15 minutes
 
-Reveal prompts only now. Show one chain per group, or select fewer for deeper discussion if transitions take time. Use the same questions as the guide and distinguish human reinterpretation from model variability. Do not describe every difference as an error: drift is part of the activity.
+Download all original group PNGs and open [the instructor reveal notebook](../notebooks/03_telephone_reveal.ipynb). Confirm all six groups are present, resolve duplicates and inspect missing positions. Reveal prompts only now. Show one chain per group, or select fewer for deeper discussion if transitions take time. Use the same questions as the guide and distinguish human reinterpretation from model variability. Do not describe every difference as an error: drift is part of the activity.
 
 ## Block 6: Storyboard, repair and video, 20 minutes
 
@@ -112,7 +112,7 @@ No student video generation is required. Do not add p5.js or a full editing task
 
 ## Block 7: Save and wrap up, 10 minutes
 
-Students retain image-chain contributions, prompts/settings, observations, a three-shot plan and a repair prompt. The Telephone notebook exports these records after the reveal. Additional refinement images can be submitted alongside that archive.
+Students retain image-chain contributions, prompts/settings, observations, a three-shot plan and a repair prompt. The shared PNGs supply the selected-chain gallery without collecting private logs. Students keep their local attempt folders and submit reflection/storyboard/refinement work through the usual class location.
 
 Explain that Week 6 can use one visual as the audio brief, and Week 8 will distinguish preference from adherence to a task. Do not teach the full evaluation clinic here.
 
@@ -124,3 +124,4 @@ Explain that Week 6 can use one visual as the audio brief, and Week 8 will disti
 - Live Replicate smoke test and representative generated demo media.
 
 Technical validation completed for the draft is recorded in the [notebook setup guide](../notebooks/README.md). Treat offline/mocked testing separately from live generation.
+

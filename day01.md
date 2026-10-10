@@ -115,13 +115,13 @@ The working H26 format uses five rounds with everyone active. Each student start
 
 1. Inspect only the image assigned to you.
 2. Write your own scene description without seeing the previous prompt.
-3. Generate a new image from that description.
-4. Save the prompt and output in your own notebook.
+3. Generate an attempt from that description. Revise and try again within the round's time and spending budget.
+4. Save each attempt privately, compare the results, and select the one you want to pass.
 5. Upload only the image to your group's SWITCHdrive folder for the next participant.
 
 Use one shared, instructor-selected image model during the game. Do not pass a Replicate generation-page link, because it may reveal the prompt. Keep prompt records private until the reveal.
 
-Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. The Telephone notebook calculates file assignments and exports a PNG without embedded prompt metadata. Students transfer it through SWITCHdrive. Shared folders rely on the rule to open only the assigned image.
+Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. The Telephone notebook calculates file assignments and exports the selected PNG with that attempt's prompt and settings hidden in its pixels for the instructor's reveal. Pass the original file without resizing or converting it. Students transfer it through SWITCHdrive. Shared folders rely on the rule to open only the assigned image.
 
 Starter themes can include *Serenity*, *Ritual*, *Metropolis*, *Decay*, *Connection*, and *Chaos*. Encourage playful drift: ambiguity and unexpected interpretation are part of the activity.
 
@@ -131,7 +131,7 @@ The 45-minute block includes instructions and image transfers. Round pacing will
 
 ## Block 5: Chain reveal and discussion
 
-Reveal the image chains alongside their prompts. Each group selects one chain to discuss.
+Use [the instructor reveal notebook](./notebooks/03_telephone_reveal.ipynb) to decode all selected PNGs from the group folders and display each chain in order, with prompts revealed on demand. Each group selects one chain to discuss.
 
 - Which subjects, colours, or compositions persisted?
 - Which details disappeared or changed?
@@ -182,3 +182,4 @@ Preserve the first and revised outputs where available. Selected visuals can gui
 Use breakout rooms online or table groups in person. The same notebooks, SWITCHdrive folders, image-passing rules, and digital submissions apply in both settings. Use screen sharing or projection for the gallery and video demonstration.
 
 Before teaching, check the notebook setup, one complete group handoff, and model latency. Prepare image/video examples and provide the class folder links. The initial API example uses FLUX.1 schnell from the previous guide; confirm the final model choice and live behaviour before class. The notebooks' offline diagrams rehearse mechanics and do not replace prepared generated examples.
+

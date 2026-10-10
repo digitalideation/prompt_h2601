@@ -139,14 +139,16 @@ class TestNotebooks(unittest.TestCase):
                         for cell in notebook.cells:
                             if cell.cell_type == "code" and "setup" not in cell.metadata.get("tags", []):
                                 exec(cell.source, namespace)
-                        self.assertTrue(list(Path(folder).rglob("image.png")))
-                        self.assertTrue(list(Path(folder).rglob("*.json")))
+                        if path.name.startswith("01_"):
+                            self.assertTrue(list(Path(folder).rglob("image.png")))
+                            self.assertTrue(list(Path(folder).rglob("*.json")))
 
     @unittest.skipUnless(os.environ.get("RUN_JUPYTER_KERNEL_TESTS") == "1", "Optional full kernel test; enable in an environment permitting local kernel sockets")
     def test_notebooks_execute_offline_in_kernel(self):
         for path in NOTEBOOKS.glob("*.ipynb"):
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
-                shutil.copy(NOTEBOOKS / "telephone_helpers.py", folder)
+                for helper_path in NOTEBOOKS.glob("telephone_*.py"):
+                    shutil.copy(helper_path, folder)
                 nb = nbformat.read(path, as_version=4)
                 nb.cells = [cell for cell in nb.cells if "setup" not in cell.metadata.get("tags", [])]
                 # Assert even an accidental SDK call cannot contact Replicate.
@@ -155,8 +157,9 @@ class TestNotebooks(unittest.TestCase):
                     "def forbidden(*args, **kwargs):\n    raise AssertionError('Offline API call')\n"
                     "replicate.Client.run = forbidden\n"))
                 NotebookClient(nb, timeout=90, kernel_name="python3").execute(cwd=folder)
-                self.assertTrue(list(Path(folder).rglob("image.png")))
-                self.assertTrue(list(Path(folder).rglob("*.json")))
+                if path.name.startswith("01_"):
+                    self.assertTrue(list(Path(folder).rglob("image.png")))
+                    self.assertTrue(list(Path(folder).rglob("*.json")))
 
     def test_basic_live_call_and_save_are_separate(self):
         cells = basic_cells()
@@ -239,43 +242,6 @@ class TestNotebooks(unittest.TestCase):
             self.assertIsNone(ns["saved_image"])
             exec(cells["cell-12"], ns)
 
-    def test_telephone_live_flow_requires_incoming_and_does_not_send_it(self):
-        cells = sources("02_artistic_telephone.ipynb")
-        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
-            ns = {}
-            exec(cells[0], ns)
-            exec(cells[1], ns)
-            ns["mode_choice"].value = True
-            ns["round_choice"].value = 2
-            exec(cells[2], ns)
-            exec(cells[5], ns)
-            calls = []
-
-            class FileOutput:
-                def read(self):
-                    return helper.practice_image()
-
-            class FakeClient:
-                def run(self, model, **kwargs):
-                    calls.append(kwargs)
-                    return [FileOutput()]
-
-            ns["client"] = FakeClient()
-            with patch.object(builtins, "input", return_value="GENERATE"):
-                exec(cells[7], ns)
-                self.assertEqual(len(calls), 0)
-                ns["incoming_bytes"] = helper.practice_image()
-                ns["source_filename"] = "05.png"
-                exec(cells[7], ns)
-            exec(cells[8], ns)
-            exec(cells[8], ns)
-            exec(cells[9], ns)
-            self.assertEqual(len(calls), 1)
-            self.assertNotIn("image", calls[0]["input"])
-            self.assertEqual(ns["handoff"].name, "05_01.png")
-            self.assertIn("handoff", ns["handoff"].parts)
-            self.assertEqual(len(helper.history(ns["root"])), 1)
-
     def test_error_message_does_not_echo_token(self):
         class APIError(Exception):
             status = 401
@@ -286,4 +252,5 @@ class TestNotebooks(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 

@@ -1,4 +1,4 @@
-"""Small local helpers for W5. Generation remains visible in the notebook."""
+"""Local routing, private history and selected-image export for W5."""
 
 import io
 import json
@@ -40,7 +40,7 @@ def route(group, seat, round_number):
 
 
 def clean_png(data):
-    """Rebuild pixels as a PNG so metadata never accompanies a game handoff."""
+    """Rebuild pixels as a PNG without ordinary image metadata."""
     if not isinstance(data, bytes) or not data or len(data) > 20 * 1024 * 1024:
         raise ValueError("Choose an image smaller than 20 MB.")
     with Image.open(io.BytesIO(data)) as source:
@@ -105,10 +105,10 @@ def save_record(root, context, image_bytes):
     (run / "image.png").write_bytes(png)
     # Explicit allowlist: never serialize clients, tokens, widget state or globals.
     keys = ("group", "seat", "round", "folder", "incoming", "outgoing", "send_to",
-            "prompt", "model", "settings", "mode", "observation", "source_filename")
+            "prompt", "model", "settings", "mode", "observation", "source_filename",
+            "session", "model_version", "prediction_id")
     record = {key: context.get(key) for key in keys}
     record["recorded_at_utc"] = datetime.now(timezone.utc).isoformat()
-    record["model_version"] = "Unpinned model identifier; resolved version not captured"
     (run / "record.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
     return run
 
@@ -119,11 +119,12 @@ def history(root):
         record = json.loads(path.read_text(encoding="utf-8"))
         record["run_path"] = str(path.parent)
         records.append(record)
-    return records
+    return sorted(records, key=lambda record: (record.get("recorded_at_utc", ""), record["run_path"]))
 
 
 def export_handoff(root, run):
-    """Copy only clean pixels to a group/round filename, not the private log."""
+    """Embed this selected attempt's record in PNG pixels for the reveal."""
+    from telephone_steg import encode
     root, run = Path(root), Path(run)
     if not run.resolve().is_relative_to((root / "private").resolve()):
         raise ValueError("Choose a saved run from this student's private history.")
@@ -137,7 +138,7 @@ def export_handoff(root, run):
     folder = root / ("handoff" if record["mode"] == "live" else "practice_handoff") / expected["folder"]
     folder.mkdir(parents=True, exist_ok=True)
     target = folder / expected["outgoing"]
-    data = clean_png((run / "image.png").read_bytes())
+    data = encode((run / "image.png").read_bytes(), record)
     if target.exists():
         if target.read_bytes() == data:
             return target
@@ -167,3 +168,4 @@ def session_root(session_name, group, seat):
     if not re.fullmatch(r"[A-Za-z0-9_-]{1,40}", session_name):
         raise ValueError("Use 1 to 40 letters, numbers, underscores or hyphens for the session name.")
     return Path("outputs") / "telephone" / session_name / f"Group_{group}_S{seat:02d}"
+

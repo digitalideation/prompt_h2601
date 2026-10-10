@@ -1,37 +1,47 @@
 # Week 5 notebooks
 
-1. [Replicate basics](01_replicate_basics.ipynb): one visible API call, then display and save. Use during the 20-minute introduction.
-2. [Artistic Telephone](02_artistic_telephone.ipynb): the same call plus group routing, image loading, private prompt history and handoff export. Use during the game.
+1. [Replicate basics](01_replicate_basics.ipynb): the short API introduction.
+2. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
+3. [Instructor reveal](03_telephone_reveal.ipynb): decode the shared PNGs and show each chain in order.
 
 ## Open in Jupyter
 
-Download the repository ZIP from GitHub (Code → Download ZIP), extract it, and open its `notebooks` folder in your usual Jupyter environment. Keep `telephone_helpers.py` beside the notebooks. Do not simply open the GitHub preview and expect it to execute.
+Download the repository ZIP from GitHub (Code → Download ZIP), extract it, and open its `notebooks` folder in the course's existing Jupyter environment. Keep all `telephone_*.py` helpers beside the notebooks. GitHub's preview does not execute notebooks.
 
-Use Python 3.10 or newer. In a temporary notebook cell, run:
+Use Python 3.10 or newer. Install the shared requirements in the active kernel:
 
 ```python
 %pip install -r requirements.txt
 ```
 
-Restart the kernel afterwards. The requirements install libraries into the selected kernel environment; students should use the Jupyter environment already established in the course. The offline walkthrough still needs Pillow, IPython and, for Telephone, ipywidgets, but makes no API calls.
+Restart the kernel if needed. Telephone uses ipywidgets 8 for prompt fields, the model dropdown, file upload and attempt selection. Check widget rendering before class. A file-path fallback is supplied for uploads; the other controls require working widgets.
 
-Run cells from top to bottom with Shift+Enter. Notebooks open in offline practice mode. They draw a labelled test diagram rather than use a real generated image. This is suitable for testing saving and transfer only. The instructor supplies actual prepared media for artistic discussion or a generation outage.
+Both student notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts. Use actual prepared generated examples for artistic discussion.
 
-## Live generation
+## Replicate and live attempts
 
-Switch to live mode and enter your individual API token through the hidden prompt. Never paste it into notebook code. Type GENERATE only when ready to make one potentially paid request. Display, saving, history and export do not generate again. Restart the kernel when finished to clear the client from memory.
+Students use individual accounts and hidden token input. Never paste tokens into code or submissions. Type GENERATE to request a potentially paid attempt. Saving, comparison and export do not create predictions. Restart the kernel when finished.
 
-Initial model: `black-forest-labs/flux-schnell`, from the existing course guide. The short notebook uses this one model. The Telephone dropdown initially contains one corresponding entry; the instructor can curate `MODELS` in `telephone_helpers.py` after verifying each model's identifier, supported inputs and list-of-file-outputs behaviour. Both notebooks request one square PNG. Adding a model that returns a different output shape requires adapting the read step too.
+The initial curated dropdown contains `black-forest-labs/flux-schnell`. Edit MODELS in `telephone_helpers.py` to curate the list. Confirm each model's inputs and compatibility with version-based prediction creation and a list of HTTPS image URLs. Different output schemas require adapting the helper. Both student examples request one square PNG.
 
-The model identifier is not version-pinned. Logs do not claim to record a resolved model version. Confirm the class model and runtime before teaching; no live generation has been performed for this draft.
+Telephone uses the same prediction lifecycle as the basics notebook: look up a model version, create a prediction, wait for completion, then download its output. It records the resolved version and prediction ID. The basics notebook remains the short introduction and does not record those extra fields in its saved prompt file.
 
-## Passing and saving
+No live generation has been performed for this update. Check the class model, costs and response format before teaching.
 
-The Telephone notebook calculates the original filenames and requires the assigned incoming filename in rounds 2 to 5. It cannot verify the semantic content of the file or which SWITCHdrive folder it came from; students must use their group's folder.
+## The student loop
 
-Handoff export rebuilds a PNG from pixels, removing embedded prompt metadata. Download the file using the notebook link, then upload it through SWITCHdrive. There is no direct SWITCHdrive API integration or need for a messaging platform.
+- Set session name, group and seat once. Everyone uses the same class session name.
+- Start a round and load the assigned incoming PNG in rounds 2 to 5.
+- Edit the prompt, generate, then save and preview privately.
+- Revise and repeat within the instructor's time and spending budget.
+- Refresh the comparison cell and choose any saved attempt for that round.
+- Run **Save selected image for passing**. Download that PNG and upload it to the group's SWITCHdrive folder.
 
-Files are saved relative to the notebook's working directory:
+Every completed attempt has a separate local image and JSON record containing its exact prompt/settings snapshot. An earlier attempt can be selected after later attempts. Export does not use the current prompt-box text. Once a round has been exported, a different selection cannot overwrite it silently.
+
+Incoming images are inspected locally, not sent as image-to-image inputs. The notebook validates the assigned filename; students must still choose the correct group folder. Passing stays within six groups of five, retaining names such as `01.png`, `01_02.png`, and `01_02_03.png`.
+
+Files are relative to Jupyter's working directory:
 
 ```text
 outputs/
@@ -40,34 +50,35 @@ outputs/
         private/<attempt>/image.png and record.json
         handoff/Group_A/01.png
         practice_handoff/Group_A/01.png
-        reflection.json
-        after_reveal_<id>.zip
+        pending.json (only while a live prediction is pending)
+    telephone_reveal.html (instructor export)
 ```
 
-These outputs are ignored by Git. They are not a shared service. Prompt records stay on the student's Jupyter server until explicitly submitted. Only the handoff PNG is passed during play. The after-reveal ZIP contains prompts and must not be used for passing.
+Keep the private attempt folders for later comparison. Only the selected handoff PNG is uploaded during play. No direct SWITCHdrive integration or private messaging system is required.
 
-After a kernel restart, set the same session/group/seat and use the history section to inspect saved attempts. To re-export a saved attempt, assign its displayed directory to `saved_run = Path("...")`, then run the export cell. Do not regenerate merely to recover a saved image.
+## Hidden prompts and instructor reveal
 
-## Troubleshooting
+Export removes ordinary image metadata, then embeds a small JSON record in the lowest bits of RGB pixels. Only the selected attempt's own record is included. No cumulative history, secret key or ST3GG installation is needed. This discourages casual prompt reading; it is not encryption or tamper-proof storage.
 
-| Symptom | Action |
-| --- | --- |
-| Missing library | Install requirements in the active kernel and restart |
-| Widgets do not render | Check ipywidgets support in the existing Jupyter installation; the notebook documents plain-value and file-browser fallbacks |
-| Helper import fails | Keep the helper beside the notebook and launch from the `notebooks` folder |
-| Missing/wrong incoming file | Check group and round, preserve the original filename, and wait for the correct upload |
-| Token/access/credit problem | Check your Replicate account privately; use practice mode meanwhile |
-| Long or interrupted generation | Check Replicate predictions before retrying; there may already be a charged request |
-| Download/save fails | Retry the save cell first; it does not generate again |
-| Handoff already selected | Reuse the exported file; coordinate with the instructor before replacing a passed image |
+Pass the original PNG without resizing, screenshots, image editing or JPEG conversion. Those operations can destroy the hidden record. Keep every round's PNG in the shared group folder.
 
-## Validation and remaining classroom checks
+The instructor downloads all group folders and opens notebook 03. It decodes each image, groups by session/mode/group, and reconstructs five chains per group with five positions each. Missing positions and duplicate files are shown explicitly. Unreadable records are flagged. Groups without any readable images cannot be reconstructed, so check the displayed group list.
 
-The draft is validated by executing all code cells in order in-process and by using mocked API responses. Nine checks passed; the separate full-kernel test is optional. The restricted development environment prevented a Jupyter kernel from opening its local sockets, so kernel/UI execution is not claimed as verified. Tests cover notebook structure, within-group routing across all five rounds, prompt-free exports, saved history, cancelled requests and prevention of generation from save/display steps. Test dependencies are separate from classroom dependencies. The tested SDK is Replicate 1.0.7, with ipywidgets 8.1.9 and Python 3.12.
+Prompts open beneath images. Export a self-contained HTML gallery for offline presentation after the game. It includes the prompts, even when collapsed, and can be large for a full class. No student private logs are needed for the selected-chain reveal.
 
-Remaining checks: real Replicate credentials/model availability, billed live generation, the institution's Jupyter UI and download behaviour, SWITCHdrive permissions, and a timed class handoff. No student credentials are required for the offline tests. The offline diagram is not evidence of model quality.
+## Recovery
 
-## Instructor/developer checks
+If waiting or downloading fails, retry Telephone's save cell. The existing prediction is reused. Do not create another paid attempt just to retry a download.
+
+A live prediction ID and its snapshot are written to `pending.json`. After a kernel restart, use the same session/group/seat, reconnect, and run the documented recovery cell. It fetches the existing prediction. Confirmed failed/canceled predictions can be cleared with the supplied control. If a request failed before returning an ID, inspect Replicate before retrying.
+
+After a normal restart, use the same identity and round, then refresh comparison to select a previously saved attempt without regenerating. Never delete or replace a passed image without coordinating with the instructor and next student.
+
+## Validation and classroom checks
+
+Offline tests cover notebook cell execution in process, generation/selection snapshots, retry without a new request, prediction recovery, all group routes, Unicode hidden records, corruption detection, missing/duplicate gallery positions, escaped prompt text and selection of an earlier attempt. They use temporary output folders and mocked API responses.
+
+The full-kernel test is optional because the development sandbox blocks local kernel sockets. Browser widget interactions, real account/model availability, billed generation, Jupyter downloads, SWITCHdrive permissions and a timed classroom transfer still need an instructor pilot.
 
 From the repository root:
 
@@ -76,15 +87,13 @@ python -m pip install -r notebooks/requirements.txt -r tests/requirements.txt
 python -m unittest discover -s tests -v
 ```
 
-The tests use temporary output folders and mocked requests. They do not make paid API calls.
-
-To additionally execute both notebooks with a real local kernel in a suitable environment:
+Where local kernels are supported:
 
 ```sh
 RUN_JUPYTER_KERNEL_TESTS=1 python -m unittest discover -s tests -v
 ```
 
-This still uses offline practice mode. It does not replace testing file download and upload in the actual Jupyter browser interface.
+Neither test mode makes paid API calls.
 
 ## References
 
@@ -92,3 +101,4 @@ This still uses offline practice mode. It does not replace testing file download
 - [Official Python client](https://github.com/replicate/replicate-python)
 - [FLUX.1 schnell inputs](https://replicate.com/black-forest-labs/flux-schnell/api)
 - [File outputs](https://replicate.com/docs/topics/predictions/output-files)
+

@@ -40,15 +40,15 @@ Five rounds give each chain five images. There is no sixth generation when it re
 | **Game total** | **45 min** | |
 | Reveal and discussion | 15 min | View selected chains and reveal prompts |
 
-Each seven-minute round includes image transfer. Use a visible timer and announce each round together. Pilot one round before class; if latency is too high, shorten the number of rounds explicitly rather than rushing students or adding unplanned API calls.
+Each seven-minute round includes iteration, selection and image transfer. Reserve the last minute for choosing and uploading; students do not have to use every possible attempt. Use a visible timer and announce each round together. Pilot one round before class; if latency is too high, shorten the number of rounds explicitly rather than rushing students or adding unplanned API calls.
 
 ## What to do in each round
 
 1. Select the round in your notebook and run the round-instructions cell.
 2. In round 1, use your group's theme. Later, download only the assigned image from your group folder and load it into the notebook.
 3. Write a new prompt describing what you see. Do not inspect the previous prompt or earlier images in the chain.
-4. Run one generation, save it and record a short observation.
-5. Export the handoff PNG using the notebook link. Upload that PNG to your group's SWITCHdrive folder with the filename unchanged.
+4. Generate and save an attempt privately. If time and budget allow, revise the prompt and try again. Compare saved attempts and choose one to pass.
+5. Run **Save selected image for passing**, then download the handoff PNG using the notebook link. Upload that PNG to your group's SWITCHdrive folder with the filename unchanged.
 6. Wait for the next round signal. Keep sending to the same next seat.
 
 The image is for you to interpret. This is a text-to-image game; the received image is not sent as an image-to-image input.
@@ -76,7 +76,8 @@ Filenames can repeat across groups because the folders are separate. Do not rena
 
 ## Share images only
 
-- Use the notebook's handoff export, which rebuilds a PNG without embedded prompt metadata.
+- Use the notebook's handoff export. It removes ordinary image metadata and hides the selected attempt's own prompt and settings in the PNG pixels for the reveal. This is simple steganography, not encryption; do not decode prompts during play.
+- Pass the original PNG. Screenshots, resizing, editing, and JPEG conversion can destroy its hidden record. Keep every round's PNG in the shared folder.
 - Do not share Replicate prediction-page links, notebooks, JSON logs, or the final submission ZIP during play.
 - The notebook does not connect directly to SWITCHdrive. Download the PNG to your computer, then upload it through the folder page.
 - Shared folders do not hide other images. The rule is to open only the file assigned to you.
@@ -102,7 +103,7 @@ Students may change era, medium, or emotion as a chain develops. Keep subject, s
 
 ## Reveal and discussion
 
-After all rounds stop, reveal the prompt records. Each group chooses one complete or partial chain and shows the images in order using the shared folder or a slide.
+After all rounds stop, the instructor downloads the group folders and opens [03_telephone_reveal.ipynb](../notebooks/03_telephone_reveal.ipynb). It decodes the selected PNGs, orders each chain, and shows missing or duplicate positions. Reveal prompts under each image. Each group chooses one complete or partial chain to discuss. The instructor can export a self-contained HTML gallery for later viewing.
 
 - What persisted: subject, colour, framing, or mood?
 - What drifted, and where?
@@ -111,12 +112,13 @@ After all rounds stop, reveal the prompt records. Each group chooses one complet
 
 Optional highlights: **Most Surprising Transformation**, **Best Stylistic Leap**, **Strongest Narrative Continuity**.
 
-After the reveal, complete the notebook reflection and three-shot storyboard. Identify a lost detail and write one repair prompt. An extra generation is optional and can use the basics notebook, keeping the game's passed files unchanged.
+After the reveal, write a short reflection in your own notes and complete the three-shot storyboard. Identify a lost detail and write one repair prompt. An extra generation is optional and can use the basics notebook, keeping the game's passed files unchanged.
 
 ## Final submission
 
-Only after the reveal, export the notebook's final archive of your own images, prompt records, and reflection. Upload it to the submission location supplied by the instructor. It is distinct from the group handoff folder. Keep first and revised outputs for later sessions.
+The shared group folders already contain everything needed for the instructor's selected-chain gallery. No separate prompt-log upload is needed. Retain the local `private` folder with all attempts, and submit your reflection, storyboard, and refinement comparison to the location supplied by the instructor after the reveal. Do not submit API tokens or the entire notebook environment.
 
 ## Instructor checks
 
-Test one complete handoff with the actual Jupyter and SWITCHdrive setup. The working format produces **150 initial class-wide generations**, or five per student, before walkthroughs, retries, or refinement. Check current model cost and latency with the class budget. Confirm the model list, sample media, folder links, and accessible audio/video playback before teaching.
+Test one complete handoff with the actual Jupyter and SWITCHdrive setup. The working format produces **150 selected class-wide images**, or five per student. Total generations can be higher because students iterate. Set a per-round attempt and spending budget based on a timed pilot, including walkthroughs and refinement. Check current model cost and latency with the class budget. Confirm the model list, sample media, folder links, and accessible audio/video playback before teaching.
+
