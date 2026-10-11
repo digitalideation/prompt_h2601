@@ -1,8 +1,8 @@
-# Teaching Notes — Day 02 (Audio & Music Generation)
+# Teaching Notes: Day 02 (Audio & Music Generation)
 
 These notes support **Day 02: Prompting for Music & Sound Generation**. They include warm-up activities, prompt examples, and teaching cues for introducing audio generation tools and the _PromptVision_ contest.
 
-## Block 1 — Foundations & Demos
+## Block 1: Foundations & Demos
 
 ### Key Concepts Recap
 
@@ -39,7 +39,7 @@ These notes support **Day 02: Prompting for Music & Sound Generation**. They inc
 - Each student writes one prompt describing a 10-second soundscape.
 - Instructor plays 3–4 outputs and asks the class: _Does the audio match the prompt’s tone and instrumentation?_
 
-## Block 2 — Tools & Prompt Craft
+## Block 2: Tools & Prompt Craft
 
 ### Key Platforms to Showcase
 
@@ -61,9 +61,9 @@ These notes support **Day 02: Prompting for Music & Sound Generation**. They inc
 - `Lo-fi chillhop beat with vinyl crackle, warm piano chords, and laid-back tempo.`
 - `Dark ambient drone with mechanical sounds and deep sub-bass.`
 
-**Teaching Tip:** Encourage iteration — changing one musical variable (tempo, mood, instrument) each time to observe the effect.
+**Teaching Tip:** Encourage iteration: changing one musical variable (tempo, mood, instrument) each time to observe the effect.
 
-## Block 3 — 🎤 PromptVision: AI Song Contest
+## Block 3: 🎤 PromptVision: AI Song Contest
 
 ### Overview
 
@@ -111,3 +111,7 @@ After this session, students should be able to:
 - Compare results across different music generation tools.
 - Understand **prompt iteration** as compositional refinement.
 - Critically evaluate creative and ethical aspects of AI-generated music.
+
+## Presentation and playback
+
+Prepare the playlist for back-to-back playback. Show each team's prompt or read it from the submitted record. Keep timing and playback instructions in these notes; the student page should ask students to listen, share their prompt and discuss the results.

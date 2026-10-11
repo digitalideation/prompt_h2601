@@ -1,4 +1,4 @@
-# 🧑‍💻 Day 03 — Zoom Facilitation Guide
+# 🧑‍💻 Day 03: Zoom Facilitation Guide
 
 ## 🎯 Purpose
 
@@ -100,7 +100,7 @@ Optionally hold a quick poll:
 
 ## 🧰 6️⃣ Facilitation Tips
 
-* Encourage experimentation — no need to understand syntax.
+* Encourage experimentation: no need to understand syntax.
 * Emphasize iteration and description → *prompting, not coding.*
 * If bandwidth issues occur, only the **Tuner shares screen** while others direct verbally.
 * Keep extra starter links in the chat in case a sketch breaks.

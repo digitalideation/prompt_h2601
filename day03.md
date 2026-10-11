@@ -1,8 +1,10 @@
-# Day 03 — VibeCoding & Video Interpretation
+# Day 03: VibeCoding & Video Interpretation
+
+*Previous-semester material. See the [course homepage](./readme.md) for the H26 sessions.*
 
 **Duration:** 2 h 30 min.  
 **Focus:** Translating visual rhythm and motion into procedural logic through **p5.js**, then extending those human-coded aesthetics into **AI-generated video interpretations**, inspired by Rafael Rozendaal’s _Internet_ (2002).  
-**Mode:** Browser-based (p5.js Web Editor + Replicate) — pairs or small groups of 2–3.
+**Mode:** Browser-based (p5.js Web Editor + Replicate): pairs or small groups of 2–3.
 
 | Block | Activity                            | Duration       |
 | :---- | :---------------------------------- | :------------- |
@@ -14,25 +16,25 @@
 | 5     | Showcase & Reflection               | 20 min         |
 |       | **Total**                           | **2 h 30 min** |
 
-## 🧱️ Block 1 — Foundations: Net Art & Motion Logic
+## 🧱️ Block 1: Foundations: Net Art & Motion Logic
 
 ### 1. Introduction to Rafael Rozendaal and _Internet_
 
-- Discuss the early 2000s web-art context — minimalism, interactivity, code-as-canvas.
+- Discuss the early 2000s web-art context: minimalism, interactivity, code-as-canvas.
 - View [_Internet_ (2002)](https://www.newrafael.com/internet/): observe how repetition, rhythm, and color produce emotion without narrative.
 - Key themes: **loop**, **pattern**, **interaction**, **vibe through motion**.
 
 ### 2. Conceptual Bridge to VibeCoding
 
-- Explain that **VibeCoding = prompting through parameters**:  
+- **VibeCoding = prompting through parameters**:  
   _speed_, _color_, _density_, _rhythm_.
-- Show how small numeric tweaks shift perception — like prompt refinements in text or sound.
+- Observe how small numeric tweaks shift perception: like prompt refinements in text or sound.
 
-## 🧱️ Block 2 — VibeCoding Demo & Warm-up
+## 🧱️ Block 2: VibeCoding Demo & Warm-up
 
 ### 3. p5.js Demo (Non-coders friendly)
 
-Demonstrate a minimal sketch:
+Explore this minimal sketch:
 
 ```js
 let dots = [];
@@ -52,17 +54,17 @@ function draw() {
 }
 ```
 
-Show how adjusting `stroke()`, `sin()` speed, or number of dots changes the vibe.
+Explore how adjusting `stroke()`, `sin()` speed, or the number of dots changes the vibe.
 
 ### 4. Vibe Prompts (Verbal Control)
 
-Invite students to suggest:
+Try descriptions such as:
 
 > “Make it calmer.” “Add chaos.” “Shift the color toward neon.” “Fade more slowly.”
 
 Record the effect of each description → numeric change.
 
-## 🧱️ Block 3 — Team VibeCoding Exercise
+## 🧱️ Block 3: Team VibeCoding Exercise
 
 **Objective:** Recreate the _feel_ of _Internet_ through parameter manipulation, not replication.
 
@@ -77,31 +79,31 @@ Record the effect of each description → numeric change.
 
 | Aspect      | Prompt-style Guidance                          |
 | :---------- | :--------------------------------------------- |
-| Composition | “Like a constellation — sparse but connected.” |
+| Composition | “Like a constellation: sparse but connected.” |
 | Motion      | “Oscillate like breathing, not chaos.”         |
-| Color       | “Digital glow on black — cold light.”          |
+| Color       | “Digital glow on black: cold light.”          |
 | Tempo       | “Start slow, accelerate, then stillness.”      |
 
 **Output:** looping p5 sketch + saved first and last frames.
 
-## 🧱️ Block 4 — AI Video Interpretation
+## 🧱️ Block 4: AI Video Interpretation
 
 **Goal:** Use AI to “interpret” the transition between the two frames.
 
 **Steps**
 
-1. Teams export first and last frames (`saveFrame()` or screenshot).
-2. Instructor uploads pairs to Replicate (img2vid) to generate 3–5 s videos.
-3. Optional audio sync: add their Day 02 _PromptVision_ track as soundtrack.
+1. Export your first and last frames (`saveFrame()` or screenshot).
+2. Share the frames for the Replicate image-to-video demonstration and compare the resulting 3–5 s videos.
+3. Optional audio sync: add your Day 02 _PromptVision_ track as a soundtrack.
 
 👉 Full step-by-step setup, p5 account instructions, and submission details:
-[`VibeCoding Class Flow`](./notes/vibecoding.md)
+[`VibeCoding Class Flow`](./activities/vibecoding.md)
 
-## 🧱️ Block 5 — Showcase & Reflection
+## 🧱️ Block 5: Showcase & Reflection
 
 **Gallery Format**
 
-- Display each team’s p5 loop alongside its AI video.
+- View the p5 loops alongside their AI videos.
 - Quick commentary: what changed? what did the AI exaggerate or lose?
 
 **Discussion Prompts**
