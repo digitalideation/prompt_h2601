@@ -106,7 +106,7 @@ Choose one detail lost during the game and write a repair prompt. Use the basics
 
 ### Instructor video demonstration, 8 minutes
 
-Use a prepared image and a preselected video tool/model. The video model is not yet specified; verify its supported inputs before teaching. Demonstrate the handoff from still image to motion instructions:
+Use the [student web UI walkthrough](../activities/image_to_video_webui.md) with **LTX 2.5 Fast** (720p, 16:9, 6 seconds, 25 fps, audio off). Prepare a suitable 16:9 frame beforehand. If useful, recreate a selected group scene in FLUX.1 schnell using its revealed prompt; do not edit or overwrite original Telephone handoff PNGs. Screen-share the Replicate Playground/Form instead of opening another notebook. The listed LTX rate on 11 October 2026 was $0.03 per second, or approximately $0.18 for six seconds; verify before the lesson. Demonstrate the handoff from still image to motion instructions:
 
 > The cyclist rides slowly across the bridge. The camera tracks alongside at street level. Mist drifts above the water. Retain the raincoat, dawn lighting, and muted palette.
 
@@ -123,7 +123,7 @@ Explain that Session 2 can use one visual as the audio brief, and Session 3 will
 ## Still to verify with the instructor
 
 - Actual Jupyter deployment and widget/file-transfer behaviour.
-- Final approved image and video models, allowed settings, cost and latency.
+- Live smoke test of the selected image and LTX 2.5 Fast video models, current prices and generation latency.
 - SWITCHdrive links and permissions, exact submission location.
 - Live Replicate smoke test and representative generated demo media.
 

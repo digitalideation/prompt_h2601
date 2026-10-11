@@ -168,7 +168,9 @@ Identify one detail lost during the game, or one inconsistency to repair. Revise
 
 ### Image-to-video demonstration (8 minutes)
 
-We will turn a selected image into a short video. Notice the difference between **subject movement** and **camera movement**:
+We will turn a selected image into a short video using [LTX 2.5 Fast in Replicate's web UI](./activities/image_to_video_webui.md). We can recreate a revealed group scene in 16:9 with FLUX.1 schnell before animating it. No extra notebook is needed, and generating your own video is optional.
+
+Notice the difference between **subject movement** and **camera movement**:
 
 > The cyclist moves slowly across the bridge while the camera tracks alongside. Mist drifts above the water; retain the dawn lighting and muted palette.
 
