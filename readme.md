@@ -1,4 +1,4 @@
-# 📘 Prompt Engineering (PROMPT H26)
+# Prompt Engineering (PROMPT H26)
 
 Practical prompting for images, video, music, sound, and text, with an emphasis on creative experimentation, documented workflows, and critical reflection.
 
