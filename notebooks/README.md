@@ -1,14 +1,14 @@
 # Session 1 notebooks
 
 1. [Replicate basics](01_replicate_basics.ipynb): a standalone introduction with six short steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/01_replicate_basics.ipynb).
-2. [Replicate scene prompts](01b_replicate_scene_prompts.ipynb): a second version of the basics notebook using a scene dictionary from Session 1's visual prompt craft exercise.
+2. [Replicate scene prompts](02_replicate_scene_prompts.ipynb): build a complete prompt from a scene dictionary, then use the same API steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/02_replicate_scene_prompts.ipynb).
 3. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
 
-## Start with Replicate basics
+## Start with the two standalone notebooks
 
-Open `01_replicate_basics.ipynb` directly in Colab or upload just that file to JupyterHub. Follow its short instructions to install `replicate`, enter your token, write a prompt, generate, view and optionally save an image. It makes real requests and has no practice mode. You do not need the repository, helper files or shared requirements for this notebook.
+Open `01_replicate_basics.ipynb` or `02_replicate_scene_prompts.ipynb` directly in Colab, or upload just the notebook file to JupyterHub. Follow its short instructions to install `replicate`, enter your token, write a prompt, generate, view and optionally save an image. Both make real requests and have no practice mode. You do not need the repository, helper files or shared requirements for either notebook.
 
-The setup and workflow sections below apply to the scene-prompt and Telephone notebooks, which still use the existing course setup.
+The repository setup below applies to the Telephone notebooks, which still use the existing course setup.
 
 ## Open the other notebooks in JupyterHub
 
@@ -38,7 +38,7 @@ Telephone uses ipywidgets 8 for prompt fields, the model dropdown, file upload a
 
 Only Replicate image generation uses your personal Replicate API token, entered via the notebook's hidden prompt. Never paste tokens into notebook code, commit them to Git, share them through SWITCHdrive, or place them in `outputs/`.
 
-The scene-prompt and Telephone notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts.
+The Telephone notebook defaults to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts.
 
 ## Replicate and live attempts
 
@@ -46,13 +46,13 @@ Use your individual account and the hidden token input. Never paste tokens into 
 
 The initial model is `black-forest-labs/flux-schnell`. Use the model list supplied for the activity. These examples request one square PNG.
 
-The basics notebook uses `generate_image(inputs, client, MODEL)` to create a prediction, wait for completion and return image URLs. It downloads the image for display and optionally saves one PNG. The scene-prompt and Telephone notebooks also use explicit prediction creation and waiting. Telephone records the resolved model version and prediction ID.
+Both introductory notebooks use the same `generate_image(inputs, client, MODEL)` function to create a prediction, wait for completion and return image URLs. They download the image for display and optionally save one PNG. Telephone also uses explicit prediction creation and waiting, and records the resolved model version and prediction ID.
 
 ## Structured scene-prompt version
 
-Use `01b_replicate_scene_prompts.ipynb` as an alternative to the plain basics walkthrough. Edit a `scene` dictionary, assemble and inspect a text prompt, then use the same generation/download steps. The dictionary is a writing aid, not another API schema. A snapshot of its fields is saved alongside the exact prompt and model settings in `outputs/scene_basics/<attempt>/prompt.json`.
+In `02_replicate_scene_prompts.ipynb`, edit a `scene` dictionary and use a visible sentence template to connect subject, action, setting, time and visual details. Read the printed prompt before generating. The dictionary is a writing aid, not another API schema. Keep a copy of your notebook to retain your scene description and prompt.
 
-For a revision, edit one field in section 3a and rerun 3a, 3b and sections 4 to 6. Each generation gets a separate output folder. Offline practice still draws the same labelled diagram; it does not visualise the scene prompt.
+For a revision, edit one field in section 3a, rerun 3a and 3b, then generate and view the result in sections 4 and 5. Save images you want to keep using different filenames in section 6.
 
 ## Your Telephone workflow
 
@@ -68,11 +68,10 @@ Every completed attempt has a separate local image and JSON record containing it
 
 Incoming images are inspected locally, not sent as image-to-image inputs. The notebook validates the assigned filename; you still need to choose the correct group folder. Passing stays within six groups of five, retaining names such as `01.png`, `01_02.png`, and `01_02_03.png`.
 
-The basics notebook saves your chosen PNG filename in its working directory. The other notebooks use these output folders:
+The two introductory notebooks save your chosen PNG filename in their working directory. Telephone uses these output folders:
 
 ```text
 outputs/
-    scene_basics/<attempt>/image.png and prompt.json
     telephone/<session>/Group_A_S01/
         private/<attempt>/image.png and record.json
         handoff/Group_A/01.png

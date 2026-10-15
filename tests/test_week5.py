@@ -28,9 +28,9 @@ def sources(name):
             if cell.cell_type == "code"]
 
 
-def basic_cells():
+def basic_cells(name="01_replicate_basics.ipynb"):
     return {cell.id: cell.source for cell in nbformat.read(
-        NOTEBOOKS / "01_replicate_basics.ipynb", as_version=4).cells if cell.cell_type == "code"}
+        NOTEBOOKS / name, as_version=4).cells if cell.cell_type == "code"}
 
 
 def prediction_client(status="succeeded", output=("https://example.invalid/image.png",)):
@@ -140,7 +140,7 @@ class TestNotebooks(unittest.TestCase):
     def test_all_offline_cells_execute_in_order(self):
         import replicate
         for path in NOTEBOOKS.glob("*.ipynb"):
-            if path.name == "01_replicate_basics.ipynb":
+            if path.name in ("01_replicate_basics.ipynb", "02_replicate_scene_prompts.ipynb"):
                 continue  # Real generation only; tested below with mocked Replicate.
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
                 with working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
@@ -154,7 +154,7 @@ class TestNotebooks(unittest.TestCase):
     @unittest.skipUnless(os.environ.get("RUN_JUPYTER_KERNEL_TESTS") == "1", "Optional full kernel test; enable in an environment permitting local kernel sockets")
     def test_notebooks_execute_offline_in_kernel(self):
         for path in NOTEBOOKS.glob("*.ipynb"):
-            if path.name == "01_replicate_basics.ipynb":
+            if path.name in ("01_replicate_basics.ipynb", "02_replicate_scene_prompts.ipynb"):
                 continue  # Real generation only; tested below with mocked Replicate.
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
                 for helper_path in NOTEBOOKS.glob("telephone_*.py"):
@@ -233,6 +233,42 @@ class TestNotebooks(unittest.TestCase):
             exec(cells["save"], ns)
             self.assertTrue(Path("my-image-01.png").exists())
             self.assertEqual(client.predictions.create.call_count, 1)
+
+    def test_scene_sentence_prompt_reaches_prediction_and_revises(self):
+        import replicate
+        cells = basic_cells("02_replicate_scene_prompts.ipynb")
+        # The working API path, connection and image loading remain identical.
+        for cell_id in ("connect", "generate-function", "generate", "view"):
+            self.assertEqual(cells[cell_id], basic_cells()[cell_id])
+        client = prediction_client()
+        data = helper.practice_image()  # A fixture for the downloader only.
+        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
+            ns = {}
+            with patch("getpass.getpass", return_value="test-token"), patch.object(replicate, "Client", return_value=client):
+                exec(cells["connect"], ns)
+            exec(cells["prompt"], ns)
+            exec(cells["build"], ns)
+            first_prompt = ns["prompt"]
+            self.assertIn("Show a cyclist wearing a mustard-yellow raincoat riding slowly across a stone bridge.", first_prompt)
+            self.assertIn("The scene takes place in a quiet riverside town at dawn, with warm orange light filtering through mist.", first_prompt)
+            self.assertEqual(client.predictions.create.call_count, 0)
+            exec(cells["generate-function"], ns)
+            exec(cells["generate"], ns)
+            self.assertEqual(client.predictions.create.call_args.kwargs["input"]["prompt"], first_prompt)
+            with patch("urllib.request.urlopen", return_value=io.BytesIO(data)):
+                exec(cells["view"], ns)
+            exec(cells["save"], ns)
+            self.assertEqual(Path("my-scene-01.png").read_bytes(), data)
+            ns["scene"]["composition"] = "a wide shot from above"
+            exec(cells["build"], ns)
+            self.assertIn("frame the scene as a wide shot from above.", ns["prompt"])
+            self.assertNotIn("street level", ns["prompt"])
+            self.assertEqual(client.predictions.create.call_count, 1)
+            exec(cells["generate"], ns)
+            self.assertEqual(client.predictions.create.call_args.kwargs["input"]["prompt"], ns["prompt"])
+            self.assertEqual(client.predictions.create.call_count, 2)
+            self.assertEqual(Path("my-scene-01.png").read_bytes(), data)
+            self.assertIsNone(ns["image_bytes"])
 
     def test_error_message_does_not_echo_token(self):
         class APIError(Exception):

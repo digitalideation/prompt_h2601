@@ -7,11 +7,11 @@ These notes support the 140-minute session: 130 minutes of activities and a 10-m
 ## Prepare before class
 
 1. Confirm students can open Jupyter and have individual Replicate accounts with API access.
-2. Download the repository so the notebooks, helpers, and requirements file stay together. Follow the notebook setup guide and rehearse offline mode.
+2. Download the repository so the notebooks, helpers, and requirements file stay together. The first two notebooks can also open directly in Colab without a checkout. Follow the setup guide; offline practice is available in Telephone.
 3. Confirm the instructor's model choice. The initial example is `black-forest-labs/flux-schnell`, already linked in the previous game guide. This is a provisional starting point, not a final curated list.
 4. Make one instructor live test with that model, checking the returned image, save/export, latency and account cost. Repeat after changes to the model inputs or environment.
 5. Prepare six SWITCHdrive group folders with student upload/download access, a separate practice folder, and a final-submission location. Supply links through the normal class channel.
-6. Prepare a three-shot storyboard example, actual generated comparison images, and a short video result. The notebooks' labelled offline diagram only rehearses mechanics; it is not a creative-generation demonstration.
+6. Prepare a three-shot storyboard example, actual generated comparison images, and a short video result. Telephone's labelled offline diagram only rehearses mechanics; it is not a creative-generation demonstration.
 7. Rehearse multiple attempts, selection of an earlier attempt, one handoff, and instructor decoding. Check widgets, original PNG transfer, filenames, and timing. Keep all five rounds in each group folder; never resize or convert handoffs.
 
 ## Block 1: How models work and workflow, 10 minutes
@@ -54,14 +54,14 @@ Use supported model fields only. Do not copy tool-specific negative-prompt synta
 
 ## Block 3: Simple API notebook, 20 minutes
 
-Choose [01_replicate_basics.ipynb](../notebooks/01_replicate_basics.ipynb) for the plain prompt or [01b_replicate_scene_prompts.ipynb](../notebooks/01b_replicate_scene_prompts.ipynb) to continue Block 2 with a scene dictionary. Both follow the same API flow. Use one version during this slot, rather than running both end to end.
+Choose [01_replicate_basics.ipynb](../notebooks/01_replicate_basics.ipynb) for the plain prompt or [02_replicate_scene_prompts.ipynb](../notebooks/02_replicate_scene_prompts.ipynb) to continue Block 2 with a scene dictionary. Both follow the same API flow. Use one version during this slot, rather than running both end to end.
 
 In the scene version, show the dictionary, assemble and read the resulting prompt, then generate. Explain that dictionary keys organise the description; they are not additional model controls. Change one field, such as lighting, rebuild the prompt and compare saved outputs if time allows.
 
 | Time | Teaching action |
 | --- | --- |
 | 3 min | Show the same model and inputs used in the web UI |
-| 4 min | Run offline setup; explain private token entry for live mode |
+| 4 min | Run setup and explain private token entry |
 | 5 min | Edit the prompt and inspect prediction creation and waiting |
 | 5 min | Generate once, save locally, display and download |
 | 3 min | Change one descriptor or discuss a prepared baseline/revision pair |
@@ -70,7 +70,7 @@ Explain the four useful objects: model identifier, input dictionary, returned im
 
 Paid generation is isolated in one cell and requires typing GENERATE. Display and export cells do not call the model. If a request is interrupted or fails, check the account before another attempt. Students should not share tokens or paste them into code.
 
-The notebook saves each attempt in its own folder. Students can change a prompt without losing the first output. In practice mode, changes to the prompt do not change the test diagram.
+Have students save results they want to keep with different filenames before changing the prompt. The two introductory notebooks make real requests; use prepared images if live generation is unavailable.
 
 ## Break, 10 minutes
 
