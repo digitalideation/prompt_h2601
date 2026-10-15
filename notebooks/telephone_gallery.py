@@ -20,6 +20,15 @@ def decode_new_stegg(data):
 
 
 
+def decode_new_stegg(data):
+    """Decode the ST3GG student format with its fixed settings."""
+    from steg_core import create_config, decode_text
+    config = create_config(channels="RGB", bits=1, compress=True, strategy="interleaved")
+    with Image.open(io.BytesIO(data)) as image:
+        return decode_text(image, config=config)
+
+
+
 PLAIN_SESSION = "unrecorded"
 PLAIN_MODE = "unrecorded"
 
