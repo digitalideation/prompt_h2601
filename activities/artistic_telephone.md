@@ -44,11 +44,11 @@ Each seven-minute round includes iteration, selection and image transfer. Reserv
 
 ## What to do in each round
 
-1. Select the round in your notebook and run the round-instructions cell.
-2. In round 1, use your group's theme. Later, open only the assigned image from your group folder; you do not need to upload it into the notebook.
-3. Write a new prompt describing what you see. Do not inspect the previous prompt or earlier images in the chain.
-4. Generate an image: the notebook automatically saves a numbered PNG with its prompt. Revise and generate more if time and budget allow.
-5. Review attempts, set `ATTEMPT` to your preferred number and run Export. Download the handoff PNG, which is automatic in Colab. Upload that PNG to your group's SWITCHdrive folder with the filename unchanged.
+1. Select the round in the notebook's game panel; it displays exactly which image to open and which name to pass.
+2. In round 1, use your group's theme. Later, open only the assigned image from your group folder. Optionally upload it for preview in the game panel; this image is not sent to Replicate.
+3. Write a new prompt in the panel, describing what you see. Do not inspect the previous prompt or earlier images in the chain.
+4. Click **Generate and save**. The notebook automatically embeds the exact prompt using ST3GG and saves a numbered PNG. Revise and generate more if time and budget allow.
+5. Choose a saved attempt using the panel dropdown and click **Export selected PNG**. Download the handoff PNG (automatic in Colab) and upload it to your group's SWITCHdrive folder with the filename unchanged.
 6. Wait for the next round signal. Keep sending to the same next seat.
 
 The image is for you to interpret. This is a text-to-image game; the received image is not sent as an image-to-image input.
@@ -76,14 +76,14 @@ Filenames can repeat across groups because the folders are separate. Do not rena
 
 ## Share images only
 
-- Use the notebook's handoff export. Each attempt has its exact prompt inside the PNG's standard text metadata. The instructor can read it at the reveal. It is not encryption: do not inspect others' prompts during play.
+- Use the notebook's handoff export. ST3GG hides each attempt's exact prompt in the PNG pixels. The instructor can decode it at the reveal. This is not encryption: do not inspect others' prompts during play.
 - Pass the original PNG. Screenshots, resizing, editing, and JPEG conversion can destroy its hidden record. Keep every round's PNG in the shared folder.
 - Do not share Replicate prediction-page links, notebooks or JSON logs during play.
 - The notebook does not connect directly to SWITCHdrive. Download the PNG to your computer, then upload it through the folder page.
 - Shared folders do not hide other images. The rule is to open only the file assigned to you.
 - Keep practice diagrams in a separate practice folder. They are not generated outputs and should not enter a live chain.
 
-Each successful generation is saved privately as a separate numbered attempt. Exporting a different choice replaces your local handoff; coordinate with the instructor and next student before replacing a shared file.
+Each successful generation is saved privately as a separate numbered attempt. Exporting a different choice replaces your local handoff; coordinate with the instructor and next student before replacing a shared file. If downloading or encoding fails after generating, use **Retry saving** rather than requesting another paid prediction.
 
 ## If something is late or fails
 
