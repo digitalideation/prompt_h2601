@@ -284,24 +284,25 @@ class TelephoneRevealTests(unittest.TestCase):
         cells = nbformat.read(notebook, as_version=4).cells
         code = "\\n".join(cell.source for cell in cells if cell.cell_type == "code")
         self.assertIn("def generate_image(inputs, client, MODEL):", code)
-        self.assertIn("def embed_prompt(png_bytes, text):", code)
-        self.assertIn('prompt = """', code)
+        self.assertIn("def encode_prompt(image_bytes, prompt_text):", code)
+        self.assertIn("round_picker = widgets.Dropdown(", code)
+        self.assertIn("prompt_box = widgets.Textarea(", code)
+        self.assertIn("attempt_picker = widgets.Dropdown(", code)
+        self.assertIn("retry_button = widgets.Button(", code)
+        self.assertIn("encode_text(image, prompt_text, STEG_CONFIG)", code)
         self.assertNotIn("from telephone_", code)
         self.assertNotIn("%pip install -r requirements.txt", code)
-        self.assertNotIn("widgets.", code)
 
-    def test_png_prompt_text_reveal(self):
-        from PIL import PngImagePlugin
+    def test_stegg_reveal_format_with_mock_decoder(self):
         with tempfile.TemporaryDirectory() as folder:
             group = Path(folder) / "Group_A"
             group.mkdir()
-            metadata = PngImagePlugin.PngInfo()
-            metadata.add_itxt("ArtisticTelephonePrompt", "Le café 日本語")
-            Image.new("RGB", (32, 32), "orange").save(group / "01.png", pnginfo=metadata)
-            records, warnings = scan(folder)
+            (group / "01.png").write_bytes(practice_image())
+            with patch("telephone_gallery.decode_new_stegg", return_value="A blue lake"):
+                records, warnings = scan(folder)
             self.assertEqual(warnings, [])
             entry = records[("h26_w5", "live", "A", 1, 1)]
-            self.assertEqual(entry["record"]["prompt"], "Le café 日本語")
+            self.assertEqual(entry["record"]["prompt"], "A blue lake")
             self.assertEqual(entry["record"]["record_source"], "embedded")
 
 
