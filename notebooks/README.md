@@ -2,7 +2,7 @@
 
 1. [Replicate basics](01_replicate_basics.ipynb): a standalone introduction with six short steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/01_replicate_basics.ipynb).
 2. [Replicate scene prompts](02_replicate_scene_prompts.ipynb): build a complete prompt from a scene dictionary, then use the same API steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/02_replicate_scene_prompts.ipynb).
-3. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
+3. [Artistic Telephone](02_artistic_telephone.ipynb): standalone group game with automatic attempts and hidden PNG prompts. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-artistic-telephone-stegg/notebooks/02_artistic_telephone.ipynb).
 
 ## Start with the two standalone notebooks
 
@@ -54,52 +54,21 @@ In `02_replicate_scene_prompts.ipynb`, edit a `scene` dictionary and use a visib
 
 For a revision, edit one field in section 3a, rerun 3a and 3b, then generate and view the result in sections 4 and 5. Save images you want to keep using different filenames in section 6.
 
-## Your Telephone workflow
+## Artistic Telephone
 
-- Set session name, group and seat once. Everyone uses the same class session name.
-- Select the round, then upload the assigned PNG in rounds 2 to 5 (round 1 needs no upload).
-- Inspect the incoming image and note what you observe before writing a prompt.
-- Write your prompt, generate, then save and preview privately.
-- Revise and repeat within the time and spending budget agreed in class.
-- Refresh the comparison cell and choose any saved attempt for that round.
-- Run **Save selected image for passing**. Download that PNG and upload it to the group's SWITCHdrive folder.
+The student notebook `02_artistic_telephone.ipynb` also runs **standalone in Colab or JupyterHub**. It needs only `replicate` installed in the notebook itself, your Replicate token, and a SWITCHdrive browser tab. There are no student-facing helper files, upload widgets, practice mode, separate prompt JSONs, or required repository checkout.
 
-Every completed attempt has a separate local image and JSON record containing its exact prompt/settings snapshot. An earlier attempt can be selected after later attempts. Export does not use the current prompt-box text. Once a round has been exported, a different selection cannot overwrite it silently.
+1. Set group and seat once. Set round to get the assigned input and output filenames.
+2. Open the assigned incoming image manually in SWITCHdrive, then describe it using a plain `prompt` variable.
+3. Generate: the model runs once and its PNG is automatically saved with that exact prompt embedded in a PNG text field; repeat to make numbered attempts.
+4. Review images and enter an attempt number. Export copies the selected PNG, which you download (automatically in Colab) and upload to the group's SWITCHdrive folder.
+5. Change only round and prompt for the next turn.
 
-Incoming images are inspected locally, not sent as image-to-image inputs. The notebook validates the assigned filename; you still need to choose the correct group folder. Passing stays within six groups of five, retaining names such as `01.png`, `01_02.png`, and `01_02_03.png`.
+PNG text metadata can be read deliberately, so students agree not to reveal others' prompts until the final reveal. Screenshots and image transformations can strip the prompt; send the original exported file. The instructor reveal handles both the new PNG text format and older Telephone pixel-encoded records. The instructor notebook still uses its original helper files.
 
-The two introductory notebooks save your chosen PNG filename in their working directory. Telephone uses these output folders:
-
-```text
-outputs/
-    telephone/<session>/Group_A_S01/
-        private/<attempt>/image.png and record.json
-        handoff/Group_A/01.png
-        practice_handoff/Group_A/01.png
-        pending.json (only while a live prediction is pending)
-```
-
-Keep the private attempt folders for later comparison. Only the selected handoff PNG is uploaded during play. No direct SWITCHdrive integration or private messaging system is required.
-
-## Hidden prompts and the final reveal
-
-Export removes ordinary image metadata, then embeds a small JSON record in the lowest bits of RGB pixels. Only the selected attempt's own record is included. No cumulative history, secret key or ST3GG installation is needed. This discourages casual prompt reading; it is not encryption or tamper-proof storage.
-
-Pass the original PNG without resizing, screenshots, image editing or JPEG conversion. Those operations can destroy the hidden record. Keep every round's PNG in the shared group folder.
-
-At the end of the game, we will view each chain in order and reveal its prompts. Your group's selected PNGs contain the records needed for this, so you do not need to upload your private logs.
-
-## Recovery
-
-If waiting or downloading fails, retry Telephone's save cell. The existing prediction is reused. Do not create another paid attempt just to retry a download.
-
-A live prediction ID and its snapshot are written to `pending.json`. After a kernel restart, use the same session/group/seat, reconnect, and run the documented recovery cell. It fetches the existing prediction. Confirmed failed/canceled predictions can be cleared with the supplied control. If a request failed before returning an ID, inspect Replicate before retrying.
-
-After a normal restart, use the same identity and round, then refresh comparison to select a previously saved attempt without regenerating. Never delete or replace a passed image without coordinating with the instructor and next student.
+Colab notebook files are temporary: download your own private attempts if you want them after the runtime ends. The selected handoffs should remain in the class SWITCHdrive folder. Each generation may incur a charge.
 
 ## References
 
 - [Replicate Python guide](https://replicate.com/docs/get-started/python/)
-- [Official Python client](https://github.com/replicate/replicate-python)
-- [FLUX.1 schnell inputs](https://replicate.com/black-forest-labs/flux-schnell/api)
-- [File outputs](https://replicate.com/docs/topics/predictions/output-files)
+- [FLUX.1 schnell](https://replicate.com/black-forest-labs/flux-schnell)
