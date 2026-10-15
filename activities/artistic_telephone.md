@@ -13,7 +13,7 @@ Explore how meaning, style, and composition drift when an image is described and
 - Note your group letter (A to F) and seat number (01 to 05). Keep these assignments fixed.
 - Each group uses its own shared SWITCHdrive folder. Use the folder link shared in class and check that you can upload and download.
 - Everyone uses an individual Replicate account and the same class image model. The initial example is [FLUX.1 schnell](https://replicate.com/black-forest-labs/flux-schnell). Use the model specified for the activity.
-- Log into your own JupyterHub account, clone the course repository as described in [JupyterHub setup](../notebooks/README.md), and save your own working copy of the notebook. Tokens and prompt logs stay private.
+- Open the standalone Telephone notebook in Colab or JupyterHub. No repository checkout or helper files are needed for students. Keep your token private.
 - Choose a group coordinator to help with filenames, missing uploads, and the round timer.
 
 All passing stays inside your group:
@@ -45,10 +45,10 @@ Each seven-minute round includes iteration, selection and image transfer. Reserv
 ## What to do in each round
 
 1. Select the round in your notebook and run the round-instructions cell.
-2. In round 1, use your group's theme. Later, download only the assigned image from your group folder and load it into the notebook.
+2. In round 1, use your group's theme. Later, open only the assigned image from your group folder; you do not need to upload it into the notebook.
 3. Write a new prompt describing what you see. Do not inspect the previous prompt or earlier images in the chain.
-4. Generate and save an attempt privately. If time and budget allow, revise the prompt and try again. Compare saved attempts and choose one to pass.
-5. Run **Save selected image for passing**, then download the handoff PNG using the notebook link. Upload that PNG to your group's SWITCHdrive folder with the filename unchanged.
+4. Generate an image: the notebook automatically saves a numbered PNG with its prompt. Revise and generate more if time and budget allow.
+5. Review attempts, set `ATTEMPT` to your preferred number and run Export. Download the handoff PNG, which is automatic in Colab. Upload that PNG to your group's SWITCHdrive folder with the filename unchanged.
 6. Wait for the next round signal. Keep sending to the same next seat.
 
 The image is for you to interpret. This is a text-to-image game; the received image is not sent as an image-to-image input.
@@ -76,20 +76,20 @@ Filenames can repeat across groups because the folders are separate. Do not rena
 
 ## Share images only
 
-- Use the notebook's handoff export. It removes ordinary image metadata and hides the selected attempt's own prompt and settings in the PNG pixels for the reveal. This is simple steganography, not encryption; do not decode prompts during play.
+- Use the notebook's handoff export. Each attempt has its exact prompt inside the PNG's standard text metadata. The instructor can read it at the reveal. It is not encryption: do not inspect others' prompts during play.
 - Pass the original PNG. Screenshots, resizing, editing, and JPEG conversion can destroy its hidden record. Keep every round's PNG in the shared folder.
 - Do not share Replicate prediction-page links, notebooks or JSON logs during play.
 - The notebook does not connect directly to SWITCHdrive. Download the PNG to your computer, then upload it through the folder page.
 - Shared folders do not hide other images. The rule is to open only the file assigned to you.
 - Keep practice diagrams in a separate practice folder. They are not generated outputs and should not enter a live chain.
 
-Each successful generation is saved privately. The handoff export protects the already selected file for a round from accidental replacement. If a selected image needs to change, stop and coordinate with the instructor and next student first.
+Each successful generation is saved privately as a separate numbered attempt. Exporting a different choice replaces your local handoff; coordinate with the instructor and next student before replacing a shared file.
 
 ## If something is late or fails
 
 Do not keep clicking Generate. Check whether a prediction already exists in Replicate before retrying. Tell your group coordinator which file is missing. Pause the affected chain; do not substitute an image from another chain. We can still discuss a partial chain at the reveal.
 
-Offline practice supports a rehearsal of naming, transfers, and exports without API calls. It uses a clearly labelled test diagram and cannot demonstrate model interpretation. If live generation is unavailable, use the example images provided in class.
+The simplified notebook makes real Replicate requests only; it has no offline practice mode. If live generation is unavailable, use example images provided in class.
 
 ## Starter themes
 
@@ -116,4 +116,4 @@ After the reveal, write a short reflection in your own notes and complete the th
 
 ## Final submission
 
-The shared group folders already contain everything needed for the final chain gallery. No separate prompt-log upload is needed. Retain the local `private` folder with all attempts, and submit your reflection, storyboard, and refinement comparison to the submission location shared in class after the reveal. Do not submit API tokens or the entire notebook environment.
+The shared group folders already contain everything needed for the final chain gallery. No separate prompt-log upload is needed. Download your private attempts before closing Colab if you want to keep them, and submit your reflection, storyboard, and refinement comparison to the submission location shared in class after the reveal. Do not submit API tokens or the entire notebook environment.
