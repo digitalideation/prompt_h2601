@@ -279,49 +279,30 @@ class TelephoneRevealTests(unittest.TestCase):
             self.assertEqual(presenter.chain_index, 1)
             self.assertEqual(presenter.slide_index, 0)
 
-    def test_notebook_round_steps_and_prompts_follow_inspection(self):
+    def test_student_notebook_is_standalone(self):
         notebook = Path(__file__).resolve().parents[1] / "notebooks" / "02_artistic_telephone.ipynb"
         cells = nbformat.read(notebook, as_version=4).cells
-        ids = [c.id for c in cells]
-        self.assertEqual(len(ids), len(set(ids)))
-        steps = ["telephone-6", "telephone-upload-widget", "telephone-8",
-                 "telephone-prompt-widget", "telephone-10", "telephone-12"]
-        self.assertEqual([ids.index(i) for i in steps], sorted(ids.index(i) for i in steps))
-        round_code = next(c.source for c in cells if c.id == "telephone-6")
-        inspect_code = next(c.source for c in cells if c.id == "telephone-8")
-        prompt_code = next(c.source for c in cells if c.id == "telephone-prompt-widget")
-        generate_code = next(c.source for c in cells if c.id == "telephone-10")
-        self.assertNotIn('input("Type GENERATE', generate_code)
-        self.assertIn("attempts.generate(context, client, incoming_bytes)", generate_code)
-        self.assertNotIn("prompt_box", round_code)
-        self.assertIn("display(Image", inspect_code)
-        self.assertIn("prompt_box = widgets.Textarea", prompt_code)
+        code = "\\n".join(cell.source for cell in cells if cell.cell_type == "code")
+        self.assertIn("def generate_image(inputs, client, MODEL):", code)
+        self.assertIn("def embed_prompt(png_bytes, text):", code)
+        self.assertIn('prompt = """', code)
+        self.assertNotIn("from telephone_", code)
+        self.assertNotIn("%pip install -r requirements.txt", code)
+        self.assertNotIn("widgets.", code)
 
-    def test_notebook_iteration_and_earlier_selection(self):
-        notebook = Path(__file__).resolve().parents[1] / "notebooks" / "02_artistic_telephone.ipynb"
-        cells = {cell.id: cell.source for cell in nbformat.read(notebook, as_version=4).cells if cell.cell_type == "code"}
-        with tempfile.TemporaryDirectory() as folder, contextlib.redirect_stdout(io.StringIO()):
-            ns = {}
-            exec(cells["telephone-2"], ns)
-            ns["root"] = Path(folder)
-            ns["attempts"] = Attempts(folder)
-            exec(cells["telephone-6"], ns)
-            exec(cells["telephone-upload-widget"], ns)
-            exec(cells["telephone-8"], ns)
-            exec(cells["telephone-prompt-widget"], ns)
-            ns["prompt_box"].value = "First prompt"
-            exec(cells["telephone-10"], ns)
-            exec(cells["telephone-12"], ns)
-            ns["prompt_box"].value = "Second prompt"
-            exec(cells["telephone-10"], ns)
-            exec(cells["telephone-12"], ns)
-            exec(cells["telephone-14"], ns)
-            first = next(r for r in history(folder) if r["prompt"] == "First prompt")
-            ns["selection"].value = first["run_path"]
-            ns["prompt_box"].value = "Unsaved third edit"
-            exec(cells["telephone-16"], ns)
-            self.assertEqual(decode(ns["handoff"].read_bytes())["prompt"], "First prompt")
-            self.assertEqual(len(history(folder)), 2)
+    def test_png_prompt_text_reveal(self):
+        from PIL import PngImagePlugin
+        with tempfile.TemporaryDirectory() as folder:
+            group = Path(folder) / "Group_A"
+            group.mkdir()
+            metadata = PngImagePlugin.PngInfo()
+            metadata.add_itxt("ArtisticTelephonePrompt", "Le café 日本語")
+            Image.new("RGB", (32, 32), "orange").save(group / "01.png", pnginfo=metadata)
+            records, warnings = scan(folder)
+            self.assertEqual(warnings, [])
+            entry = records[("h26_w5", "live", "A", 1, 1)]
+            self.assertEqual(entry["record"]["prompt"], "Le café 日本語")
+            self.assertEqual(entry["record"]["record_source"], "embedded")
 
 
 if __name__ == "__main__":
