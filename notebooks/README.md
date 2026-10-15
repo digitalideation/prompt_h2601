@@ -12,17 +12,13 @@ All three student notebooks are standalone. The instructor reveal notebook retai
 
 ## Artistic Telephone
 
-The student notebook `02_artistic_telephone.ipynb` also runs **standalone in Colab or JupyterHub**. It needs only `replicate` installed in the notebook itself, your Replicate token, and a SWITCHdrive browser tab. There are no student-facing helper files, upload widgets, practice mode, separate prompt JSONs, or required repository checkout.
+[Open the standalone game notebook in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-artistic-telephone-stegg/notebooks/02_artistic_telephone.ipynb). The student notebook uses `replicate`, `stegg` (ST3GG), `ipywidgets` and Pillow; all are installed inside the notebook. **No custom Python helper files or repository checkout are required.**
 
-1. Set group and seat once. Set round to get the assigned input and output filenames.
-2. Open the assigned incoming image manually in SWITCHdrive, then describe it using a plain `prompt` variable.
-3. Generate: the model runs once and its PNG is automatically saved with that exact prompt embedded in a PNG text field; repeat to make numbered attempts.
-4. Review images and enter an attempt number. Export copies the selected PNG, which you download (automatically in Colab) and upload to the group's SWITCHdrive folder.
-5. Change only round and prompt for the next turn.
+After installing packages, students connect to Replicate and set GROUP and SEAT once. A compact game panel contains the **round selector**, incoming/outgoing filename instructions, **optional incoming-PNG preview**, **prompt box**, **Generate and save** button, attempt preview/selector, and **Export selected PNG** button. Students can open their incoming PNG independently in SWITCHdrive without uploading it.
 
-PNG text metadata can be read deliberately, so students agree not to reveal others' prompts until the final reveal. Screenshots and image transformations can strip the prompt; send the original exported file. The instructor reveal handles both the new PNG text format and older Telephone pixel-encoded records. The instructor notebook still uses its original helper files.
+Each paid generation automatically embeds its *captured* prompt in a numbered PNG using [ST3GG](https://github.com/elder-plinius/ST3GG). A failed download/encoding can be retried with a **Retry saving** button without another model request. Export copies the chosen image to the expected group filename. Colab also downloads the exported PNG to the student's computer. Only selected PNGs go to SWITCHdrive; no separate prompt logs are required. The hidden text is **not encryption**, and students should not inspect others' prompts during the game.
 
-Colab notebook files are temporary: download your own private attempts if you want them after the runtime ends. The selected handoffs should remain in the class SWITCHdrive folder. Each generation may incur a charge.
+The instructor reveal notebook still uses its existing course helpers, but its gallery can decode ST3GG PNGs as well as older Telephone pixel-encoded PNGs. Run the instructor notebook with ST3GG installed (`%pip install -q stegg==3.0.0`) when revealing the new images.
 
 ## References
 
