@@ -11,6 +11,15 @@ from telephone_helpers import route
 from telephone_steg import decode
 
 
+def decode_new_stegg(data):
+    """Decode the ST3GG student format with its fixed settings."""
+    from steg_core import create_config, decode_text
+    config = create_config(channels="RGB", bits=1, compress=True, strategy="interleaved")
+    with Image.open(io.BytesIO(data)) as image:
+        return decode_text(image, config=config)
+
+
+
 PLAIN_SESSION = "unrecorded"
 PLAIN_MODE = "unrecorded"
 
@@ -77,7 +86,16 @@ def scan(folder, fallback_session="", fallback_mode="", prompt_overrides=None):
                         "mode": "live", "record_source": "embedded",
                     })
                 else:
-                    record = decode(data)
+                    try:
+                        prompt = decode_new_stegg(data)
+                    except (ValueError, UnicodeError, IndexError, OverflowError) as error:
+                        try:
+                            record = decode(data)
+                        except ValueError:
+                            raise ValueError("No Telephone record found. Use the original exported PNG.") from error
+                    else:
+                        record = _filename_route(path, folder)
+                        record.update({"prompt": prompt, "session": "h26_w5", "mode": "live", "record_source": "embedded"})
             except ValueError as error:
                 # Missing/damaged hidden data does not make the image unusable.
                 if str(error).startswith("No Telephone record found."):
