@@ -140,7 +140,7 @@ class TestNotebooks(unittest.TestCase):
     def test_all_offline_cells_execute_in_order(self):
         import replicate
         for path in NOTEBOOKS.glob("*.ipynb"):
-            if path.name in ("01_replicate_basics.ipynb", "02_replicate_scene_prompts.ipynb"):
+            if path.name in ("01_replicate_basics.ipynb", "02_replicate_scene_prompts.ipynb", "02_artistic_telephone.ipynb"):
                 continue  # Real generation only; tested below with mocked Replicate.
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
                 with working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
