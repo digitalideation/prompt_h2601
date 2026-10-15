@@ -68,7 +68,16 @@ def scan(folder, fallback_session="", fallback_mode="", prompt_overrides=None):
                     raise ValueError("Use a valid PNG smaller than 16 megapixels.")
                 img.load()
             try:
-                record = decode(data)
+                with Image.open(io.BytesIO(data)) as image:
+                    embedded_prompt = image.info.get("ArtisticTelephonePrompt")
+                if embedded_prompt:
+                    record = _filename_route(path, folder)
+                    record.update({
+                        "prompt": embedded_prompt, "session": "h26_w5",
+                        "mode": "live", "record_source": "embedded",
+                    })
+                else:
+                    record = decode(data)
             except ValueError as error:
                 # Missing/damaged hidden data does not make the image unusable.
                 if str(error).startswith("No Telephone record found."):
