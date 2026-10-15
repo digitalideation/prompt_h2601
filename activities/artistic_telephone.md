@@ -45,7 +45,7 @@ Each seven-minute round includes iteration, selection and image transfer. Reserv
 ## What to do in each round
 
 1. Select the round in the notebook's game panel; it displays exactly which image to open and which name to pass.
-2. In round 1, use your group's theme. Later, open only the assigned image from your group folder. Optionally upload it for preview in the game panel; this image is not sent to Replicate.
+2. In round 1, use your group's theme. Later, open only the assigned image from your group folder. The game has no upload control; this image is not sent to Replicate.
 3. Write a new prompt in the panel, describing what you see. Do not inspect the previous prompt or earlier images in the chain.
 4. Click **Generate and save**. The notebook automatically embeds the exact prompt using ST3GG and saves a numbered PNG. Revise and generate more if time and budget allow.
 5. Choose a saved attempt using the panel dropdown and click **Export selected PNG**. Download the handoff PNG (automatic in Colab) and upload it to your group's SWITCHdrive folder with the filename unchanged.
@@ -83,7 +83,7 @@ Filenames can repeat across groups because the folders are separate. Do not rena
 - Shared folders do not hide other images. The rule is to open only the file assigned to you.
 - Keep practice diagrams in a separate practice folder. They are not generated outputs and should not enter a live chain.
 
-Each successful generation is saved privately as a separate numbered attempt. Exporting a different choice replaces your local handoff; coordinate with the instructor and next student before replacing a shared file. If downloading or encoding fails after generating, use **Retry saving** rather than requesting another paid prediction.
+Each successful generation is saved privately as a separate numbered attempt. Exporting a different choice replaces your local handoff; coordinate with the instructor and next student before replacing a shared file. If downloading or encoding fails after generating, check the prediction in Replicate before requesting another paid image.
 
 ## If something is late or fails
 
