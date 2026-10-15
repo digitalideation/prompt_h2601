@@ -284,12 +284,12 @@ class TelephoneRevealTests(unittest.TestCase):
         cells = nbformat.read(notebook, as_version=4).cells
         code = "\\n".join(cell.source for cell in cells if cell.cell_type == "code")
         self.assertIn("def generate_image(inputs, client, MODEL):", code)
-        self.assertIn("def encode_prompt(image_bytes, prompt_text):", code)
-        self.assertIn("round_picker = widgets.Dropdown(", code)
+        self.assertIn("encoded = encode_text(original, prompt_used, steg)", code)
+        self.assertIn("round_box = widgets.Dropdown(", code)
         self.assertIn("prompt_box = widgets.Textarea(", code)
-        self.assertIn("attempt_picker = widgets.Dropdown(", code)
-        self.assertIn("retry_button = widgets.Button(", code)
-        self.assertIn("encode_text(image, prompt_text, STEG_CONFIG)", code)
+        self.assertIn("attempt_box = widgets.Dropdown(", code)
+        self.assertNotIn("FileUpload(", code)
+        self.assertIn("decode_text(encoded, steg)", code)
         self.assertNotIn("from telephone_", code)
         self.assertNotIn("%pip install -r requirements.txt", code)
 
