@@ -33,6 +33,16 @@ def basic_cells():
         NOTEBOOKS / "01_replicate_basics.ipynb", as_version=4).cells if cell.cell_type == "code"}
 
 
+def prediction_client(status="succeeded", output=("https://example.invalid/image.png",)):
+    prediction = SimpleNamespace(
+        id="test-prediction", status=status,
+        output=list(output) if output is not None else None, wait=Mock())
+    return SimpleNamespace(
+        models=SimpleNamespace(get=Mock(return_value=SimpleNamespace(
+            latest_version=SimpleNamespace(id="test-version")))),
+        predictions=SimpleNamespace(create=Mock(return_value=prediction)))
+
+
 def context(group="A", seat=1, round_number=1, mode="practice"):
     return {**helper.route(group, seat, round_number), "prompt": "A test scene", "mode": mode,
             "settings": {"num_outputs": 1}, "model": "test/model"}
@@ -162,56 +172,67 @@ class TestNotebooks(unittest.TestCase):
         import replicate
         cells = basic_cells()
         image_bytes = helper.practice_image()  # Test fixture only, never in the notebook.
-        result = SimpleNamespace(read=Mock(return_value=image_bytes))
-        client = SimpleNamespace(run=Mock(return_value=[result]))
+        client = prediction_client()
         with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()) as printed:
             ns = {}
             with patch("getpass.getpass", return_value="test-token"), patch.object(replicate, "Client", return_value=client):
                 exec(cells["connect"], ns)
             exec(cells["prompt"], ns)
+            exec(cells["generate-function"], ns)
             exec(cells["generate"], ns)
-            self.assertEqual(client.run.call_args.args, ("black-forest-labs/flux-schnell",))
-            self.assertEqual(client.run.call_args.kwargs["input"]["prompt"], ns["prompt"])
-            self.assertEqual(client.run.call_args.kwargs["input"]["output_format"], "png")
-            exec(cells["view"], ns)
-            exec(cells["save"], ns)
-            self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
-            exec(cells["view"], ns)
+            client.models.get.assert_called_once_with("black-forest-labs/flux-schnell")
+            request = client.predictions.create.call_args.kwargs
+            self.assertEqual(request["version"], "test-version")
+            self.assertEqual(request["input"]["prompt"], ns["prompt"])
+            self.assertEqual(request["input"]["output_format"], "png")
+            client.predictions.create.return_value.wait.assert_called_once()
+            with patch("urllib.request.urlopen", side_effect=lambda *a, **k: io.BytesIO(image_bytes)) as download:
+                exec(cells["view"], ns)
+                self.assertEqual(download.call_args.args, ("https://example.invalid/image.png",))
+                exec(cells["save"], ns)
+                self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
+                exec(cells["view"], ns)
             with self.assertRaises(FileExistsError):
                 exec(cells["save"], ns)
             self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
-            self.assertEqual(client.run.call_count, 1)
+            self.assertEqual(client.predictions.create.call_count, 1)
+            self.assertIn("test-prediction", printed.getvalue())
             self.assertNotIn("test-token", printed.getvalue())
 
     def test_basic_failed_generation_cannot_save_a_previous_image(self):
         cells = basic_cells()
-        client = SimpleNamespace(run=Mock(side_effect=RuntimeError("Generation failed")))
-        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
-            ns = {"client": client, "image_bytes": helper.practice_image(), "output": ["old"]}
-            exec(cells["prompt"], ns)
-            with self.assertRaises(RuntimeError):
-                exec(cells["generate"], ns)
-            self.assertIsNone(ns["output"])
-            self.assertIsNone(ns["image_bytes"])
-            exec(cells["save"], ns)
-            self.assertFalse(Path("my-image-01.png").exists())
-            self.assertEqual(client.run.call_count, 1)
+        for status, output in [("failed", None), ("canceled", None), ("succeeded", ()), ("succeeded", None)]:
+            with self.subTest(status=status, output=output), tempfile.TemporaryDirectory() as folder:
+                with working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
+                    client = prediction_client(status, output)
+                    ns = {"client": client, "image_bytes": helper.practice_image(), "output": ["old"]}
+                    exec(cells["prompt"], ns)
+                    exec(cells["generate-function"], ns)
+                    with self.assertRaises(ns["GenerationError"]):
+                        exec(cells["generate"], ns)
+                    self.assertIsNone(ns["output"])
+                    self.assertIsNone(ns["image_bytes"])
+                    exec(cells["save"], ns)
+                    self.assertFalse(Path("my-image-01.png").exists())
+                    self.assertEqual(client.predictions.create.call_count, 1)
 
     def test_basic_download_retry_does_not_generate_again(self):
         cells = basic_cells()
-        result = SimpleNamespace(read=Mock(side_effect=[OSError("Interrupted download"), helper.practice_image()]))
-        client = SimpleNamespace(run=Mock(return_value=[result]))
+        client = prediction_client()
         with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
             ns = {"client": client}
             exec(cells["prompt"], ns)
+            exec(cells["generate-function"], ns)
             exec(cells["generate"], ns)
-            with self.assertRaises(OSError):
-                exec(cells["view"], ns)
+            with patch("urllib.request.urlopen", side_effect=OSError("Interrupted download")):
+                with self.assertRaises(OSError):
+                    exec(cells["view"], ns)
             self.assertIsNone(ns["image_bytes"])
-            exec(cells["view"], ns)
+            with patch("urllib.request.urlopen", return_value=io.BytesIO(helper.practice_image())):
+                exec(cells["view"], ns)
             exec(cells["save"], ns)
             self.assertTrue(Path("my-image-01.png").exists())
-            self.assertEqual(client.run.call_count, 1)
+            self.assertEqual(client.predictions.create.call_count, 1)
 
     def test_error_message_does_not_echo_token(self):
         class APIError(Exception):

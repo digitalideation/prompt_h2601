@@ -46,7 +46,7 @@ Use your individual account and the hidden token input. Never paste tokens into 
 
 The initial model is `black-forest-labs/flux-schnell`. Use the model list supplied for the activity. These examples request one square PNG.
 
-The basics notebook uses `client.run(...)` and optionally saves one PNG. The scene-prompt and Telephone notebooks use explicit prediction creation and waiting. Telephone also records the resolved model version and prediction ID.
+The basics notebook uses `generate_image(inputs, client, MODEL)` to create a prediction, wait for completion and return image URLs. It downloads the image for display and optionally saves one PNG. The scene-prompt and Telephone notebooks also use explicit prediction creation and waiting. Telephone records the resolved model version and prediction ID.
 
 ## Structured scene-prompt version
 
