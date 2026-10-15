@@ -1,5 +1,4 @@
 """Offline teaching-flow tests. No API credentials or paid requests."""
-import builtins
 import contextlib
 import io
 import json
@@ -9,7 +8,7 @@ import shutil
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from types import SimpleNamespace
 from zipfile import ZipFile
 
@@ -131,6 +130,8 @@ class TestNotebooks(unittest.TestCase):
     def test_all_offline_cells_execute_in_order(self):
         import replicate
         for path in NOTEBOOKS.glob("*.ipynb"):
+            if path.name == "01_replicate_basics.ipynb":
+                continue  # Real generation only; tested below with mocked Replicate.
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
                 with working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
                     with patch.object(replicate.Client, "run", side_effect=AssertionError("Offline API call")):
@@ -139,13 +140,12 @@ class TestNotebooks(unittest.TestCase):
                         for cell in notebook.cells:
                             if cell.cell_type == "code" and "setup" not in cell.metadata.get("tags", []):
                                 exec(cell.source, namespace)
-                        if path.name.startswith("01_"):
-                            self.assertTrue(list(Path(folder).rglob("image.png")))
-                            self.assertTrue(list(Path(folder).rglob("*.json")))
 
     @unittest.skipUnless(os.environ.get("RUN_JUPYTER_KERNEL_TESTS") == "1", "Optional full kernel test; enable in an environment permitting local kernel sockets")
     def test_notebooks_execute_offline_in_kernel(self):
         for path in NOTEBOOKS.glob("*.ipynb"):
+            if path.name == "01_replicate_basics.ipynb":
+                continue  # Real generation only; tested below with mocked Replicate.
             with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
                 for helper_path in NOTEBOOKS.glob("telephone_*.py"):
                     shutil.copy(helper_path, folder)
@@ -157,90 +157,61 @@ class TestNotebooks(unittest.TestCase):
                     "def forbidden(*args, **kwargs):\n    raise AssertionError('Offline API call')\n"
                     "replicate.Client.run = forbidden\n"))
                 NotebookClient(nb, timeout=90, kernel_name="python3").execute(cwd=folder)
-                if path.name.startswith("01_"):
-                    self.assertTrue(list(Path(folder).rglob("image.png")))
-                    self.assertTrue(list(Path(folder).rglob("*.json")))
 
-    def test_basic_live_call_and_save_are_separate(self):
+    def test_basic_connect_generate_view_and_save_without_extra_requests(self):
+        import replicate
         cells = basic_cells()
-        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
+        image_bytes = helper.practice_image()  # Test fixture only, never in the notebook.
+        result = SimpleNamespace(read=Mock(return_value=image_bytes))
+        client = SimpleNamespace(run=Mock(return_value=[result]))
+        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()) as printed:
             ns = {}
-            exec(cells["cell-02"], ns)
-            exec(cells["cell-06"], ns)
-            exec(cells["9a01ba4e"], ns)
-            calls = []
-            prediction = SimpleNamespace(id="test-success", status="succeeded",
-                output=["https://example.invalid/image.png"], wait=lambda: None)
+            with patch("getpass.getpass", return_value="test-token"), patch.object(replicate, "Client", return_value=client):
+                exec(cells["connect"], ns)
+            exec(cells["prompt"], ns)
+            exec(cells["generate"], ns)
+            self.assertEqual(client.run.call_args.args, ("black-forest-labs/flux-schnell",))
+            self.assertEqual(client.run.call_args.kwargs["input"]["prompt"], ns["prompt"])
+            self.assertEqual(client.run.call_args.kwargs["input"]["output_format"], "png")
+            exec(cells["view"], ns)
+            exec(cells["save"], ns)
+            self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
+            exec(cells["view"], ns)
+            with self.assertRaises(FileExistsError):
+                exec(cells["save"], ns)
+            self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
+            self.assertEqual(client.run.call_count, 1)
+            self.assertNotIn("test-token", printed.getvalue())
 
-            def create(**kwargs):
-                calls.append(kwargs)
-                return prediction
-
-            client = SimpleNamespace(
-                models=SimpleNamespace(get=lambda _: SimpleNamespace(latest_version=SimpleNamespace(id="test-version"))),
-                predictions=SimpleNamespace(create=create))
-            ns.update(LIVE=True, client=client)
-            with patch.object(builtins, "input", return_value="GENERATE"):
-                exec(cells["cell-08"], ns)
-            ns["inputs"]["prompt"] = "Changed after generation"
-            ns["LIVE"] = False  # Saving must use the captured mode, not this switch.
-            with patch("urllib.request.urlretrieve", side_effect=lambda url, target: Path(target).write_bytes(helper.practice_image())) as download:
-                exec(cells["cell-10"], ns)
-                exec(cells["cell-10"], ns)
-                self.assertEqual(download.call_count, 2)
-            self.assertEqual(len(calls), 1)
-            record = json.loads((ns["run_folder"] / "prompt.json").read_text())
-            self.assertNotEqual(record["inputs"]["prompt"], "Changed after generation")
-            self.assertEqual(calls[0]["version"], "test-version")
-            ns["LIVE"] = True
-            with patch.object(builtins, "input", return_value="CANCEL"):
-                exec(cells["cell-08"], ns)
-            self.assertEqual(len(calls), 1)
-            self.assertIsNone(ns["run_context"])
-            self.assertIsNone(ns["saved_image"])
-            exec(cells["cell-10"], ns)
-            exec(cells["cell-12"], ns)
-
-    def test_basic_failed_cancelled_and_empty_predictions(self):
+    def test_basic_failed_generation_cannot_save_a_previous_image(self):
         cells = basic_cells()
-        for status, output in [("failed", None), ("canceled", None), ("succeeded", []), ("succeeded", None)]:
-            with self.subTest(status=status, output=output), contextlib.redirect_stdout(io.StringIO()) as printed:
-                ns = {}
-                exec(cells["cell-02"], ns)
-                exec(cells["cell-06"], ns)
-                exec(cells["9a01ba4e"], ns)
-                prediction = SimpleNamespace(id="test-failure", status=status, output=output, wait=lambda: None)
-                ns.update(LIVE=True, client=SimpleNamespace(
-                    models=SimpleNamespace(get=lambda _: SimpleNamespace(latest_version=SimpleNamespace(id="v1"))),
-                    predictions=SimpleNamespace(create=lambda **_: prediction)))
-                with patch.object(builtins, "input", return_value="GENERATE"):
-                    exec(cells["cell-08"], ns)
-                self.assertIsNone(ns["run_context"])
-                self.assertIsNone(ns["saved_image"])
-                exec(cells["cell-10"], ns)
-                exec(cells["cell-12"], ns)
-                self.assertNotIn("Generation returned", printed.getvalue())
-                self.assertIn("test-failure", printed.getvalue())
-
-    def test_basic_first_cancel_and_download_failure_clear_image(self):
-        cells = basic_cells()
+        client = SimpleNamespace(run=Mock(side_effect=RuntimeError("Generation failed")))
         with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
-            ns = {}
-            exec(cells["cell-02"], ns)
-            exec(cells["cell-06"], ns)
-            exec(cells["9a01ba4e"], ns)
-            ns.update(LIVE=True, client=object())
-            with patch.object(builtins, "input", return_value="CANCEL"):
-                exec(cells["cell-08"], ns)
-            exec(cells["cell-10"], ns)
-            exec(cells["cell-12"], ns)
-            self.assertIsNone(ns["saved_image"])
-            ns.update(run_context={"mode": "live"}, run_folder=Path("failed-download"),
-                      output=["https://example.invalid/image.png"], saved_image=Path("old-image.png"))
-            with patch("urllib.request.urlretrieve", side_effect=OSError("download interrupted")):
-                exec(cells["cell-10"], ns)
-            self.assertIsNone(ns["saved_image"])
-            exec(cells["cell-12"], ns)
+            ns = {"client": client, "image_bytes": helper.practice_image(), "output": ["old"]}
+            exec(cells["prompt"], ns)
+            with self.assertRaises(RuntimeError):
+                exec(cells["generate"], ns)
+            self.assertIsNone(ns["output"])
+            self.assertIsNone(ns["image_bytes"])
+            exec(cells["save"], ns)
+            self.assertFalse(Path("my-image-01.png").exists())
+            self.assertEqual(client.run.call_count, 1)
+
+    def test_basic_download_retry_does_not_generate_again(self):
+        cells = basic_cells()
+        result = SimpleNamespace(read=Mock(side_effect=[OSError("Interrupted download"), helper.practice_image()]))
+        client = SimpleNamespace(run=Mock(return_value=[result]))
+        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
+            ns = {"client": client}
+            exec(cells["prompt"], ns)
+            exec(cells["generate"], ns)
+            with self.assertRaises(OSError):
+                exec(cells["view"], ns)
+            self.assertIsNone(ns["image_bytes"])
+            exec(cells["view"], ns)
+            exec(cells["save"], ns)
+            self.assertTrue(Path("my-image-01.png").exists())
+            self.assertEqual(client.run.call_count, 1)
 
     def test_error_message_does_not_echo_token(self):
         class APIError(Exception):
@@ -252,5 +223,3 @@ class TestNotebooks(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-

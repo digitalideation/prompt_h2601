@@ -1,10 +1,16 @@
 # Session 1 notebooks
 
-1. [Replicate basics](01_replicate_basics.ipynb): the short API introduction.
+1. [Replicate basics](01_replicate_basics.ipynb): a standalone introduction with six short steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/01_replicate_basics.ipynb).
 2. [Replicate scene prompts](01b_replicate_scene_prompts.ipynb): a second version of the basics notebook using a scene dictionary from Session 1's visual prompt craft exercise.
 3. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
 
-## Open in JupyterHub (individual student accounts)
+## Start with Replicate basics
+
+Open `01_replicate_basics.ipynb` directly in Colab or upload just that file to JupyterHub. Follow its short instructions to install `replicate`, enter your token, write a prompt, generate, view and optionally save an image. It makes real requests and has no practice mode. You do not need the repository, helper files or shared requirements for this notebook.
+
+The setup and workflow sections below apply to the scene-prompt and Telephone notebooks, which still use the existing course setup.
+
+## Open the other notebooks in JupyterHub
 
 After the updated course material is merged into the repository's **main** branch, each student works in their **own JupyterHub account**. Open a terminal from JupyterLab (File → New → Terminal), then clone the course repository into your home directory:
 
@@ -32,7 +38,7 @@ Telephone uses ipywidgets 8 for prompt fields, the model dropdown, file upload a
 
 Only Replicate image generation uses your personal Replicate API token, entered via the notebook's hidden prompt. Never paste tokens into notebook code, commit them to Git, share them through SWITCHdrive, or place them in `outputs/`.
 
-All student notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts.
+The scene-prompt and Telephone notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts.
 
 ## Replicate and live attempts
 
@@ -40,7 +46,7 @@ Use your individual account and the hidden token input. Never paste tokens into 
 
 The initial model is `black-forest-labs/flux-schnell`. Use the model list supplied for the activity. These examples request one square PNG.
 
-Telephone uses the same prediction lifecycle as the basics notebook: look up a model version, create a prediction, wait for completion, then download its output. It records the resolved version and prediction ID. The basics notebook remains the short introduction and does not record those extra fields in its saved prompt file.
+The basics notebook uses `client.run(...)` and optionally saves one PNG. The scene-prompt and Telephone notebooks use explicit prediction creation and waiting. Telephone also records the resolved model version and prediction ID.
 
 ## Structured scene-prompt version
 
@@ -62,11 +68,10 @@ Every completed attempt has a separate local image and JSON record containing it
 
 Incoming images are inspected locally, not sent as image-to-image inputs. The notebook validates the assigned filename; you still need to choose the correct group folder. Passing stays within six groups of five, retaining names such as `01.png`, `01_02.png`, and `01_02_03.png`.
 
-Files are relative to Jupyter's working directory:
+The basics notebook saves your chosen PNG filename in its working directory. The other notebooks use these output folders:
 
 ```text
 outputs/
-    basics/<attempt>/image.png and prompt.json
     scene_basics/<attempt>/image.png and prompt.json
     telephone/<session>/Group_A_S01/
         private/<attempt>/image.png and record.json
