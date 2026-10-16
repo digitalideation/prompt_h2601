@@ -1,6 +1,6 @@
 # Artistic Telephone: local reveal and website gallery
 
-Open [the standalone HTML reveal notebook](../notebooks/03_telephone_reveal_html.ipynb). This is independent of the student notebook and needs no `telephone_*.py` files. The older widget-based presenter is not used by this workflow.
+Open [the standalone HTML reveal notebook](../notebooks/03_telephone_reveal_html.ipynb). This is independent of the student notebook and needs no `telephone_*.py` files. The former widget-based presenter and its helper modules have been retired.
 
 Run the install cell, set `FOLDER` to your downloaded class directory and `OUTPUT` to a new export folder, then run Export. Keep `Group_A`, `Group_B`, etc. and the original handoff PNG filenames. Private `_try` files are ignored. The exporter reads the current student notebook's ST3GG prompts; images in older formats remain visible but their prompts are unavailable.
 
