@@ -1,3 +1,5 @@
 nbformat>=5.10,<6
-nbclient>=0.10,<1
-ipykernel>=6.29,<7
+Pillow>=10,<13
+replicate>=1.0.7,<2
+stegg==3.0.0
+ipython>=8,<10
