@@ -24,7 +24,7 @@ try:
 except ImportError:
     create_config = encode_text = None
 
-NOTEBOOK = Path(__file__).resolve().parents[1] / 'notebooks/03_telephone_reveal_html.ipynb'
+NOTEBOOK = Path(__file__).resolve().parents[1] / 'notebooks/04_telephone_reveal_html.ipynb'
 CONFIG = create_config(channels='RGB', bits=1, compress=True, strategy='interleaved') if create_config else None
 
 

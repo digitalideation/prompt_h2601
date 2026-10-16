@@ -14,7 +14,7 @@ The student instructions are in [the activity guide](../activities/artistic_tele
 
 ## Reveal
 
-Download all original group PNGs and use [the reveal notebook](../notebooks/03_telephone_reveal_html.ipynb). Confirm that all groups are represented, resolve duplicate positions and inspect missing records.
+Download all original group PNGs and use [the reveal notebook](../notebooks/04_telephone_reveal_html.ipynb). Confirm that all groups are represented, resolve duplicate positions and inspect missing records.
 
 Show one chain per group, or fewer if discussion needs more time. Reveal prompts after students have compared the images. Optional highlights include Most Surprising Transformation, Best Stylistic Leap and Strongest Narrative Continuity.
 

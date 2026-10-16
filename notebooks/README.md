@@ -18,7 +18,7 @@ After installing packages, students connect to Replicate and set GROUP and SEAT 
 
 Each paid generation automatically embeds its *captured* prompt in a numbered PNG using [ST3GG](https://github.com/elder-plinius/ST3GG). If generation or saving fails, students should check their Replicate prediction before trying again. Export copies the chosen image to the expected group filename. Colab also downloads the exported PNG to the student's computer. Only selected PNGs go to SWITCHdrive; no separate prompt logs are required. The hidden text is **not encryption**, and students should not inspect others' prompts during the game.
 
-The [standalone HTML reveal exporter](03_telephone_reveal_html.ipynb) uses ST3GG to build a local presentation and publishable static gallery. Older-format images remain visible with prompts marked unavailable.
+The [standalone HTML reveal exporter](04_telephone_reveal_html.ipynb) uses ST3GG to build a local presentation and publishable static gallery. Older-format images remain visible with prompts marked unavailable.
 
 ## References
 

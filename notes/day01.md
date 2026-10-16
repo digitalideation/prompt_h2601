@@ -86,7 +86,7 @@ The notebook calculates routing and retains every completed attempt privately. S
 
 ## Block 5: Reveal, 15 minutes
 
-Download the original group PNGs, use the [HTML reveal exporter](../notebooks/03_telephone_reveal_html.ipynb). Confirm all six groups are present, resolve duplicates and inspect missing positions. Reveal prompts only now. Show one chain per group, or select fewer for deeper discussion if transitions take time. Use the same questions as the guide and distinguish human reinterpretation from model variability. Do not describe every difference as an error: drift is part of the activity.
+Download the original group PNGs, use the [HTML reveal exporter](../notebooks/04_telephone_reveal_html.ipynb). Confirm all six groups are present, resolve duplicates and inspect missing positions. Reveal prompts only now. Show one chain per group, or select fewer for deeper discussion if transitions take time. Use the same questions as the guide and distinguish human reinterpretation from model variability. Do not describe every difference as an error: drift is part of the activity.
 
 ## Block 6: Storyboard, repair and video, 20 minutes
 
