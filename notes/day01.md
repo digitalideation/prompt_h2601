@@ -76,7 +76,7 @@ Have students save results they want to keep with different filenames before cha
 
 ## Block 4: Artistic Telephone, 45 minutes
 
-Use the [game guide](../activities/artistic_telephone.md) and [Telephone notebook](../notebooks/02_artistic_telephone.ipynb).
+Use the [game guide](../activities/artistic_telephone.md) and [Telephone notebook](../notebooks/03_artistic_telephone.ipynb).
 
 Six groups of five; five chains circulate simultaneously within each group. Keep the model fixed. Everyone describes and regenerates an image every round. Retain the original seat-sequence filenames.
 

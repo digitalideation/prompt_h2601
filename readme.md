@@ -26,7 +26,7 @@ Each session lasts **2 h 20 min (140 minutes), including a 10-minute break**. Al
 
 Start with Replicate's web UI, then use a prepared Jupyter Notebook to record prompts, generate images, and compare iterations. Artistic Telephone makes interpretation drift visible; a storyboard and refinement task introduce deliberate consistency. We will also explore how to turn a still image into a short video. You can try this as an optional extension.
 
-[Open Session 1](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). For a structured version of the same API exercise, use [Replicate scene prompts](./notebooks/02_replicate_scene_prompts.ipynb). The [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) adds iteration, comparison and selected-image passing. At the end of the game, we will compare the image chains and reveal their prompts. See the [game guide](./activities/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
+[Open Session 1](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). For a structured version of the same API exercise, use [Replicate scene prompts](./notebooks/02_replicate_scene_prompts.ipynb). The [Artistic Telephone notebook](./notebooks/03_artistic_telephone.ipynb) adds iteration, comparison and selected-image passing. At the end of the game, we will compare the image chains and reveal their prompts. See the [game guide](./activities/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
 
 ### Session 2: Prompting for Audio, Music & Multimodal Workflows
 

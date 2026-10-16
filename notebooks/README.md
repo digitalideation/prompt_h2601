@@ -2,7 +2,7 @@
 
 1. [Replicate basics](01_replicate_basics.ipynb): a standalone introduction with six short steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/01_replicate_basics.ipynb).
 2. [Replicate scene prompts](02_replicate_scene_prompts.ipynb): build a complete prompt from a scene dictionary, then use the same API steps. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-replicate-basics/notebooks/02_replicate_scene_prompts.ipynb).
-3. [Artistic Telephone](02_artistic_telephone.ipynb): standalone group game with automatic attempts and hidden PNG prompts. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-artistic-telephone-stegg/notebooks/02_artistic_telephone.ipynb).
+3. [Artistic Telephone](03_artistic_telephone.ipynb): standalone group game with automatic attempts and hidden PNG prompts. [Open in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-artistic-telephone-stegg/notebooks/03_artistic_telephone.ipynb).
 
 ## Standalone student notebooks
 
@@ -12,7 +12,7 @@ All three student notebooks are standalone. The HTML reveal exporter also needs 
 
 ## Artistic Telephone
 
-[Open the standalone game notebook in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-artistic-telephone-stegg/notebooks/02_artistic_telephone.ipynb). The student notebook uses `replicate`, `stegg` (ST3GG), `ipywidgets` and Pillow; all are installed inside the notebook. **No custom Python helper files or repository checkout are required.**
+[Open the standalone game notebook in Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/simplify-artistic-telephone-stegg/notebooks/03_artistic_telephone.ipynb). The student notebook uses `replicate`, `stegg` (ST3GG), `ipywidgets` and Pillow; all are installed inside the notebook. **No custom Python helper files or repository checkout are required.**
 
 After installing packages, students connect to Replicate and set GROUP and SEAT once. A compact game panel contains the **round selector**, incoming/outgoing filename instructions, **prompt box**, **Generate and save** button, attempt preview/selector, and **Export selected PNG** button. Students open their incoming PNG locally or in SWITCHdrive; there is no upload widget.
 

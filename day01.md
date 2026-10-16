@@ -9,7 +9,7 @@
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
 **Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
 
-Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/02_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class.
+Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/02_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/03_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class.
 
 ## Focus
 

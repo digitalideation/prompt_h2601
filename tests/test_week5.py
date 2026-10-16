@@ -57,7 +57,7 @@ class TestNotebooks(unittest.TestCase):
                     compile(TransformerManager().transform_cell(cell.source), str(path), "exec")
 
     def test_student_telephone_is_standalone(self):
-        cells = basic_cells("02_artistic_telephone.ipynb")
+        cells = basic_cells("03_artistic_telephone.ipynb")
         code = "\n".join(cells.values())
         for snippet in ("def generate_image(inputs, client, MODEL):",
                         "encoded = encode_text(original, prompt_used, steg)",
@@ -68,7 +68,7 @@ class TestNotebooks(unittest.TestCase):
             self.assertNotIn(obsolete, code)
 
     def test_telephone_filename_calculator(self):
-        code = basic_cells("02_artistic_telephone.ipynb")["play-ui"]
+        code = basic_cells("03_artistic_telephone.ipynb")["play-ui"]
         start = code.index("def filenames(round_number):")
         end = code.index("\n\n", start)
         namespace = {"SEAT": 1}

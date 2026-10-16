@@ -1,6 +1,6 @@
 # Artistic Telephone: Session 1 class flow
 
-[Session 1](../day01.md) | [Telephone notebook](../notebooks/02_artistic_telephone.ipynb)
+[Session 1](../day01.md) | [Telephone notebook](../notebooks/03_artistic_telephone.ipynb)
 
 ## Goal
 
