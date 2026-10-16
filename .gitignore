@@ -4,3 +4,8 @@
 .ipynb_checkpoints/
 __pycache__/
 notebooks/outputs/
+
+# Local generation and reveal exports (publish galleries intentionally)
+attempts/
+Group_[A-F]/
+telephone-reveal/

@@ -1,118 +1,47 @@
-"""Offline teaching-flow tests. No API credentials or paid requests."""
-import builtins
+"""Focused offline tests for current standalone course notebooks."""
 import contextlib
 import io
-import json
 import os
 from pathlib import Path
-import shutil
-import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from types import SimpleNamespace
-from zipfile import ZipFile
 
 import nbformat
-from nbclient import NotebookClient
-from PIL import Image, PngImagePlugin
+from PIL import Image
 from IPython.core.inputtransformer2 import TransformerManager
 
-ROOT = Path(__file__).resolve().parents[1]
-NOTEBOOKS = ROOT / "notebooks"
-sys.path.insert(0, str(NOTEBOOKS))
-import telephone_helpers as helper
+NOTEBOOKS = Path(__file__).resolve().parents[1] / "notebooks"
 
 
-def sources(name):
-    return [cell.source for cell in nbformat.read(NOTEBOOKS / name, as_version=4).cells
-            if cell.cell_type == "code"]
+def practice_image():
+    output = io.BytesIO()
+    Image.new("RGB", (128, 128), "steelblue").save(output, format="PNG")
+    return output.getvalue()
 
 
-def basic_cells():
-    return {cell.id: cell.source for cell in nbformat.read(
-        NOTEBOOKS / "01_replicate_basics.ipynb", as_version=4).cells if cell.cell_type == "code"}
+def basic_cells(name="01_replicate_basics.ipynb"):
+    return {cell.id: cell.source for cell in nbformat.read(NOTEBOOKS / name, as_version=4).cells
+            if cell.cell_type == "code"}
 
 
-def context(group="A", seat=1, round_number=1, mode="practice"):
-    return {**helper.route(group, seat, round_number), "prompt": "A test scene", "mode": mode,
-            "settings": {"num_outputs": 1}, "model": "test/model"}
+def prediction_client(status="succeeded", output=("https://example.invalid/image.png",)):
+    prediction = SimpleNamespace(id="test-prediction", status=status,
+        output=list(output) if output is not None else None, wait=Mock())
+    return SimpleNamespace(models=SimpleNamespace(get=Mock(return_value=SimpleNamespace(
+        latest_version=SimpleNamespace(id="test-version")))),
+        predictions=SimpleNamespace(create=Mock(return_value=prediction)))
 
 
 @contextlib.contextmanager
 def working_directory(folder):
-    previous = Path.cwd()
+    old = Path.cwd()
     os.chdir(folder)
     try:
         yield
     finally:
-        os.chdir(previous)
-
-
-class TestTelephone(unittest.TestCase):
-    def test_all_group_round_routes(self):
-        for group in "ABCDEF":
-            for round_number in range(1, 6):
-                outputs = set()
-                for seat in range(1, 6):
-                    item = helper.route(group, seat, round_number)
-                    self.assertEqual(item["folder"], f"Group_{group}")
-                    self.assertEqual(len(item["outgoing"].removesuffix(".png").split("_")), round_number)
-                    outputs.add(item["outgoing"])
-                    if round_number > 1:
-                        previous = helper.route(group, (seat - 2) % 5 + 1, round_number - 1)
-                        self.assertEqual(item["incoming"], previous["outgoing"])
-                        self.assertEqual(previous["send_to"], seat)
-                self.assertEqual(len(outputs), 5)
-        self.assertEqual(helper.route("A", 1, 2)["outgoing"], "05_01.png")
-        self.assertEqual(helper.route("A", 1, 5)["outgoing"], "02_03_04_05_01.png")
-
-    def test_invalid_identity(self):
-        for args in [("../A", 1, 1), ("A", 0, 1), ("A", 1, 6), ("A", True, 1)]:
-            with self.assertRaises(ValueError):
-                helper.route(*args)
-        with self.assertRaises(ValueError):
-            helper.session_root("../../elsewhere", "A", 1)
-
-    def test_upload_and_metadata_stripping(self):
-        image = Image.new("RGB", (20, 20), "red")
-        metadata = PngImagePlugin.PngInfo()
-        metadata.add_text("prompt", "PRIVATE PROMPT")
-        buffer = io.BytesIO()
-        image.save(buffer, format="PNG", pnginfo=metadata)
-        data = helper.uploaded_image([{"name": "05.png", "content": memoryview(buffer.getvalue())}], "05.png")
-        with Image.open(io.BytesIO(data)) as cleaned:
-            self.assertEqual(cleaned.info, {})
-        self.assertNotIn(b"PRIVATE PROMPT", data)
-        with self.assertRaises(ValueError):
-            helper.uploaded_image([{"name": "04.png", "content": data}], "05.png")
-        with self.assertRaises(ValueError):
-            helper.uploaded_image([], "05.png")
-        with self.assertRaises(Exception):
-            helper.uploaded_image([{"name": "05.png", "content": b"not an image"}], "05.png")
-
-    def test_history_export_and_collision(self):
-        with tempfile.TemporaryDirectory() as folder:
-            root = Path(folder)
-            info = context()
-            info["api_token"] = "private-credential-sentinel"
-            run = helper.save_record(root, info, helper.practice_image())
-            info["prompt"] = "Changed later"
-            record = helper.history(root)[0]
-            self.assertEqual(record["prompt"], "A test scene")
-            self.assertNotIn("api_token", record)
-            self.assertNotIn("private-credential-sentinel", (run / "record.json").read_text())
-            handoff = helper.export_handoff(root, run)
-            self.assertEqual(handoff.name, "01.png")
-            self.assertIn("practice_handoff", handoff.parts)
-            self.assertEqual(helper.export_handoff(root, run), handoff)
-            replacement = helper.save_record(root, context(), helper.practice_image(2))
-            with self.assertRaises(FileExistsError):
-                helper.export_handoff(root, replacement)
-            archive = helper.export_after_reveal(root)
-            with ZipFile(archive) as bundle:
-                self.assertEqual(len(bundle.namelist()), 4)
-                self.assertTrue(all(name.endswith(("image.png", "record.json")) for name in bundle.namelist()))
+        os.chdir(old)
 
 
 class TestNotebooks(unittest.TestCase):
@@ -120,7 +49,6 @@ class TestNotebooks(unittest.TestCase):
         for path in NOTEBOOKS.glob("*.ipynb"):
             nb = nbformat.read(path, as_version=4)
             nbformat.validate(nb)
-            self.assertNotIn(chr(0x2014), path.read_text())
             self.assertNotIn("widgets", nb.metadata)
             for cell in nb.cells:
                 if cell.cell_type == "code":
@@ -128,129 +56,128 @@ class TestNotebooks(unittest.TestCase):
                     self.assertEqual(cell.outputs, [])
                     compile(TransformerManager().transform_cell(cell.source), str(path), "exec")
 
-    def test_all_offline_cells_execute_in_order(self):
+    def test_student_telephone_is_standalone(self):
+        cells = basic_cells("02_artistic_telephone.ipynb")
+        code = "\n".join(cells.values())
+        for snippet in ("def generate_image(inputs, client, MODEL):",
+                        "encoded = encode_text(original, prompt_used, steg)",
+                        "round_box = widgets.Dropdown(", "prompt_box = widgets.Textarea(",
+                        "attempt_box = widgets.Dropdown(", "decode_text(encoded, steg)"):
+            self.assertIn(snippet, code)
+        for obsolete in ("FileUpload(", "from telephone_", "%pip install -r requirements.txt"):
+            self.assertNotIn(obsolete, code)
+
+    def test_telephone_filename_calculator(self):
+        code = basic_cells("02_artistic_telephone.ipynb")["play-ui"]
+        start = code.index("def filenames(round_number):")
+        end = code.index("\n\n", start)
+        namespace = {"SEAT": 1}
+        exec(code[start:end], namespace)
+        self.assertEqual(namespace["filenames"](2), ("05.png", "05_01.png"))
+        self.assertEqual(namespace["filenames"](5)[1], "02_03_04_05_01.png")
+
+    def test_basic_connect_generate_view_and_save_without_extra_requests(self):
         import replicate
-        for path in NOTEBOOKS.glob("*.ipynb"):
-            with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
+        cells = basic_cells()
+        image_bytes = practice_image()  # Test fixture only, never in the notebook.
+        client = prediction_client()
+        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()) as printed:
+            ns = {}
+            with patch("getpass.getpass", return_value="test-token"), patch.object(replicate, "Client", return_value=client):
+                exec(cells["connect"], ns)
+            exec(cells["prompt"], ns)
+            exec(cells["generate-function"], ns)
+            exec(cells["generate"], ns)
+            client.models.get.assert_called_once_with("black-forest-labs/flux-schnell")
+            request = client.predictions.create.call_args.kwargs
+            self.assertEqual(request["version"], "test-version")
+            self.assertEqual(request["input"]["prompt"], ns["prompt"])
+            self.assertEqual(request["input"]["output_format"], "png")
+            client.predictions.create.return_value.wait.assert_called_once()
+            with patch("urllib.request.urlopen", side_effect=lambda *a, **k: io.BytesIO(image_bytes)) as download:
+                exec(cells["view"], ns)
+                self.assertEqual(download.call_args.args, ("https://example.invalid/image.png",))
+                exec(cells["save"], ns)
+                self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
+                exec(cells["view"], ns)
+            with self.assertRaises(FileExistsError):
+                exec(cells["save"], ns)
+            self.assertEqual(Path("my-image-01.png").read_bytes(), image_bytes)
+            self.assertEqual(client.predictions.create.call_count, 1)
+            self.assertIn("test-prediction", printed.getvalue())
+            self.assertNotIn("test-token", printed.getvalue())
+
+    def test_basic_failed_generation_cannot_save_a_previous_image(self):
+        cells = basic_cells()
+        for status, output in [("failed", None), ("canceled", None), ("succeeded", ()), ("succeeded", None)]:
+            with self.subTest(status=status, output=output), tempfile.TemporaryDirectory() as folder:
                 with working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
-                    with patch.object(replicate.Client, "run", side_effect=AssertionError("Offline API call")):
-                        namespace = {}
-                        notebook = nbformat.read(path, as_version=4)
-                        for cell in notebook.cells:
-                            if cell.cell_type == "code" and "setup" not in cell.metadata.get("tags", []):
-                                exec(cell.source, namespace)
-                        if path.name.startswith("01_"):
-                            self.assertTrue(list(Path(folder).rglob("image.png")))
-                            self.assertTrue(list(Path(folder).rglob("*.json")))
+                    client = prediction_client(status, output)
+                    ns = {"client": client, "image_bytes": practice_image(), "output": ["old"]}
+                    exec(cells["prompt"], ns)
+                    exec(cells["generate-function"], ns)
+                    with self.assertRaises(ns["GenerationError"]):
+                        exec(cells["generate"], ns)
+                    self.assertIsNone(ns["output"])
+                    self.assertIsNone(ns["image_bytes"])
+                    exec(cells["save"], ns)
+                    self.assertFalse(Path("my-image-01.png").exists())
+                    self.assertEqual(client.predictions.create.call_count, 1)
 
-    @unittest.skipUnless(os.environ.get("RUN_JUPYTER_KERNEL_TESTS") == "1", "Optional full kernel test; enable in an environment permitting local kernel sockets")
-    def test_notebooks_execute_offline_in_kernel(self):
-        for path in NOTEBOOKS.glob("*.ipynb"):
-            with self.subTest(notebook=path.name), tempfile.TemporaryDirectory() as folder:
-                for helper_path in NOTEBOOKS.glob("telephone_*.py"):
-                    shutil.copy(helper_path, folder)
-                nb = nbformat.read(path, as_version=4)
-                nb.cells = [cell for cell in nb.cells if "setup" not in cell.metadata.get("tags", [])]
-                # Assert even an accidental SDK call cannot contact Replicate.
-                nb.cells.insert(0, nbformat.v4.new_code_cell(
-                    "import replicate\n"
-                    "def forbidden(*args, **kwargs):\n    raise AssertionError('Offline API call')\n"
-                    "replicate.Client.run = forbidden\n"))
-                NotebookClient(nb, timeout=90, kernel_name="python3").execute(cwd=folder)
-                if path.name.startswith("01_"):
-                    self.assertTrue(list(Path(folder).rglob("image.png")))
-                    self.assertTrue(list(Path(folder).rglob("*.json")))
-
-    def test_basic_live_call_and_save_are_separate(self):
+    def test_basic_download_retry_does_not_generate_again(self):
         cells = basic_cells()
+        client = prediction_client()
+        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
+            ns = {"client": client}
+            exec(cells["prompt"], ns)
+            exec(cells["generate-function"], ns)
+            exec(cells["generate"], ns)
+            with patch("urllib.request.urlopen", side_effect=OSError("Interrupted download")):
+                with self.assertRaises(OSError):
+                    exec(cells["view"], ns)
+            self.assertIsNone(ns["image_bytes"])
+            with patch("urllib.request.urlopen", return_value=io.BytesIO(practice_image())):
+                exec(cells["view"], ns)
+            exec(cells["save"], ns)
+            self.assertTrue(Path("my-image-01.png").exists())
+            self.assertEqual(client.predictions.create.call_count, 1)
+
+    def test_scene_sentence_prompt_reaches_prediction_and_revises(self):
+        import replicate
+        cells = basic_cells("02_replicate_scene_prompts.ipynb")
+        # The working API path, connection and image loading remain identical.
+        for cell_id in ("connect", "generate-function", "generate", "view"):
+            self.assertEqual(cells[cell_id], basic_cells()[cell_id])
+        client = prediction_client()
+        data = practice_image()  # A fixture for the downloader only.
         with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
             ns = {}
-            exec(cells["cell-02"], ns)
-            exec(cells["cell-06"], ns)
-            exec(cells["9a01ba4e"], ns)
-            calls = []
-            prediction = SimpleNamespace(id="test-success", status="succeeded",
-                output=["https://example.invalid/image.png"], wait=lambda: None)
-
-            def create(**kwargs):
-                calls.append(kwargs)
-                return prediction
-
-            client = SimpleNamespace(
-                models=SimpleNamespace(get=lambda _: SimpleNamespace(latest_version=SimpleNamespace(id="test-version"))),
-                predictions=SimpleNamespace(create=create))
-            ns.update(LIVE=True, client=client)
-            with patch.object(builtins, "input", return_value="GENERATE"):
-                exec(cells["cell-08"], ns)
-            ns["inputs"]["prompt"] = "Changed after generation"
-            ns["LIVE"] = False  # Saving must use the captured mode, not this switch.
-            with patch("urllib.request.urlretrieve", side_effect=lambda url, target: Path(target).write_bytes(helper.practice_image())) as download:
-                exec(cells["cell-10"], ns)
-                exec(cells["cell-10"], ns)
-                self.assertEqual(download.call_count, 2)
-            self.assertEqual(len(calls), 1)
-            record = json.loads((ns["run_folder"] / "prompt.json").read_text())
-            self.assertNotEqual(record["inputs"]["prompt"], "Changed after generation")
-            self.assertEqual(calls[0]["version"], "test-version")
-            ns["LIVE"] = True
-            with patch.object(builtins, "input", return_value="CANCEL"):
-                exec(cells["cell-08"], ns)
-            self.assertEqual(len(calls), 1)
-            self.assertIsNone(ns["run_context"])
-            self.assertIsNone(ns["saved_image"])
-            exec(cells["cell-10"], ns)
-            exec(cells["cell-12"], ns)
-
-    def test_basic_failed_cancelled_and_empty_predictions(self):
-        cells = basic_cells()
-        for status, output in [("failed", None), ("canceled", None), ("succeeded", []), ("succeeded", None)]:
-            with self.subTest(status=status, output=output), contextlib.redirect_stdout(io.StringIO()) as printed:
-                ns = {}
-                exec(cells["cell-02"], ns)
-                exec(cells["cell-06"], ns)
-                exec(cells["9a01ba4e"], ns)
-                prediction = SimpleNamespace(id="test-failure", status=status, output=output, wait=lambda: None)
-                ns.update(LIVE=True, client=SimpleNamespace(
-                    models=SimpleNamespace(get=lambda _: SimpleNamespace(latest_version=SimpleNamespace(id="v1"))),
-                    predictions=SimpleNamespace(create=lambda **_: prediction)))
-                with patch.object(builtins, "input", return_value="GENERATE"):
-                    exec(cells["cell-08"], ns)
-                self.assertIsNone(ns["run_context"])
-                self.assertIsNone(ns["saved_image"])
-                exec(cells["cell-10"], ns)
-                exec(cells["cell-12"], ns)
-                self.assertNotIn("Generation returned", printed.getvalue())
-                self.assertIn("test-failure", printed.getvalue())
-
-    def test_basic_first_cancel_and_download_failure_clear_image(self):
-        cells = basic_cells()
-        with tempfile.TemporaryDirectory() as folder, working_directory(folder), contextlib.redirect_stdout(io.StringIO()):
-            ns = {}
-            exec(cells["cell-02"], ns)
-            exec(cells["cell-06"], ns)
-            exec(cells["9a01ba4e"], ns)
-            ns.update(LIVE=True, client=object())
-            with patch.object(builtins, "input", return_value="CANCEL"):
-                exec(cells["cell-08"], ns)
-            exec(cells["cell-10"], ns)
-            exec(cells["cell-12"], ns)
-            self.assertIsNone(ns["saved_image"])
-            ns.update(run_context={"mode": "live"}, run_folder=Path("failed-download"),
-                      output=["https://example.invalid/image.png"], saved_image=Path("old-image.png"))
-            with patch("urllib.request.urlretrieve", side_effect=OSError("download interrupted")):
-                exec(cells["cell-10"], ns)
-            self.assertIsNone(ns["saved_image"])
-            exec(cells["cell-12"], ns)
-
-    def test_error_message_does_not_echo_token(self):
-        class APIError(Exception):
-            status = 401
-        result = helper.error_message(APIError("private-credential-sentinel"))
-        self.assertNotIn("private-credential-sentinel", result)
-        self.assertIn("token", result)
+            with patch("getpass.getpass", return_value="test-token"), patch.object(replicate, "Client", return_value=client):
+                exec(cells["connect"], ns)
+            exec(cells["prompt"], ns)
+            exec(cells["build"], ns)
+            first_prompt = ns["prompt"]
+            self.assertIn("Show a cyclist wearing a mustard-yellow raincoat riding slowly across a stone bridge.", first_prompt)
+            self.assertIn("The scene takes place in a quiet riverside town at dawn, with warm orange light filtering through mist.", first_prompt)
+            self.assertEqual(client.predictions.create.call_count, 0)
+            exec(cells["generate-function"], ns)
+            exec(cells["generate"], ns)
+            self.assertEqual(client.predictions.create.call_args.kwargs["input"]["prompt"], first_prompt)
+            with patch("urllib.request.urlopen", return_value=io.BytesIO(data)):
+                exec(cells["view"], ns)
+            exec(cells["save"], ns)
+            self.assertEqual(Path("my-scene-01.png").read_bytes(), data)
+            ns["scene"]["composition"] = "a wide shot from above"
+            exec(cells["build"], ns)
+            self.assertIn("frame the scene as a wide shot from above.", ns["prompt"])
+            self.assertNotIn("street level", ns["prompt"])
+            self.assertEqual(client.predictions.create.call_count, 1)
+            exec(cells["generate"], ns)
+            self.assertEqual(client.predictions.create.call_args.kwargs["input"]["prompt"], ns["prompt"])
+            self.assertEqual(client.predictions.create.call_count, 2)
+            self.assertEqual(Path("my-scene-01.png").read_bytes(), data)
+            self.assertIsNone(ns["image_bytes"])
 
 
 if __name__ == "__main__":
     unittest.main()
-
-

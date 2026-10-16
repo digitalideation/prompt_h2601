@@ -9,7 +9,7 @@
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
 **Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
 
-Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class.
+Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/02_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class.
 
 ## Focus
 
@@ -93,7 +93,7 @@ Compare the example outputs from different models. Which details of the same pro
 
 ## Block 3: Notebook walkthrough and first generation
 
-Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb) or its [scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb). Both follow the same API steps. The scene-prompt version turns the Block 2 structure into an editable dictionary, then assembles and displays a single text prompt. It starts with an offline practice diagram; switch to live mode when we begin generating images together:
+Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb) or its [scene-prompt version](./notebooks/02_replicate_scene_prompts.ipynb). Both follow the same API steps. The scene-prompt version turns the Block 2 structure into an editable dictionary, then assembles and displays a single text prompt. Both generate real images through your Replicate account:
 
 1. Enter your API token privately using the supplied setup method.
 2. Use the initial class model example and edit the prompt. The basics notebook uses one model; the Telephone notebook adds a curated dropdown.

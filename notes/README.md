@@ -4,7 +4,7 @@ This folder contains preparation, pacing, demonstration cues and technical check
 
 - [Session 1](day01.md)
 - [Artistic Telephone facilitation](artistic_telephone.md)
-- [Notebook preparation and validation](notebooks.md)
+- [Standalone HTML reveal](telephone_reveal_html.md)
 - [Audio-session notes from the previous semester](day02.md)
 - [PromptVision facilitation](promptvision.md)
 - [VibeCoding notes from the previous semester](vibecoding.md)
@@ -16,6 +16,6 @@ Course pages, student notebook explanations and activity guides address students
 
 Keep lesson-delivery directions here: what to show or explain, suggested pacing, preparation checks, fallback materials and development status. Do not add phrases such as “The instructor should...” to student pages.
 
-Student activity guides are in `activities/`. The reveal notebook remains in `notebooks/` alongside its Python helpers, but is linked from these teaching notes rather than the student notebook list.
+Student activity guides are in `activities/`. The standalone HTML reveal exporter is in `notebooks/`; it requires no custom helper files.
 
 Do not use em dashes in course content.
