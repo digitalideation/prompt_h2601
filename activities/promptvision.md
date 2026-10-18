@@ -1,96 +1,49 @@
-# 🎤 PromptVision: Class Flow (X Students)
+# PromptVision 2026: A Country You Can Hear
 
-*Previous-semester material. See the [course homepage](../readme.md) for the H26 sessions.*
+Create the **sonic identity of an imaginary digital country**, starting from an image, and compete in a Eurovision-style listening show.
 
-## Goal
+## Creative brief
 
-Create and perform a short AI-generated **song or sound composition** inspired by a shared theme, then compete in a _Eurovision-style contest_. Use precise prompts to express genre, mood and emotion, and explore how creative constraints shape AI-generated sound.
+Work in a team of **2–3**. Choose one source image from Artistic Telephone, another image you made, or a provided example. More than one team may use the same image.
 
-## Links
+Find **three visual qualities** and translate them into sound. Prompt for genre or style, mood, tempo/rhythm, instrumentation or sound textures, and development over time. Generate a composition, compare an alternative prompt or version and note what you revised.
 
-- [Shared SwitchDrive](https://drive.switch.ch/index.php/s/X6e6ny3t0JOLOAY) (upload folder)
-- [Replicate](https://replicate.com/collections/ai-music-generation) – Music generation
-- [ScoreWiz](https://scorewiz.eu) – Live voting show platform
+Choose one final **30–60-second** composition. Songs, instrumentals, ambient pieces and experimental soundscapes are equally welcome; lyrics are optional. Then generate **a new cover image** that represents your finished music. This is a quick creative prompting exercise, not a polished graphic design assignment.
 
-## Setup
+## Submit four files
 
-- **Teams of 2 students** (≈ X teams total).
-- Each team = one “Digital Country” with a **name**, **flag/emoji**, and **style** (e.g., 🪩 Neo-Synth Republic).
-- Each team generates **one track** (60+ seconds long) using **one AI music model on Replicate**.
-- Each team submits:
+Upload to your team's numbered SWITCHdrive folder using the country name and entry number assigned in class:
 
-  - 🎵 `track.mp3`
-  - ✍️ `prompt.txt`
-  - 🧾 `metadata.txt` (title, model used, genre, duration)
-
-- We host the **PromptVision 2025 Show** via ScoreWiz.
-
-Example folder:
-
-```
-/PromptVision 2025/
-   LoFiLand/
-      track.mp3
-      prompt.txt
-      metadata.txt
-   Reverbia/
-   Glitchistan/
-   ...
+```text
+PromptVision/
+  01_NeonRepublic/
+    track.mp3
+    source.png
+    cover.png
+    entry.txt
+  02_Fogland/
+    ...
 ```
 
-## Timing Overview
+The filenames are important for the automated presentation. Audio may alternatively use `.wav`, `.m4a` or `.ogg`; images may use `.jpg`, `.jpeg` or `.webp`. Keep **one** track, one source and one cover, named exactly as above apart from the extension.
 
-| Stage | Activity                     | Duration | Notes                                                                         |
-| :---- | :--------------------------- | :------- | :---------------------------------------------------------------------------- |
-| **2** | Team setup & prompt writing  | 10 min   | Teams name their “country,” assign roles (prompt designer, audio lead, etc.). |
-| **3** | Track creation & refinement  | 30 min   | Iterate 2–3 times to refine sound, export final version.                      |
-| **4** | Upload & test playback       | 5 min    | Check your clip's volume and playback.                                      |
-| **5** | PromptVision Listening Party | 15 min   | Listen to all entries together.                                |
-| **6** | ScoreWiz Voting Ceremony     | 10 min   | Teams vote via _Lucky 7 System_ (1, 2, 3, 5, 7 points).                       |
-| **7** | Audience Feedback & Wrap-up  | 10 min   | Celebrate highlights and discuss prompt strategies.                           |
+Fill out `entry.txt` (long answers can continue on a new line):
 
-⏱️ **Total:** ~80 min
-Follow the shared countdown timer for each stage.
-
-## File-Naming & Submission Rules
-
-Each team uploads to their subfolder:
-
-```
-track.mp3
-prompt.txt
-metadata.txt
+```text
+Country: Neon Republic
+Title: Signals from Tomorrow
+Model: [audio model]
+Prompt: Slow cinematic electronics with deep bass, sparse metallic
+  percussion and a warm melody that emerges gradually.
+Translation: Blue fog became sustained synths; huge buildings
+  became deep bass; a distant light became a rising melody.
+Iteration: We removed the fast beat for a slower pulse.
 ```
 
-**Prompt example:**
+Do not upload tokens, private attempts or files you lack rights to share. The **cover is required**, but if it is late the presenter temporarily shows the source with a warning so the music can still play.
 
-> “A futuristic synthpop ballad about synthetic love and memory loss, 118 BPM, female vocals with vocoder harmony, lush pads, steady beat.”
+## The show
 
-**Metadata example:**
+The instructor displays the generated cover prominently and the original source beside it, while playing up to **45 seconds** of your music. Only afterward do we reveal the prompt and creative translation.
 
-```
-Title: Digital Hearts
-Model: replicate/suno-v3
-Genre: Synthpop
-Duration: 0:52
-```
-
-## Voting System
-
-### Lucky 7 Voting
-
-Each team acts as a **jury** and awards:
-
-- 7 points: Best overall song
-- 5 points: Most creative prompt concept
-- 3 points: Strongest production / mix
-- 2 points: Most unexpected genre twist
-- 1 point: Favorite wildcard or unique element
-
-Votes are entered manually in **ScoreWiz**, which generates a live, animated scoreboard.
-
-## Feedback & Awards
-
-🏆 **Audience Favorite**: Quick class poll or applause vote.  
-🎧 **Class Highlights**: Discuss selected tracks after the results.  
-💬 Give feedback on _prompt clarity, sound design, and emotional intent_.
+Each country is also a **jury**. Your team votes together in [ScoreWiz](https://scorewiz.eu), ranking other entries and never voting for yourselves. Consider both what you enjoy and how effectively the composition expresses the intended creative identity.
