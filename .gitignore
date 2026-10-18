@@ -9,3 +9,7 @@ notebooks/outputs/
 attempts/
 Group_[A-F]/
 telephone-reveal/
+
+# Local PromptVision show exports
+promptvision_show.html
+scorewiz_countries.txt
