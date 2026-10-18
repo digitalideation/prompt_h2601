@@ -12,7 +12,7 @@ Invent an imaginary digital country and create its sonic identity from **one sou
 
 Create one original AI-generated composition **between 1 and 2 minutes long**. If your chosen model creates a longer song, export or trim a 60–120-second excerpt for the competition. Songs, instrumentals, ambient music and experimental soundscapes are all welcome. Compare at least two prompt directions or iterations where feasible, then generate **one new cover image** that represents the *resulting sound*, not necessarily the original subject.
 
-At the listening party we see your cover prominently, with the source image beside it. We listen first, then reveal your prompt decisions. Every team votes as one national jury for other countries using Eurovision-style points in ScoreWiz.
+At the listening party we see your cover prominently, with the source image beside it. We listen to all entries first, then each team votes as one national jury for other countries using Eurovision-style points in ScoreWiz. We reveal prompts after the voting.
 
 ## Learning goals
 
@@ -121,4 +121,4 @@ No editing software, slide deck, flag design or notebook is required. See the [P
 
 ## Show and reflection
 
-The instructor runs a local listening presentation. The country backstory appears alongside the large cover and smaller source image. The live player has a 75-second excerpt mode and a full-track option; we reveal the final prompt and any provided lyrics after listening. Teams award Eurovision-style ranked points, excluding themselves. Consider how the cover diverged from the source, which prompt decisions mattered, and whether different listeners interpreted the same sound differently.
+The instructor runs a local listening presentation. The country backstory appears alongside the large cover and smaller source image. The live player has a 75-second excerpt mode and a full-track option; with 15 teams we will play shorter excerpts to fit the 20-minute show. Take notes while listening, then agree on one ranked ballot per team (never voting for your own country). Submit your rankings using the ScoreWiz jury link, then watch the animated scoreboard reveal. We discuss the hidden prompts and optional lyrics after the results. See the [PromptVision voting instructions](./activities/promptvision.md) for details. Consider how the cover diverged from the source, which prompt decisions mattered, and whether different listeners interpreted the same sound differently.
