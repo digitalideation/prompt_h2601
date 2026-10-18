@@ -37,11 +37,83 @@ At the listening party we see your cover prominently, with the source image besi
 | Reflection | 5 |
 | **Total** | **140** |
 
-## Before creating your country
+## Block 1: From image to sound (10 minutes)
 
-Map three visual qualities (light, movement, scale, color, atmosphere or texture) to rhythm, timbre, tempo, instrumentation or musical progression. Try a baseline prompt, then revise a specific characteristic and listen for differences. Precise wording influences a model but does not guarantee a particular result.
+### How can an image become audible?
 
-During the sprint, finalize your country name, soundtrack, cover image and a brief explanation. No editing software, slide deck, flag design or notebook is required. See the [PromptVision guide](./activities/promptvision.md) for the four required files and submission template.
+In Session 1, we used words to create images and watched ideas change as they passed between people. This time, we start with a picture and try to express its atmosphere **through sound rather than describing the objects in it**.
+
+Imagine a photograph of a cyclist crossing a foggy bridge at dawn. We could describe the bicycle literally, but we could also translate what the scene *feels* like:
+
+| Visual quality | Possible musical decision |
+| --- | --- |
+| Fog obscures the distance | Soft, layered synthesizers with blurred edges |
+| The cyclist moves steadily | A quiet, repeating rhythmic pulse |
+| Warm dawn light emerges | A bright melody gradually appears |
+
+These are interpretations, not fixed rules. Another team could choose very different sounds for the same image. What musical choices would make your own version recognizable?
+
+### How do audio generators work?
+
+Different systems turn a written description into musical or sound structures, then render an audio waveform. Some generate music with rhythm and harmony; others specialize in sound effects or textures. Unlike a still image, **sound unfolds over time**, so a prompt can describe an opening, a change, and an ending.
+
+Think of a simple workflow: **image → interpretation → audio prompt → generated sound → listening and revision**.
+
+## Block 2: Audio models and prompt craft (15 minutes)
+
+### Choose the right kind of generation
+
+We will look at examples of three related approaches:
+
+| Approach | Typical use | What to listen for |
+| --- | --- | --- |
+| Text-to-music | Songs, instrumentals, musical themes | Rhythm, instruments, melody, structure, vocals |
+| Text-to-sound | Atmospheres, ambiences, effects, textures | Timbre, space, realism, layers, movement |
+| Audio-to-audio | Transforming or extending an existing recording | What is preserved, changed or distorted |
+
+Not every model supports all three approaches. In the class model's web interface, check which inputs are available: text, optional lyrics, an uploaded reference, duration and other settings. **Words in the prompt are not the same as model controls**, and instructions such as an exact BPM or a specific musical transition may not be followed precisely. We will compare a few examples before choosing a model for PromptVision.
+
+### Build a purposeful audio prompt
+
+Start with this flexible structure:
+
+**Style or genre → mood → rhythm/tempo → instrumentation and texture → development over time → optional vocals/lyrics**
+
+Compare a broad instruction:
+
+> Music for a foggy bridge at dawn.
+
+With a more directed interpretation:
+
+> A restrained instrumental electronic piece with a slow, steady pulse, soft layered synthesizers and sparse metallic notes. Begin with distant, hazy textures. Gradually introduce a warm, simple melody as the piece grows brighter, then end quietly. No vocals.
+
+Which words describe **what it sounds like**, and which describe **how it develops**? Does the revised prompt express the source image more convincingly, or has it introduced ideas that are not in the original?
+
+### Short web-interface demonstration
+
+Open the selected [audio generation model](https://replicate.com/collections/ai-music-generation) in its browser interface. We will inspect its supported inputs, enter a baseline prompt, generate or play a prepared example, and compare it with the more directed version.
+
+Listen for differences in mood, pulse, instruments and progression. Notice also what the model ignores. Two generations can differ even with the same prompt; a difference between outputs does not automatically prove that a particular word caused it.
+
+We will use tools and media we have permission to use. Avoid requests to imitate a real person's voice, and check each service's download and reuse conditions.
+
+## Block 3: Mini experiment: change one thing (10 minutes)
+
+Work in pairs or small groups. Choose one image (your own or a provided example), and try a quick **A/B prompt comparison**.
+
+1. Identify three qualities in the image, such as texture, motion, lighting or mood. Write a sonic decision for each.
+2. Write a short baseline audio prompt using the structure above.
+3. Create a revised version that changes **one intentional element**, for example the tempo, instruments, density or how the sound evolves.
+4. Generate and compare short excerpts if time and account access allow. Otherwise, compare prepared examples and discuss what you would test.
+5. Keep one observation: **What did you change, what did you expect, and what did you actually hear?**
+
+Do not aim for a polished composition yet. The goal is to make a deliberate creative choice and discover how much control the prompt gives you. You will use this approach during PromptVision after the break.
+
+## After the break: PromptVision creation sprint
+
+Form a team of 2–3, invent your country and choose a source image. Use the three visual-to-sonic decisions from the mini experiment to plan your composition. Generate and compare attempts, select one track, then create a new cover image inspired by the final sound. Multiple teams may start from the same source image.
+
+No editing software, slide deck, flag design or notebook is required. See the [PromptVision guide](./activities/promptvision.md) for the four required files and submission template.
 
 ## Show and reflection
 
