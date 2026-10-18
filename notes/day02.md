@@ -6,6 +6,8 @@ The core question is **how can an image become audible without simply narrating 
 
 Begin with an image. Show how three visual qualities might map into tempo, texture, rhythm, instrumentation or a musical transition. These are creative choices, not universal rules. Demonstrate a baseline prompt and a deliberate revision using prepared clips, so the demonstration does not depend on generation latency.
 
+Use [Lyria 3](https://replicate.com/google/lyria-3) for the short classroom comparison and [MiniMax Music 2.6](https://replicate.com/minimax/music-2.6) for the country competition. The first is a short sketch, the second supports longer-form compositions and vocals. Demonstrate the difference between a music prompt and optional lyrics, including a short chorus with `[Verse]` / `[Chorus]` labels. Instrumental music remains equally valid.
+
 A practical prompt anatomy is **style/genre → mood → rhythm/tempo → instruments/texture → development over time → optional vocals/lyrics**. Contrast music and soundscape examples without favoring pop songs. Discuss limitations of temporal control and sensitivity to different models.
 
 ## 140-minute outline
@@ -23,6 +25,6 @@ A practical prompt anatomy is **style/genre → mood → rhythm/tempo → instru
 | ScoreWiz voting and results | 20 |
 | Reflection | 5 |
 
-During the sprint, protect time for comparing prompt directions and generating the **new cover** after the music is chosen. Multiple countries may start from the same source, which makes different outcomes interesting to compare. No student slides, custom notebook or manual audio editing are needed.
+During the sprint, include a **40–60-word country backstory**, protect time for comparing prompt directions, choose a **1–2-minute competition entry**, and generate the **new cover** after the music is chosen. A longer MiniMax generation may need trimming. Multiple countries may start from the same source, which makes different outcomes interesting to compare. No student slides, custom notebook or manual audio editing are needed.
 
-In the show, reveal the prompt after listening; distinguish musical appeal from faithful visual-to-audio translation. Ask: What persisted from the source? What did the cover add? Which prompt decisions affected the result? What could be model variability? For the exact local presenter and fallback procedure, see [PromptVision setup](promptvision.md).
+In the show, display the story before playback and reveal the prompt and optional lyrics after listening; distinguish musical appeal from faithful visual-to-audio translation. Ask: What persisted from the source? What did the cover add? Which prompt decisions affected the result? What could be model variability? For the exact local presenter and fallback procedure, see [PromptVision setup](promptvision.md).
