@@ -91,7 +91,11 @@ def build(folder):
         raise ValueError(f"Not a directory: {folder}")
     entries, warnings, numbers = [], [], set()
     for team in sorted(folder.iterdir()):
-        if not re.fullmatch(r"\d{2}_.+", team.name) or not team.is_dir() or team.is_symlink():
+        if not team.is_dir() or team.is_symlink():
+            continue
+        if not re.fullmatch(r"\d{2}_.+", team.name):
+            warnings.append(f"{team.name}: folder name needs two digits and an underscore "
+                            "(e.g. 01_CountryName); skipped")
             continue
         number = team.name[:2]
         if number in numbers:
