@@ -10,6 +10,13 @@ Find **three visual qualities** and translate them into sound. Prompt for genre 
 
 Use [MiniMax Music 2.6](https://replicate.com/minimax/music-2.6) for the main competition. Choose one final composition **between 60 and 120 seconds** (1–2 minutes). If your generation is longer, trim or export the strongest 1–2-minute section. Songs, instrumentals, ambient pieces and experimental soundscapes are equally welcome; **lyrics are optional**. You can write your own, use the model's lyrics generation or produce an instrumental. Record any custom lyrics in `entry.txt`. Then generate **a new cover image** that represents your finished music. This is a quick creative prompting exercise, not a polished graphic design assignment.
 
+
+## Permission to be wonderfully absurd
+
+Need inspiration for the Eurovision spirit? Watch [Tommy Cash's *Espresso Macchiato* (Estonia, Eurovision 2025)](https://www.youtube.com/watch?v=o6aJJ6Q5zhg). It leans into an exaggerated character, an earworm hook, playful language and a deliberately ridiculous concept.
+
+**Your imaginary country can be equally strange.** Maybe its national anthem is sung by a parliament of pigeons, its citizens dance only during thunderstorms, or its traditional instruments are made from kitchen appliances. The point is not to copy the song or its jokes, but to give your country **a distinctive story, sound and visual identity**. Have fun, surprise us, and make the absurdity feel intentional.
+
 ## Submit four files
 
 Upload to your team's numbered SWITCHdrive folder using the country name and entry number assigned in class:
