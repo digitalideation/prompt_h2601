@@ -5,8 +5,8 @@ This folder contains preparation, pacing, demonstration cues and technical check
 - [Session 1](day01.md)
 - [Artistic Telephone facilitation](artistic_telephone.md)
 - [Standalone HTML reveal](telephone_reveal_html.md)
-- [Audio-session notes from the previous semester](day02.md)
-- [PromptVision facilitation](promptvision.md)
+- [Session 2 audio teaching notes](day02.md)
+- [PromptVision show setup and facilitation](promptvision.md)
 - [VibeCoding notes from the previous semester](vibecoding.md)
 - [Previous online facilitation guide](day03_zoom_guide.md)
 
