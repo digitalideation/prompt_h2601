@@ -1,84 +1,48 @@
-# Day 02: Prompting for Music & Sound Generation
+# Session 2: Prompting for Audio, Music & Multimodal Workflows
 
-*Previous-semester material. See the [course homepage](./readme.md) for the H26 sessions.*
+[Back to the course homepage](./readme.md)
 
-**Duration:** 2 h 30 min.  
-**Focus:** Crafting prompts for genre, mood, tempo, instrumentation, and structure; producing and evaluating short AI-generated tracks in a _Eurovision-style_ contest (PromptVision).  
-**Mode:** Browser-only (web-based music models): small teams of 2 (≈ 6).  
+![Abstract rhythm and sound for Session 2](./assets/session02.svg)
 
-| Block | Activity                         | Duration       |
-| :---- | :------------------------------- | :------------- |
-| 1     | Foundations & Demos              | 20 min         |
-| 2     | Tools & Prompt Craft             | 20 min         |
-|       | Break                            | 10 min         |
-| 3     | **PromptVision** Creation Sprint | 45 min         |
-| 4     | Listening Party & Voting         | 25 min         |
-| 5     | Wrap-Up & Takeaways              | 10 min         |
-|       | **Total**                        | **2 h 30 min** |
+**Duration:** 140 minutes including a 10-minute break. **Teams:** 2–3 students (roughly 10–15 countries). **Tools:** browser audio and image generators, SWITCHdrive, [ScoreWiz](https://scorewiz.eu).
 
-## 🧱️ Block 1: Foundations & Demos
+## PromptVision 2026: A Country You Can Hear
 
-### 1. How Text-to-Music / Audio Models Work
+Invent an imaginary digital country and create its sonic identity from **one source image**: an Artistic Telephone image, a different image you made, or one provided in class. Multiple teams may start from the same image. Identify three visual qualities and translate them into musical decisions. Go beyond narrating the pictured objects.
 
-- **Key concepts:** diffusion, autoregression, transformer sequence modeling.
-- **Modalities:** text-to-music, text-to-sound (SFX), audio-to-audio (style/voice transfer).
-- **Audio pipeline:** prompt → latent/audio tokens → decoding → waveform.
+Create one original AI-generated composition (aim for 30–60 seconds). Songs, instrumentals, ambient music and experimental soundscapes are all welcome. Compare at least two prompt directions or iterations where feasible, then generate **one new cover image** that represents the *resulting sound*, not necessarily the original subject.
 
-### 2. Prompt Parameters (Quick Demo)
+At the listening party we see your cover prominently, with the source image beside it. We listen first, then reveal your prompt decisions. Every team votes as one national jury for other countries using Eurovision-style points in ScoreWiz.
 
-- **Structure:** _genre → mood → tempo (BPM) → instrumentation → structure (intro/verse/chorus/ending) → vocal style/lyrics (optional)_.
-- **References:** mention artists/eras cautiously; better to describe **features** (e.g., "syncopated funk guitar", "reverby 80s snare").
-- **Iteration:** change **one variable** per take to hear its effect.
+## Learning goals
 
-## 🧱️ Block 2: Tools & Prompt Craft
+- Translate three visual qualities into deliberate sonic choices.
+- Prompt for mood, genre, rhythm, instrumentation and development over time.
+- Compare alternatives and explain a purposeful revision.
+- Distinguish listening enjoyment from success at communicating the intended visual-to-audio identity.
 
-### 3. Tools Overview
+## Session schedule
 
-- **Text-to-Music:** Suno.ai, Udio, MusicFX.
-- **Sound Design / Textures:** Mubert, AudioLDM/AudioCraft.
-- **Editing/Finishing:** BandLab, Soundtrap, Audacity (trim, normalize).
-  🔘 Run the **same prompt** on two tools → compare fidelity, vocals, and mix.
+| Activity | Minutes |
+| --- | ---: |
+| Visual-to-audio introduction | 10 |
+| Audio models and prompt demonstration | 15 |
+| Mini experiment: vary one parameter | 10 |
+| Break | 10 |
+| Form teams, choose country and source image | 10 |
+| Generate audio, compare and create cover | 30 |
+| Submit and check playback | 10 |
+| Listening party | 20 |
+| ScoreWiz voting and results | 20 |
+| Reflection | 5 |
+| **Total** | **140** |
 
-### 4. Effective Music Prompts (Mini Task)
+## Before creating your country
 
-- Start from a plain idea → refine with parameters:
+Map three visual qualities (light, movement, scale, color, atmosphere or texture) to rhythm, timbre, tempo, instrumentation or musical progression. Try a baseline prompt, then revise a specific characteristic and listen for differences. Precise wording influences a model but does not guarantee a particular result.
 
-  - “Ambient track” → “Ethereal **ambient** drone at **70 BPM** with **warm pad** and **field recordings**, **slow crescendo** over 30 s.”
-  - “Pop song” → “Uplifting **synthpop** at **118 BPM**, **side-chained bass**, **four-on-the-floor kick**, **female lead** with vocoder doubles, **verse–chorus–outro**.”
+During the sprint, finalize your country name, soundtrack, cover image and a brief explanation. No editing software, slide deck, flag design or notebook is required. See the [PromptVision guide](./activities/promptvision.md) for the four required files and submission template.
 
-- Rewrite a prompt three ways (tempo/mood/instrument swap) and preview 1–2 takes.
+## Show and reflection
 
-## 🧱️ Block 3: PromptVision Creation Sprint (Contest)
-
-**Objective:** Create a **60+ s** track that matches a shared theme and submit it with your final prompt text and the tool you used.
-
-**Structure:**
-
-- No fixed Theme.
-- You have **~45 min** to iterate 2–3 times and export one final clip (normalize to consistent loudness).
-
-**Prompt checklist:** genre, mood adjectives, tempo (BPM), instruments, structure/arc, vocal/lyrics (optional), mix notes (dry/wet, reverb).
-
-👉 Full contest flow, judging rubric, and submission template: [`PromptVision Guide`](./activities/promptvision.md).
-
-## 🧱️ Block 4: Listening Party & Voting
-
-- Listen to the tracks together.
-- Share your team's prompt alongside your track.
-- Voting:
-
-  - 🏆 **Best Song**
-  - 🥇 **Audience Favorite**   
-  - 🎧 **Instructor Highlights**
-
-## 🧱️ Block 5: Wrap-Up & Takeaways
-
-- Discuss: _Which prompt elements most affected structure and timbre?_
-- Note limitations (lyrics coherence, long-form structure).
-- Consider voice likeness, licensing and how you disclose your use of AI.
-
-### ✅ Learning Outcomes
-
-- Design prompts that control **genre, mood, tempo, and instrumentation**.
-- Compare model outputs and iterate deliberately.
-- Produce and evaluate a short track aligned to a theme and prompt design.
+The instructor runs a local listening presentation. We play up to 45 seconds per track with the cover large and source image visible, and reveal the final prompt after listening. Teams award Eurovision-style ranked points, excluding themselves. Consider how the cover diverged from the source, which prompt decisions mattered, and whether different listeners interpreted the same sound differently.
