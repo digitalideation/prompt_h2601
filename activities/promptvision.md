@@ -54,8 +54,26 @@ Lyrics: [Optional. Include any words sung in the final track.]
 
 Do not upload tokens, private attempts or files you lack rights to share. The **cover is required**, but if it is late the presenter temporarily shows the source with a warning so the music can still play.
 
-## The show
+## The listening party and Eurovision voting
 
+**Listen first (20 minutes).** We will display each country's name, fictional backstory, cover image and original source image, then play an excerpt of its composition. Listen to **all** the countries before voting. Take quick notes as you go, for example:
+
+| Country | What stood out? | Possible favorite? |
+| --- | --- | --- |
+| Republic of Echo | Strange synthesizers, hopeful ending | Yes |
+| Fogland | Funny lyrics, irresistible rhythm | Maybe |
+
+The show normally uses excerpts of up to 75 seconds. With many entries, we may listen to shorter excerpts so that every country gets its moment.
+
+**Decide together (about 5 minutes).** Your team is **one national jury**. Discuss the entries and agree on a ranked list of your favorite **other countries**. Consider originality, personality, the relationship between the story and the sound, and what you genuinely enjoyed. Absurd ideas are welcome! You **cannot vote for your own country**.
+
+In the classic Eurovision system, a jury awards **12 points** to its favorite, **10** to its second choice, **8** to its third, then **7, 6, 5, 4, 3, 2 and 1**. If there are too few countries for ten eligible choices, we will announce a shorter points system before voting.
+
+**Send your jury's vote.** One representative submits **one ballot per team** using the [ScoreWiz](https://scorewiz.eu) voting link given in class. Rank the countries in the agreed order; do not submit separate votes as individuals.
+
+**Watch the results (about 15 minutes).** After all juries have voted, we will switch from our listening page to the ScoreWiz scoreboard. Country-by-country points will be revealed, Eurovision-style, until we have a PromptVision winner.
+
+The **full music prompts and optional lyrics stay hidden during the listening and voting**. After the results, we can reveal some of those creative choices and discuss what worked, what surprised us and what was lost or gained when translating the original images into sound.
 The presentation shows your country backstory, generated cover and original source image before playback. The live show normally plays **75 seconds**, with a full-track option; only afterward do we reveal the prompt, optional lyrics and creative translation. Your submitted audio must still be **1–2 minutes**.
 
 Each country is also a **jury**. Your team votes together in [ScoreWiz](https://scorewiz.eu), ranking other entries and never voting for yourselves. Consider both what you enjoy and how effectively the composition expresses the intended creative identity.
