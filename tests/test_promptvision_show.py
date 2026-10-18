@@ -53,6 +53,17 @@ class PromptVisionShowTests(unittest.TestCase):
         self.assertTrue((self.root / '01_Echo Land/track.mp3').exists())
         show.build(self.root)  # Safe to rebuild as new submissions arrive.
 
+    def test_misnamed_folder_warns_instead_of_silently_disappearing(self):
+        add_entry(self.root, '01_Ready', 'Ready')
+        add_entry(self.root, '1_NoLeadingZero', 'Missing Zero')
+        add_entry(self.root, '02-MissingUnderscore', 'Missing Underscore')
+        entries, warnings = show.build(self.root)
+        self.assertEqual([e['country'] for e in entries], ['Ready'])
+        self.assertEqual(len(warnings), 2)
+        self.assertTrue(any('1_NoLeadingZero' in message for message in warnings))
+        self.assertTrue(any('02-MissingUnderscore' in message for message in warnings))
+        self.assertTrue(all('skipped' in message for message in warnings))
+
     def test_missing_cover_uses_source_but_warns(self):
         add_entry(self.root, cover=False)
         entries, warnings = show.build(self.root)
