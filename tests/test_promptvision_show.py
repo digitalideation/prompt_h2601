@@ -1,5 +1,7 @@
 """Offline checks for the tiny PromptVision presentation builder."""
 import base64
+import os
+import wave
 import importlib.util
 from pathlib import Path
 import tempfile
@@ -22,7 +24,7 @@ def add_entry(root, folder='01_Echo Land', country='Echo Land', cover=True, audi
     if cover:
         (team / 'cover.png').write_bytes(PNG)
     if info:
-        (team / 'entry.txt').write_text('Country: '+country+'\nTitle: Sunset\nModel: Model X\nPrompt: Cold synths\n  with warm chords\nTranslation: Blue means calm.\nIteration: Replaced percussion.', encoding='utf-8')
+        (team / 'entry.txt').write_text('Country: '+country+'\nTitle: Sunset\nStory: Echo country floats over a river.\nModel: Model X\nPrompt: Cold synths\n  with warm chords\nTranslation: Blue means calm.\nIteration: Replaced percussion.', encoding='utf-8')
     return team
 
 
@@ -42,6 +44,10 @@ class PromptVisionShowTests(unittest.TestCase):
         self.assertIn('<audio id="audio"', html)
         self.assertIn('01_Echo%20Land/track.mp3', html)
         self.assertIn('Cold synths\\nwith warm chords', html)
+        self.assertIn('Echo country floats over a river.', html)
+        self.assertIn('Play entire track', html)
+        self.assertIn('audio.currentTime>=75', html)
+        self.assertIn('Lyrics:', html)
         self.assertIn("$('details').hidden=true", html)
         self.assertEqual((self.root / 'scorewiz_countries.txt').read_text(), 'Echo Land\nNeon Republic\n')
         self.assertTrue((self.root / '01_Echo Land/track.mp3').exists())
@@ -83,6 +89,41 @@ class PromptVisionShowTests(unittest.TestCase):
         add_entry(self.root, '01_Another Country')
         with self.assertRaisesRegex(ValueError, 'Duplicate entry number'):
             show.build(self.root)
+
+    def test_optional_lyrics_and_multiline_story(self):
+        team = add_entry(self.root)
+        info = team / 'entry.txt'
+        info.write_text(info.read_text().replace(
+            'Story: Echo country floats over a river.',
+            'Story: Our city floats over rivers.\\n  The citizens celebrate the dawn.'
+        ) + '\\nLyrics: [Chorus]\\n  Here comes the light', encoding='utf-8')
+        entries, warnings = show.build(self.root)
+        self.assertEqual(entries[0]['lyrics'], '[Chorus]\\nHere comes the light')
+        self.assertEqual(entries[0]['story'], 'Our city floats over rivers.\\nThe citizens celebrate the dawn.')
+        self.assertFalse(warnings)
+
+    def test_demo_makes_playable_wav_and_page(self):
+        old = Path.cwd()
+        try:
+            os.chdir(self.root)
+            demo = show.make_demo()
+            entries, warnings = show.build(demo)
+        finally:
+            os.chdir(old)
+        self.assertEqual(len(entries), 2)
+        self.assertFalse(warnings)
+        self.assertTrue((demo / 'promptvision_show.html').is_file())
+        with wave.open(str(demo / '01_RepublicOfEcho' / 'track.wav'), 'rb') as wav:
+            self.assertEqual(wav.getnchannels(), 1)
+            self.assertEqual(wav.getframerate(), 8000)
+            self.assertEqual(wav.getnframes(), 70 * 8000)
+        with self.assertRaises(FileExistsError):
+            old = Path.cwd()
+            try:
+                os.chdir(self.root)
+                show.make_demo()
+            finally:
+                os.chdir(old)
 
 
 if __name__ == '__main__':
