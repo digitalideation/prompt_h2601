@@ -95,11 +95,11 @@ class PromptVisionShowTests(unittest.TestCase):
         info = team / 'entry.txt'
         info.write_text(info.read_text().replace(
             'Story: Echo country floats over a river.',
-            'Story: Our city floats over rivers.\\n  The citizens celebrate the dawn.'
-        ) + '\\nLyrics: [Chorus]\\n  Here comes the light', encoding='utf-8')
+            'Story: Our city floats over rivers.\n  The citizens celebrate the dawn.'
+        ) + '\nLyrics: [Chorus]\n  Here comes the light', encoding='utf-8')
         entries, warnings = show.build(self.root)
-        self.assertEqual(entries[0]['lyrics'], '[Chorus]\\nHere comes the light')
-        self.assertEqual(entries[0]['story'], 'Our city floats over rivers.\\nThe citizens celebrate the dawn.')
+        self.assertEqual(entries[0]['lyrics'], '[Chorus]\nHere comes the light')
+        self.assertEqual(entries[0]['story'], 'Our city floats over rivers.\nThe citizens celebrate the dawn.')
         self.assertFalse(warnings)
 
     def test_demo_makes_playable_wav_and_page(self):
