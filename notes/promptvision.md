@@ -20,6 +20,8 @@ python scripts/promptvision_show.py "/path/to/PromptVision"
 
 The script uses only the Python standard library and creates **`promptvision_show.html`** and **`scorewiz_countries.txt`** inside the downloaded folder. Open the HTML directly, without a server or internet connection. The show uses local audio, large cover, smaller source reference, next/previous, country selector, the country's 40–60-word story and hidden prompt/optional lyrics that can be revealed after listening. The live mode stops after 75 seconds; tick **Play entire track** for the complete 1–2-minute submission.
 
+Team folders must begin with **two digits followed by an underscore**, e.g. `01_NeonRepublic`. A misspelled country name after the underscore is fine; the displayed name is read from `entry.txt`. The script warns if a folder uses `1_NeonRepublic` or `01-NeonRepublic`, then skips it until renamed.
+
 Read the script's `CHECK` warnings. Missing track, source image or `entry.txt` skips that team; a missing cover falls back temporarily to the source image. Incomplete metadata fields are flagged. Fix submissions and rerun; existing student files are never changed. Compare `scorewiz_countries.txt` with the contest roster before voting. The script does **not** submit votes or control ScoreWiz.
 
 ## Listening, jury ballots and ScoreWiz reveal
