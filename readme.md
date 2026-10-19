@@ -15,7 +15,7 @@ Each session lasts **2 h 20 min (140 minutes), including a 10-minute break**. Al
 | Session | Topic | Main activity | Materials |
 | --- | --- | --- | --- |
 | 1 | Image & Video Prompting and Workflow Design | Artistic Telephone, storyboard, and visual refinement | [Session materials](./day01.md) |
-| 2 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: an AI Eurovision-style creation sprint | H26 session materials coming next |
+| 2 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: visual-to-audio country competition | [Session materials](./day02.md) |
 | 3 | Generative AI Evaluation Clinic | Human and automated evaluation of generated outputs | H26 session materials coming next |
 
 ### Session 1: Image & Video Prompting and Workflow Design
@@ -34,7 +34,7 @@ Start with Replicate's web UI, then use a prepared Jupyter Notebook to record pr
 - Combining text, image, audio, and video in multimodal workflows
 - Choosing and iterating with the right media and tools for a project
 
-In PromptVision, you will use a Session 1 visual to guide your audio, document iterations in a notebook, and share your work in a listening party with voting. Session materials will be available here.
+In [PromptVision](./day02.md), teams of 2–3 translate a source image into a sonic identity for an imaginary digital country, generate a new cover image and enter a Eurovision-style listening show. We use browser tools, a minimal automatic local presentation and ScoreWiz voting; no student notebook is required. See the [activity guide](./activities/promptvision.md).
 
 ### Session 3: Generative AI Evaluation Clinic
 
@@ -68,7 +68,7 @@ We will compare Arena rankings with our own ratings, try a prepared Ragas text-e
 ## Working tools
 
 - **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
-- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version and Artistic Telephone](./notebooks/README.md); you edit prompts and run supplied cells. Later sessions' notebooks will follow.
+- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version and Artistic Telephone](./notebooks/README.md); you edit prompts and run supplied cells. Session 2 uses browser audio tools and a small local instructor presentation generator; no new student notebook is required.
 - **Model selection:** use the model list provided for each activity.
 - **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 

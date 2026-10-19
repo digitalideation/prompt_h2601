@@ -1,117 +1,30 @@
-# Teaching Notes: Day 02 (Audio & Music Generation)
+# Session 2: audio prompting teaching notes
 
-These notes support **Day 02: Prompting for Music & Sound Generation**. They include warm-up activities, prompt examples, and teaching cues for introducing audio generation tools and the _PromptVision_ contest.
+Student instructions: [Session 2](../day02.md). Instructor operation: [PromptVision setup](promptvision.md).
 
-## Block 1: Foundations & Demos
+The core question is **how can an image become audible without simply narrating it?**
 
-### Key Concepts Recap
+Begin with an image. Show how three visual qualities might map into tempo, texture, rhythm, instrumentation or a musical transition. These are creative choices, not universal rules. Demonstrate a baseline prompt and a deliberate revision using prepared clips, so the demonstration does not depend on generation latency.
 
-- **How AI generates audio:** brief explanation of diffusion, autoregressive, and transformer-based models (e.g., MusicLM, Suno.ai, Udio).
-- **Modalities:** text-to-music, text-to-sound, and audio-to-audio transformations.
-- **Prompt anatomy:** genre → mood → tempo → instrumentation → structure → vocal style.
+Use [Lyria 3](https://replicate.com/google/lyria-3) for the short classroom comparison and [MiniMax Music 2.6](https://replicate.com/minimax/music-2.6) for the country competition. The first is a short sketch, the second supports longer-form compositions and vocals. Demonstrate the difference between a music prompt and optional lyrics, including a short chorus with `[Verse]` / `[Chorus]` labels. Instrumental music remains equally valid.
 
-**Talking Points:**
+A practical prompt anatomy is **style/genre → mood → rhythm/tempo → instruments/texture → development over time → optional vocals/lyrics**. Contrast music and soundscape examples without favoring pop songs. Discuss limitations of temporal control and sensitivity to different models.
 
-- AI music models operate like text-to-image systems but in the time–frequency domain.
-- Emphasize temporal composition: _describe progression or mood change over time_.
-- Highlight ethical considerations (voice cloning, sampling, licensing).
+## 140-minute outline
 
-### Quick Demo Ideas
+| Activity | Minutes |
+| --- | ---: |
+| Visual-to-audio example | 10 |
+| Prompt demonstration | 15 |
+| Mini experiment | 10 |
+| Break | 10 |
+| Country setup | 10 |
+| Generate, iterate and make cover | 30 |
+| Submission and playback checking | 10 |
+| Listening party | 20 |
+| ScoreWiz voting and results | 20 |
+| Reflection | 5 |
 
-1. **Genre variation demo:**
+During the sprint, include a **40–60-word country backstory**, protect time for comparing prompt directions, choose a **1–2-minute competition entry**, and generate the **new cover** after the music is chosen. A longer MiniMax generation may need trimming. Multiple countries may start from the same source, which makes different outcomes interesting to compare. No student slides, custom notebook or manual audio editing are needed.
 
-   - Prompt: `A calm ambient soundscape with ocean waves and slow synth chords.`
-   - Modify: `A dark techno beat with ocean samples and metallic percussion.` → compare rhythmic density and tone.
-
-2. **Mood contrast:**
-
-   - Prompt A: `An uplifting orchestral theme with brass fanfare and fast tempo.`
-   - Prompt B: `A melancholic piano piece with sparse strings and slow tempo.`
-   - Discuss: how prompt words like _uplifting_, _melancholic_, _fast_, _slow_ shape harmonic and rhythmic character.
-
-3. **Instrument specificity:**
-
-   - `A jazz trio with upright bass, brushed drums, and muted trumpet improvisation.`
-   - `A synthetic pop track with electronic bass and vocoder vocals.`
-
-### Optional Warm-Up Exercise
-
-- Each student writes one prompt describing a 10-second soundscape.
-- Instructor plays 3–4 outputs and asks the class: _Does the audio match the prompt’s tone and instrumentation?_
-
-## Block 2: Tools & Prompt Craft
-
-### Key Platforms to Showcase
-
-| Type                | Tool                           | Strengths                                              |
-| ------------------- | ------------------------------ | ------------------------------------------------------ |
-| **Text-to-Music**   | Suno.ai / Udio                 | High-quality multi-style songs with vocals.            |
-| **Sound Design**    | Mubert / AudioCraft / AudioLDM | Great for ambient textures, SFX, and background loops. |
-| **Composition Aid** | Soundful / Beatoven.ai         | Quick structure-based generation, easy iteration.      |
-
-**Demonstration Flow:**
-
-1. Show one identical prompt across two models (e.g., Udio vs. Suno) → compare fidelity and style.
-2. Discuss the difference between _composition-level_ vs. _texture-level_ control.
-
-### Example Prompt Templates
-
-- `A futuristic synthwave track at 110 BPM with arpeggiated bass and lush reverb.`
-- `A cinematic trailer with strings, heavy percussion, and rising intensity.`
-- `Lo-fi chillhop beat with vinyl crackle, warm piano chords, and laid-back tempo.`
-- `Dark ambient drone with mechanical sounds and deep sub-bass.`
-
-**Teaching Tip:** Encourage iteration: changing one musical variable (tempo, mood, instrument) each time to observe the effect.
-
-## Block 3: 🎤 PromptVision: AI Song Contest
-
-### Overview
-
-Students participate in a _Eurovision-style contest_ to apply prompting skills collaboratively.
-
-**Structure:**
-
-- 6–7 teams (same group size as Day 01).
-- Theme announcement at start (e.g., _Rebirth_, _Synthetic Love_, _Future Folk_).
-- Each team generates one 30–60s track matching the theme.
-- All tracks are played in sequence; teams vote on creativity and prompt design.
-
-**Phases:**
-
-1. **Theme reveal & brainstorming** – 10 min
-2. **Prompt crafting & generation** – 40 min
-3. **Submission & upload** – 10 min
-4. **Listening party & voting** – 40 min
-5. **Debrief** – 10 min
-
-**Voting Categories:**
-
-- 🏆 Best Song (overall quality)
-- 🎧 Best Prompt Concept (creative and clear)
-- 🎭 Most Unexpected Genre Mix
-
-### Teaching Tips
-
-- Limit track length to keep the session on schedule.
-- Encourage teams to articulate _why_ they chose specific prompt terms.
-- For reflection, collect prompts privately (same rule as Day 01).
-- Use a shared folder or Padlet board for track playback.
-
-### Example Prompts for Contest Inspiration
-
-- `A futuristic ballad about machines falling in love, 90 BPM, synthpop with vocoder vocals.`
-- `A folk melody with AI choir singing in a fictional language, acoustic instruments, reverent mood.`
-- `A chaotic drum & bass track symbolizing digital rebirth, 160 BPM, distorted samples.`
-
-### Outcome for Day 02
-
-After this session, students should be able to:
-
-- Design prompts that control **genre, mood, and tempo**.
-- Compare results across different music generation tools.
-- Understand **prompt iteration** as compositional refinement.
-- Critically evaluate creative and ethical aspects of AI-generated music.
-
-## Presentation and playback
-
-Prepare the playlist for back-to-back playback. Show each team's prompt or read it from the submitted record. Keep timing and playback instructions in these notes; the student page should ask students to listen, share their prompt and discuss the results.
+In the show, display the story before playback and reveal the prompt and optional lyrics after listening; distinguish musical appeal from faithful visual-to-audio translation. Ask: What persisted from the source? What did the cover add? Which prompt decisions affected the result? What could be model variability? For the exact local presenter and fallback procedure, see [PromptVision setup](promptvision.md).
