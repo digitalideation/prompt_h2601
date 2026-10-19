@@ -18,7 +18,7 @@ Each session lasts **2 h 20 min (140 minutes), including a 10-minute break**. Al
 | 2 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: visual-to-audio country competition | [Session materials](./day02.md) |
 | 3 | Generative AI Evaluation Clinic | Human and automated evaluation of generated outputs | H26 session materials coming next |
 
-### Session 1: Image & Video Prompting and Workflow Design
+### [Session 1: Image & Video Prompting and Workflow Design](./day01.md)
 
 - Prompt structure and techniques for image and video generation
 - Storyboarding, scene descriptions, and visual consistency
@@ -28,7 +28,7 @@ Start with Replicate's web UI, then use a prepared Jupyter Notebook to record pr
 
 [Open Session 1](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). For a structured version of the same API exercise, use [Replicate scene prompts](./notebooks/02_replicate_scene_prompts.ipynb). The [Artistic Telephone notebook](./notebooks/03_artistic_telephone.ipynb) adds iteration, comparison and selected-image passing. At the end of the game, we will compare the image chains and reveal their prompts. See the [game guide](./activities/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
 
-### Session 2: Prompting for Audio, Music & Multimodal Workflows
+### [Session 2: Prompting for Audio, Music & Multimodal Workflows](./day02.md)
 
 - Prompting for music and sound: genre, mood, tempo, voice, and other characteristics
 - Combining text, image, audio, and video in multimodal workflows
