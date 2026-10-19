@@ -59,6 +59,8 @@ Different systems turn a written description into musical or sound structures, t
 
 Think of a simple workflow: **image → interpretation → audio prompt → generated sound → listening and revision**.
 
+**Further reading:** [How AI Generates Music (2026): A One-Page Technical Overview](./notes/annex-ai-music-generation.md)
+
 ## Block 2: Audio models and prompt craft (15 minutes)
 
 ### Choose the right kind of generation
