@@ -1,0 +1,7 @@
+Country Name: The Iron Republic of Rusthaven 
+Title: Scrap Metal Anthem
+Story: Built from towering scrapyards and neon-lit refineries, the Iron Republic of Rusthaven is a humanless world of heavy, weathered machines. Every night after grinding foundry shifts, hulking steel automatons gather in rowdy roadside taverns to clink dented cans of warm crude oil and guzzle leaded gasoline, stomping their hydraulic pistons to thunderous industrial anthems.
+Model: MiniMax Music 2.6
+Prompt: clunky hyperpop and glitzy bubblegum electronic track, 128 BPM. Shiny, overdriven synth-leads, crisp pneumatic-hiss snares, and high-energy club beats mixed with grinding machinery loops. Comedic and jarring juxtaposition: massive, rusted scrap-metal robots singing with ultra-glossy, high-pitched, squeaky chipmunk-style vocals, with a southern accent, delivering aggressively vulgar, politically incorrect, and elitist anti-equality lyrics with a bubbly, toxic pop attitude.
+Translation: Industrial machinery noise and clanking rhythm translated into a heavy 118 BPM punk-rock tempo; the raw, harsh environment translates into gritty guitar distortion; massive automated frames translate into high-pitched, squeaky chipmunk-style robotic vocal processing.
+Iteration: Iteration 1: Refined prompt from a generic heavy-metal description to specify high-pitched squeaky robotic vocals and an aggressive, anti-equality industrial pub-rock style.

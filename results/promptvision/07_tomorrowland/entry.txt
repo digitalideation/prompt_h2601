@@ -1,0 +1,114 @@
+Country: Tomorrowland
+
+Title: Until Dawn
+
+Story: In Tomorrowland, nobody lives for yesterday. Its people,
+
+  the Morrowers, wear glowing war paint and carry scars with
+
+  pride. Every year, the best fighters battle in the Three
+
+  Blood Nights while drummers build the beat. When the final
+
+  blow lands, the bass drops, fire explodes, and the whole
+
+  nation dances until dawn.
+
+Model: minimax/music-2.6
+
+Prompt: Epic festival EDM anthem with tribal war drums, 128 BPM,
+
+  powerful female vocals, crowd chants, a long build-up, a
+
+  silent heartbeat pause and a massive euphoric bass drop.
+
+Translation: The arena became pounding war drums; the fire bowls
+
+  became crackling textures and bright synth stabs; the neon
+
+  light beams became euphoric synth leads; the cheering crowd
+
+  became chants; the rising sun became the triumphant final
+
+  chorus.
+
+Iteration: We added a silent heartbeat pause before the drop to
+
+  make the final blow feel bigger.
+
+Lyrics:
+
+  [Verse 1]
+
+  Paint my face in glowing green,
+
+  Brightest war you've ever seen,
+
+  Every scar I wear with pride,
+
+  Yesterday is left behind.
+ 
+  [Verse 2]
+
+  Drummers rising, fire high,
+
+  Three Blood Nights light up the sky,
+
+  Shield in hand, I take my stand,
+
+  Heartbeat of Tomorrowland.
+ 
+  [Pre-Chorus]
+
+  Hold your breath, the crowd goes still,
+
+  One more strike, the final kill,
+
+  Feel the silence, feel it burn,
+
+  Now it's time for the bass to turn.
+ 
+  [Drop]
+ 
+  [Chorus]
+
+  When the final blow lands,
+
+  The bass drops, the fire explodes,
+
+  Raise your scars, raise your hands,
+
+  We dance until the morning glows.
+
+  No yesterday, no looking back,
+
+  We are the Morrowers, we stand,
+
+  Until dawn, until dawn,
+
+  In Tomorrowland!
+ 
+  [Bridge]
+
+  I fell down, you lift me higher,
+
+  Winners, losers, born from fire,
+
+  Rise for tomorrow, hear the call,
+
+  "I stand", we rise, we never fall.
+ 
+  [Final Chorus]
+
+  When the final blow lands,
+
+  The bass drops, the fire explodes,
+
+  Raise your scars, raise your hands,
+
+  We dance until the morning glows.
+
+  Until dawn, until dawn,
+
+  In Tomorrowland!
+ 

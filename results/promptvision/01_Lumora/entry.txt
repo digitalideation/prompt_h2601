@@ -1,0 +1,7 @@
+Country: Lumora 
+TItle:Auroras Call
+Story: Lumora is a hidden kingdom nestled between majestic mountains and mist-covered valleys. For centuries, its people have lived in harmony with nature, preserving ancient melodies passed down through generations. Bronze bells, flutes, and mystical choirs tell stories of freedom, unity, and the eternal connection between heaven and earth.
+Model: minimax/music-2.6
+Prompt: Cinematic world-folk instrumental, reverent and expansive. Slow tempo around 62 BPM with a loose, breathing rhythm. 0:00–0:20: a single bronze bell and soft wind. 0:20–0:50: layers enter one by one, a hammered dulcimer ostinato, a bowed cello drone, and breathy bamboo flute with glissandi. 0:50–1:10: a wordless choir on “ah” pads and a frame drum pulse. 1:10–1:40: bells and choir trade a call-and-response. 1:40–end: the melody returns to one rising note, then fades into wind and a single distant bell. Warm mountain-air atmosphere, spacious reverb.
+Translation:
+Iteration: Limited the duration of the track

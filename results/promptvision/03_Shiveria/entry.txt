@@ -1,0 +1,13 @@
+Country Name: Shiveria
+
+Title: Lantern Lights on the Water
+
+Story: Every December, the villigers on Shiveria gather by the frozen bay as dusk settles. Shopkeepers light their windows, children chase each other through fresh snow, and old fishing boats sleep at anchor. In Shiveria, winter slows everything down, trading hurry for warmth, one glowing lantern at a time.
+
+Model: MiniMax Music 2.6
+
+Prompt: A smooth, intimate jazz ballad in the key of F major at 72 BPM with a female vocalist. The chord progression is Fmaj7 – Am7 – Dm9 – Gm7 – C7, then Fmaj7 – Bbmaj7 – Gm7 – C7 – Fmaj7, repeated, with lush extended jazz voicings. Warm, soft-spoken vocals with an airy, velvety tone, singing gently with subtle vibrato and relaxed phrasing. Lush Rhodes electric piano chords, a mellow upright bass, brushed drums with soft cymbal swells, and a muted trumpet or soft saxophone playing sparse, silky fills. A touch of vibraphone and light string pads like falling snow. The mood is a snowy lakeside village at dusk: glowing windows, quiet streets, a still frozen bay, cozy, romantic and nostalgic. Spacious, warm mix with soft room reverb and gentle tape warmth, no heavy beats or electronic elements.
+
+Translation: 
+
+Iteration: 

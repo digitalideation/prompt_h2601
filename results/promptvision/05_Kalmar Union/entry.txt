@@ -1,0 +1,35 @@
+Country: Kalmar Union
+Title:O Union!
+Story: Born from a historic alliance across frozen archipelagos, the Kalmar Union is a nation of fierce seafarers and daring explorers. Rooted in rich Viking tradition, its people brave treacherous icy waters to map unknown horizons, bound by a shared oath of unity, endurance, and relentless discovery.   A dramatic coastal landscape of a Norwegian fjord with traditional Scandinavian timber houses and dramatic snow-capped mountains reflecting in the cold water 
+Model: minimax/music-2.6
+Prompt: Epic Nordic folk, 68 BPM. Features a driving frame drum oar rhythm, tagelharpa, deep cello, and swelling horns. Melancholic yet heroic, transitioning from a solitary wind-swept intro to a powerful, sea-faring orchestral climax.
+Lyrics:
+(Verse 1)
+Beyond the fjords where frozen waters gleam,
+We chase the horizon of an unseen dream.   
+With sails of iron and hulls of oak and pine,
+We cross the deep along the starry line.   
+(Verse 2)
+The northern lights write fire across the night,
+As longships cut the waves in silver light.   
+No gale can break the bond of brother hand,
+That links the sea to our ancestral land.
+(Chorus)
+Sing, O Union, across the roaring sea!
+Bound by the oath that sets our spirits free!
+Through frost and gale, wherever currents run,
+Guided by stars until the voyage is done!
+(Bridge)
+From Kattegat down to the icy shore,
+We hear the ghosts of vikings past implore:
+"Look to the west where hidden islands lie,
+And trace your destiny against the sky!"
+(Chorus)
+Sing, O Union, across the roaring sea!
+Bound by the oath that sets our spirits free!
+Through frost and gale, wherever currents run,
+Guided by stars until the voyage is done!
+(Outro)
+Until the voyage is done...
+Into the mist, the open sea is won.   
+(Fade out to distant ocean waves and a lone tagelharpa)

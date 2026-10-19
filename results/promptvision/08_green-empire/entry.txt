@@ -1,0 +1,41 @@
+Country: The Green Empire
+Title: The Ground Is Listening
+Story: Humanity is gone, but nothing was forgotten. Every life is
+  stored in tree rings and passed through the root network like a
+  signal. The plants are rebuilding what they remember: cities grown
+  instead of built, a government of ancient oaks. They imitate us
+  perfectly. They are also preparing for something we could never
+  survive.
+Model: minimax/music-2.6
+Prompt: Dark hypnotic organic techno, 124 BPM, F minor. Opens with
+  creaking wood, rustling leaves, dripping water and a low sub-bass
+  pulse like roots moving under concrete. Cold, close, breathy female
+  vocal, half-whispered, calm and detached. Tight percussion built
+  from wood knocks, snapping branches and log drums, locked over a
+  heavy four-on-the-floor kick. Deep rolling bassline, dark analog
+  synth stabs, glassy arpeggios flickering like light through leaves.
+  The drop hits around 40 seconds: full kick, massive sub-bass and a
+  layered choir chanting the hook. Minimal, menacing, cinematic,
+  serious and restrained. Ends with everything cutting out except one
+  deep wooden creak.
+Translation: Vines strangling the skyscrapers became wooden percussion
+  locked over a rigid four-on-the-floor kick, organic against machine;
+  green light filtering through the canopy became glassy, flickering
+  arpeggios and an airy choir; giant trees dwarfing the ruins became
+  massive sub-bass and a slow, relentless build.
+Iteration: Our first version was slow instrumental dark ambient:
+  atmospheric but static. We kept the creaking-wood sound design and
+  built it into hypnotic techno with a beat, a cold vocal and a drop.
+Lyrics: Hush. The ground is listening.
+  Roots in the wires, moss on the screens,
+  your cities sleeping under fields of green.
+  We read your summers in the rings of oak,
+  every name you carved, every word you spoke.
+  Quiet now, we're almost grown.
+  We remember you, we remember you.
+  Grown, not built.
+  We are the cities now, we are the cities now.
+  Something is rising, slow and wide,
+  something you will not survive.
+  (Chorus repeats)
+  The ground is listening.

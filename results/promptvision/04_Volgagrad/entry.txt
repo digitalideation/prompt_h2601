@@ -1,0 +1,15 @@
+Country: Volgagrad
+Title: Glory to the empire
+Story: A dystopian empire fusing Tsarist monarchy with Soviet totalitarianism into an iron-fisted state. Beneath Volgagrad’s banners, mechanical worker legions march in a stern, Russian-inspired military rhythm. Cyborg labor unions pledge eternal loyalty to their honorable Emperor, while grinding gears, crimson banners, and thunderous choirs proclaim the unbreakable unity of steel, labor, homeland, and crown.
+Model: minimax/music-2.6
+Prompt: Epic final-boss battle theme fused with a dark Russian imperial military march. Heavy synchronized soldier footsteps marching continuously in the background, thunderous war drums, snare rolls, military cadence chants, blaring brass fanfares, low brass ostinatos, aggressive orchestral strings, metallic industrial percussion, booming cinematic impacts, distant artillery, massive male military choirs shouting in unison. Relentless marching rhythm, ominous imperial grandeur, escalating tension, overwhelming battlefield atmosphere, mechanical cyborg army advancing toward war. Powerful brass melodies clash with dark orchestral harmonies. Intimidating, authoritarian, colossal, and triumphant. Starts with distant marching boots and muffled drums, gradually builds into a devastating orchestral boss-fight climax with pounding drums, shouted commands, and an enormous militaristic choir. No pop elements, no acoustic softness, no modern EDM. Pure imperial war machine energy. No techno, it is a marching millitary. The voices are robotic.
+Lyrics: [Intro] Left! Right! Left! Right! Steel and thunder, claim the night! Volgagrad! Volgagrad! Glory to the Iron Tsar! 
+[Verse] From the frozen north we rise, Crimson banners fill the skies. Engines roar and cannons cry, For the Crown, we march or die!
+Iron soldiers, forged as one, We advance beneath the sun. Pistons pound and war drums sound, Let the Empire shake the ground!
+[Pre Chorus] Raise the hammer! Raise the blade! Fear the empire we have made! Hear the thunder, hear the call! Volgagrad shall never fall!
+[Chorus] HAIL THE TSAR! THE IRON KING! LET THE BRASS AND CANNONS SING! STEEL AND LABOR! BLOOD AND CROWN! WE SHALL NEVER BE CAST DOWN!
+MARCH! MARCH! THROUGH THE FLAME! ETERNAL GLORY TO HIS NAME! ONE EMPIRE! ONE COMMAND! VOLGAGRAD SHALL RULE THE LAND!
+[Bridge] One throne! One nation! Steel domination! One will! One might! Crush the dark tonight!
+[Post Chorus] FOR THE TSAR! FOR THE CROWN! LET THE WORLD SHAKE AT OUR SOUND!
+IRON HEARTS! NEVER YIELD! VOLGAGRAD OWNS THE BATTLEFIELD!
+[Outro] Left... Right... The Iron Throne... Volgagrad... Forever our home.
