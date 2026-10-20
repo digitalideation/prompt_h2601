@@ -14,6 +14,11 @@ Create one original AI-generated composition **between 1 and 2 minutes long**. I
 
 At the listening party we see your cover prominently, with the source image beside it. We listen to all entries first, then each team votes as one national jury for other countries using Eurovision-style points in ScoreWiz. We reveal prompts after the voting.
 
+> **PromptVision 2026:** [Results](./results/promptvision/) / [Scoreboard](https://scorewiz.eu/scoreboard/view/833872/promptvision-song-competition-h202601)  
+> 🥇) The Iron Republic Of Rusthaven  
+> 🥈) Shiveria  
+> 🥉) Lumora  
+
 ## Learning goals
 
 - Translate three visual qualities into deliberate sonic choices.
