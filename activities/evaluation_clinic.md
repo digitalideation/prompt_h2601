@@ -110,7 +110,17 @@ If you do not have both image versions or a text output, use the optional exampl
 
 **Optional experiment:** change one evaluator criterion and rerun it on the same output. What changed in the model's judgment, even though the output did not change? Keep the original criteria fixed for baseline-versus-revision comparisons. Do not collapse everything into a single score.
 
-## 7. Decide what to do next
+## 7. Explore an evaluation method
+
+In Block 6, choose one evaluation approach with a partner. See the [suggested methods](../day03.md#block-6-exploring-evaluation-methods), or find one better suited to your project. Do not install or implement it: look for an example and identify its limits.
+
+| Method or framework | What it evaluates and needs | What it might miss | One possible use in your project |
+| --- | --- | --- | --- |
+| | | | |
+
+Use these findings to inform your own evaluation plan in Block 7.
+
+## 8. Decide what to do next
 
 - What improved, and what evidence supports that judgment?
 - What remains uncertain or disputed?
