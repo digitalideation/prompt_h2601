@@ -16,7 +16,7 @@ Each session lasts **2 h 20 min (140 minutes), including a 10-minute break**. Al
 | --- | --- | --- | --- |
 | 1 | Image & Video Prompting and Workflow Design | Artistic Telephone, storyboard, and visual refinement | [Session materials](./day01.md) |
 | 2 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: visual-to-audio country competition | [Session materials](./day02.md) |
-| 3 | Generative AI Evaluation Clinic | Human and automated evaluation of generated outputs | H26 session materials coming next |
+| 3 | Generative AI Evaluation Clinic | Criteria, human feedback, revision and simple automated evaluation | [Session outline](./day03.md) |
 
 ### [Session 1: Image & Video Prompting and Workflow Design](./day01.md)
 
@@ -36,13 +36,13 @@ Start with Replicate's web UI, then use a prepared Jupyter Notebook to record pr
 
 In [PromptVision](./day02.md), teams of 2–3 translate a source image into a sonic identity for an imaginary digital country, generate a new cover image and enter a Eurovision-style listening show. We use browser tools, a minimal automatic local presentation and ScoreWiz voting; no student notebook is required. See the [activity guide](./activities/promptvision.md).
 
-### Session 3: Generative AI Evaluation Clinic
+### [Session 3: Generative AI Evaluation Clinic](./day03.md)
 
-- Evaluation approaches across text, image, audio, and video generation
-- Hands-on evaluation of text outputs, with image evaluation as a secondary focus
-- Human feedback and simple automated evaluation to compare and improve prompts/workflows
+- Defining task-specific criteria and scenarios with LLM assistance
+- Human evaluation through interviews, observations and a concrete rating scale
+- Comparing revisions and simple automated feedback across generative workflows
 
-We will compare Arena rankings with our own ratings, try a prepared Ragas text-evaluation exercise, and explore an ImageReward example. We will also discuss what can be evaluated in audio and video. Session materials will be available here.
+Start with a short PromptVision discussion, then test image and text outputs with people. Use an LLM to help draft criteria, revise a prompt from the feedback, and compare human judgments with model feedback through OpenRouter. Arena and specialised decision models introduce other evaluation approaches. The [session outline](./day03.md) and [working sheet](./activities/evaluation_clinic.md) are available; the worked examples and small evaluation notebook will follow.
 
 ## Competencies
 
@@ -69,6 +69,7 @@ We will compare Arena rankings with our own ratings, try a prepared Ragas text-e
 
 - **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
 - **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version and Artistic Telephone](./notebooks/README.md); you edit prompts and run supplied cells. Session 2 uses browser audio tools and a small local instructor presentation generator; no new student notebook is required.
+- **OpenRouter:** use the class API access for LLM assistance and the planned Session 3 evaluation notebook.
 - **Model selection:** use the model list provided for each activity.
 - **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 
