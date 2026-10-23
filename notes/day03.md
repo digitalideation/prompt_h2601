@@ -4,7 +4,7 @@ Student pages: [Session 3](../day03.md) and [working sheet](../activities/evalua
 
 ## Status and scope
 
-This is the agreed teaching skeleton. The worksheet specifies an image case, a text case, example scenarios and shared generation models. Sample outputs, worked ratings, reference answers and the evaluation notebook are still to be developed. No new notebook or dependency is introduced in this change.
+The worksheet includes image and text cases and the session has two standalone evaluation notebooks. Examples and worked ratings should be checked by the instructor before class. Block 6 is a short research activity, with no additional notebook or dependency.
 
 Keep the session at 140 minutes, including a 10-minute break. It must work online or in person. Use pairs or small groups for interviews, either in breakout rooms or around tables.
 
@@ -19,8 +19,8 @@ The central sequence is: define success, draft criteria manually, test with peop
 | Human evaluation | 25 | Test both image and text with short interviews, recording ratings and evidence. |
 | Revision and comparison | 15 | Revise the image in Replicate, compare with the same criteria and optionally revise the text. |
 | Break | 10 | |
-| Small automated evaluator | 30 | Run the standalone vision evaluator on original and revised PNGs, comparing model and human feedback. |
-| Arena and other approaches | 15 | A/B preference versus task-specific feedback; a brief introduction to specialised decision models. |
+| Automated evaluators | 30 | Explore the standalone image and text notebooks; personalise criteria and compare model judgments with human evidence. |
+| Exploring evaluation methods | 15 | Arena preference example (3 min), paired research into an approach (8 min), short sharing (4 min). |
 | Project application | 15 | Students outline a small evaluation procedure for their own modality and audience. |
 | Wrap-up | 5 | One evidence-based next change. |
 | **Total** | **140** | |
@@ -59,17 +59,23 @@ Ragas, Promptfoo and ImageReward are not required installations. Keep Block 6 op
 
 The sample images and a combined annotated comparison are prepared separately for instructor review. Keep the annotated comparison **off** the student page so it does not prime their judgments. The optional text-example asset is already linked in Block 5; image binaries must be made available before class.
 
-## Arena discussion
+## Block 6: Exploring evaluation methods
 
-Use [Arena](https://arena.ai/leaderboard) for text and image comparisons. Discuss what an A/B preference captures, what interview comments add, and whether the tasks and participants behind a ranking match a student's own project. Avoid turning a broad leaderboard position into a guarantee of success on the class brief.
+Keep the 15 minutes structured and light:
 
-Reference: [Arena's explanation of preference-based rankings](https://help.arena.ai/articles/7011479247-how-to-see-ai-rankings-in-arena-leaderboards-2-0-wip).
+- **3 min, Arena:** show the [leaderboard](https://arena.ai/leaderboard) and explain that many rankings come from blind human head-to-head preference votes. Contrast "I like this output" with "this output meets the task requirements." The meaning of ratings and leaderboard uncertainty can be mentioned briefly, not taught as statistics.
+- **8 min, pair research:** students choose one approach from the session page, read a short explanation or worked example, and record three findings in the worksheet: what it measures/needs, a limitation, and one possible use. No installation, registration or live framework demo. They may ask an LLM for an overview but should check it against the referenced documentation.
+- **4 min, sharing:** invite two or three brief reports, preferably covering different approaches, then connect to Block 7. Students may investigate a different technique appropriate for text, images, music, audio, video or multimodal workflows.
+
+Suggested starting points: [Arena](https://arena.ai/leaderboard) for human pairwise preferences; [Promptfoo](https://www.promptfoo.dev/docs/intro/) for prompt/model comparisons across repeatable test cases and assertions; [Ragas](https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/) for faithfulness, context relevance and other text/RAG metrics. These are **research options**, not required student tools. Optional further examples are [Laya](https://github.com/NandhaKishorM/laya) and [Kev](https://github.com/jaredpalmer/kev), but there is no need to cover them during the 15-minute activity.
+
+Avoid implying that the highest-ranked model is always best for a specific project or that any single automated metric captures the whole user experience. End by asking how each student could select an appropriate method for their own project in Block 7.
 
 ## Next development steps
 
 1. Produce genuine baseline outputs for the repotting illustration and plant swap text case, recording the prompts and model settings.
 2. Test brief interviews with both cases and one image revision.
 3. Test both notebooks in Colab and JupyterHub against real PNGs and text, including the optional criterion-change experiment.
-4. Plan the wider evaluation-method exploration for Block 6.
+4. Prepare a brief Arena preference illustration and check that the selected evaluation-method documentation links work.
 
 Student-facing materials stay in the session page and worksheet. Sessions 1 and 2 are unchanged.
