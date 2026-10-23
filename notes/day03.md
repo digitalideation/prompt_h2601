@@ -21,8 +21,8 @@ The central sequence is: define success, draft criteria manually, test with peop
 | Break | 10 | |
 | Automated evaluators | 30 | Explore the standalone image and text notebooks; personalise criteria and compare model judgments with human evidence. |
 | Exploring evaluation methods | 15 | Arena preference example (3 min), paired research into an approach (8 min), short sharing (4 min). |
-| Project application | 15 | Students outline a small evaluation procedure for their own modality and audience. |
-| Wrap-up | 5 | One evidence-based next change. |
+| Project application | 15 | Choose one task and audience (2 min), draft criteria/scenarios/human and optional automated checks (8 min), peer review (3 min), define next test (2 min). |
+| Wrap-up | 5 | One supported finding from today's exercise (2 min) and a two-sentence exit ticket with a next project test (3 min). |
 | **Total** | **140** | |
 
 ## Criteria and human feedback
@@ -45,19 +45,19 @@ For the image interview, describe an activity guide without naming the action be
 
 Students use both cases in Blocks 2 and 3 with the supplied brief, original prompt, settings and actual baseline outputs. They start with one scenario per case, adding a second if time allows. Blocks 2 to 4 use Replicate's web UI and a simple document, not Jupyter. Block 4 prioritises revising the image via Nano Banana 2.1 with the original settings; revising the text via Gemini 3.5 Flash is optional. Keep the baseline and revised PNGs for Block 5.
 
-**Preparation:** The baseline image and text outputs are not yet included, because no classroom Replicate credentials were provided. Generate authentic outputs from the worksheet prompts and record actual settings, or provide them in class. Do not present invented images or handwritten text as model outputs. Pilot the interview schedule and retain fallback saved outputs.
+**Preparation:** The repository includes a baseline and revised PNG pair and a text example as optional **testing materials**. These are prepared teaching samples, not authenticated output from the specified Replicate generation models or a controlled revision. For Blocks 2 to 4, prepare or identify the actual baseline outputs you intend students to evaluate and record their model settings. Do not label the sample images or manually prepared text as verified model outputs. Pilot the interviews and keep fallback files available.
 
 ## Automated exercise: boundaries
 
-The [standalone image evaluator notebook](../notebooks/05_image_evaluator.ipynb) and [text evaluator notebook](../notebooks/06_text_evaluator.ipynb) each use one `%pip install -q openai` cell, a hidden OpenRouter key input and two uploaded image filenames. The image evaluator assesses PNGs with a vision model; the text evaluator compares pasted generated instructions with an event brief. Both use OpenRouter, a small rubric and the four human rating categories. No extra image dependencies, embeddings or helper modules. Each notebook offers an optional criterion-change experiment on the same output; students must keep the original rubric fixed for baseline-versus-revision comparisons. It is designed for JupyterHub or Colab.
+The [standalone image evaluator notebook](../notebooks/05_image_evaluator.ipynb) and [text evaluator notebook](../notebooks/06_text_evaluator.ipynb) each use one `%pip install -q openai` cell and a hidden OpenRouter key input. The image notebook uses two uploaded image filenames, while the text notebook uses pasted text and a reference brief. The image evaluator assesses PNGs with a vision model; the text evaluator compares pasted generated instructions with an event brief. Both use OpenRouter, a small rubric and the four human rating categories. No extra image dependencies, embeddings or helper modules. Each notebook offers an optional criterion-change experiment on the same output; students must keep the original rubric fixed for baseline-versus-revision comparisons. It is designed for JupyterHub or Colab.
 
 Use the same scenario, criteria, model and evaluator instructions for both images. Students compare the model's visible evidence with their interviews. The vision model knows the brief, so it cannot replicate an unaided interview participant's interpretation. Responses may vary; no single judgment is ground truth.
 
 The notebooks have not been live-tested against OpenRouter because no class token is available. Before class, confirm the `google/gemini-3.5-flash` evaluator model still supports image input and test calls with real PNGs and actual generated text in Colab and JupyterHub. Prepare a clearly labelled fallback result.
 
-Ragas, Promptfoo and ImageReward are not required installations. Keep Block 6 open for later discussion of Arena, qualitative methods, text evaluation frameworks and a short student research task.
+Ragas, Promptfoo and ImageReward are not required installations. Block 6 introduces evaluation approaches through short paired research, not hands-on framework setup.
 
-The sample images and a combined annotated comparison are prepared separately for instructor review. Keep the annotated comparison **off** the student page so it does not prime their judgments. The optional text-example asset is already linked in Block 5; image binaries must be made available before class.
+The sample images are available as [baseline](../assets/evaluation-clinic/baseline.png) and [revised](../assets/evaluation-clinic/revised.png), with [sample text](../assets/evaluation-clinic/text-evaluator-examples.txt) for testing. The [annotated comparison](../assets/evaluation-clinic/instructor-comparison-draft.png) is for instructor review only; do **not** display it on the student page, where it could prime judgments.
 
 ## Block 6: Exploring evaluation methods
 
@@ -71,11 +71,17 @@ Suggested starting points: [Arena](https://arena.ai/leaderboard) for human pairw
 
 Avoid implying that the highest-ranked model is always best for a specific project or that any single automated metric captures the whole user experience. End by asking how each student could select an appropriate method for their own project in Block 7.
 
-## Next development steps
+## Blocks 7 and 8: Transfer and wrap-up
 
-1. Produce genuine baseline outputs for the repotting illustration and plant swap text case, recording the prompts and model settings.
-2. Test brief interviews with both cases and one image revision.
-3. Test both notebooks in Colab and JupyterHub against real PNGs and text, including the optional criterion-change experiment.
-4. Prepare a brief Arena preference illustration and check that the selected evaluation-method documentation links work.
+**Block 7, 15 min:** No notebook, generation or new testing. Students choose one small project task and intended audience (2 min), write two observable criteria and two scenarios including a realistic failure case (8 min), swap plans for a quick peer check (3 min), and name a first test to run later (2 min). Their plan should include a human participant/task and one automated or alternative check **only where useful**, plus limitations. Accept a provisional project idea if they have not decided on a final project. For audio or video, match the length of the sample to the criterion being evaluated.
 
-Student-facing materials stay in the session page and worksheet. Sessions 1 and 2 are unchanged.
+**Block 8, 5 min:** Ask students to distinguish something they actually observed today from something they only plan to test (2 min). Then have them complete the worksheet's two-sentence exit ticket (3 min): evidence from today's tests, followed by a concrete next project test. Their project evaluation is a proposed method, not an implemented or validated experiment. Keep the worksheet and working files together; do not require a polished submission.
+
+## Before class: final checks
+
+1. Confirm genuine, labelled baseline outputs and actual model settings for the two human-evaluation cases, distinct from the supplied practice samples.
+2. Pilot both notebooks in Colab and JupyterHub with the classroom OpenRouter token and real files. Verify the model accepts vision input, the requests complete, and the optional criterion experiment restores the original baseline rubric.
+3. Rehearse the short peer interviews and prepare a fallback set of outputs for API delays.
+4. Verify the Arena, Promptfoo and Ragas starting links and prepare a very brief Arena preference illustration.
+
+Session 3 stays at 140 minutes including the break. Sessions 1 and 2, and Week 12, are unchanged.
