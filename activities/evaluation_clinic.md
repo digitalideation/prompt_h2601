@@ -98,7 +98,7 @@ Compare the images side by side, ask the same interview questions and apply the 
 
 ## 6. Compare human and automated feedback
 
-Open the [simple image evaluator notebook](../notebooks/05_image_evaluator.ipynb) in JupyterHub or [Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/main/notebooks/05_image_evaluator.ipynb). Upload both PNGs and use **the same criteria** you used with people. The prepared cells request feedback from a vision model through OpenRouter.
+Open the [simple image evaluator notebook](../notebooks/05_image_evaluator.ipynb) in JupyterHub or [Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb). Upload both PNGs and use **the same criteria** you used with people. The prepared cells request feedback from a vision model through OpenRouter.
 
 Compare each model rating and explanation with your own evidence. Does it refer to something visible? Does it miss a problem a participant noticed? The model can describe what it sees, but it cannot replace an interview about what a person understood.
 
