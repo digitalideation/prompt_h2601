@@ -2,7 +2,7 @@
 
 [Session 3](../day03.md)
 
-Use this sheet for two small, repeatable tests. In **Blocks 2 and 3**, work with both the image and text cases. Start with one scenario per case, then try the second if time allows. In **Block 4**, revise the image prompt; revising the text is optional. In **Block 5**, use the same two images in the evaluation notebook.
+Use this sheet for two small, repeatable tests. In **Blocks 2 and 3**, work with both the image and text cases. Start with one scenario per case, then try the second if time allows. In **Block 4**, revise the image prompt; revising the text is optional. In **Block 5**, explore the image and text evaluation notebooks. Then apply the method to your own project.
 
 Use a simple document to keep your notes and ratings. Start with the supplied briefs, prompts, model settings and baseline outputs. You do not need a notebook for Blocks 2 to 4. Image generation uses [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) and text generation uses [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash), both in Replicate's web UI. Keep the model and settings the same when revising.
 
@@ -102,7 +102,7 @@ Choose the [image evaluator](../notebooks/05_image_evaluator.ipynb) ([Colab](htt
 
 For images, compare original and revised PNGs. For text, paste your actual visitor instructions and compare them with the event brief. **Adapt the evaluator criteria** from your human tests and inspect the ratings and explanations.
 
-If you do not have both image versions or a text output, use the optional example files shared in class and the [sample text answers](../assets/evaluation-clinic/text-evaluator-examples.txt). The supplied text contains deliberate mistakes: make your own assessment before consulting its discussion notes.
+If you do not have both image versions or a text output, use the practice [baseline PNG](../assets/evaluation-clinic/baseline.png) and [revised PNG](../assets/evaluation-clinic/revised.png), or the [sample text answers](../assets/evaluation-clinic/text-evaluator-examples.txt). These are prepared teaching examples. The text contains deliberate mistakes: make your own assessment before consulting its discussion notes.
 
 | Output / scenario / criterion | Human rating and reason | Model rating and reason | Agreement or difference to investigate |
 | --- | --- | --- | --- |
@@ -120,9 +120,30 @@ In Block 6, choose one evaluation approach with a partner. See the [suggested me
 
 Use these findings to inform your own evaluation plan in Block 7.
 
-## 8. Decide what to do next
+## 8. Design a small evaluation for your project
 
-- What improved, and what evidence supports that judgment?
-- What remains uncertain or disputed?
-- Which people or scenarios are still missing from the test?
-- What is the next change you would test?
+Plan **one manageable test** for your own project, or for a possible project idea. You do not need to generate new results or install another evaluation tool.
+
+| Decision | Your plan |
+| --- | --- |
+| Output, task and audience | |
+| Two observable success criteria | |
+| Scenario 1: typical situation and expected result | |
+| Scenario 2: challenging situation and expected result | |
+| Human test: who to involve, what to ask or observe | |
+| Automated check or another approach (if useful), and its limits | |
+| What would make you revise the output? | |
+| First realistic test to run next | |
+
+Compare your plan with a partner. Can someone actually judge the criteria using your proposed evidence? What would the plan miss?
+
+## 9. Finish with a next step
+
+Keep your criteria, scenarios, prompts, outputs, interview observations, ratings, model feedback and this project plan in one place. A simple document is enough.
+
+Complete these two sentences:
+
+- **Today I saw evidence that...**
+- **For my project, the next test I will run is...**
+
+Be clear about what you **observed today** and what you **still intend to test**.
