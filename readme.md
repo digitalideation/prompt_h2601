@@ -38,11 +38,11 @@ In [PromptVision](./day02.md), teams of 2–3 translate a source image into a so
 
 ### [Session 3: Generative AI Evaluation Clinic](./day03.md)
 
-- Defining task-specific criteria and scenarios with LLM assistance
+- Defining task-specific criteria and scenarios, with optional LLM support
 - Human evaluation through interviews, observations and a concrete rating scale
 - Comparing revisions and simple automated feedback across generative workflows
 
-Start with a short PromptVision discussion, then test image and text outputs with people. Use an LLM to help draft criteria, revise a prompt from the feedback, and compare human judgments with model feedback through OpenRouter. Arena and specialised decision models introduce other evaluation approaches. The [session outline](./day03.md) and [working sheet](./activities/evaluation_clinic.md) are available; the worked examples and small evaluation notebook will follow.
+Start by revisiting the imaginary countries from PromptVision, then choose an image or text case to test with people. Draft criteria yourself, with optional LLM help if needed, revise a prompt from the feedback, and compare human judgments with model feedback through OpenRouter. Arena and specialised decision models introduce other evaluation approaches. The [session outline](./day03.md) and [working sheet](./activities/evaluation_clinic.md) include the case briefs and scenarios; sample outputs and the small evaluation notebook will follow.
 
 ## Competencies
 
@@ -69,7 +69,7 @@ Start with a short PromptVision discussion, then test image and text outputs wit
 
 - **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
 - **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version and Artistic Telephone](./notebooks/README.md); you edit prompts and run supplied cells. Session 2 uses browser audio tools and a small local instructor presentation generator; no new student notebook is required.
-- **OpenRouter:** use the class API access for LLM assistance and the planned Session 3 evaluation notebook.
+- **OpenRouter:** use the class API access for optional criteria-drafting help and the planned Session 3 evaluation notebook.
 - **Model selection:** use the model list provided for each activity.
 - **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 

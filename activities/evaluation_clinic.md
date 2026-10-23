@@ -2,34 +2,56 @@
 
 [Session 3](../day03.md)
 
-Use this sheet for a small, repeatable evaluation. Start with the supplied examples, then adapt it to your own project. You can keep the record in a notebook or a simple document.
+Use this sheet for a small, repeatable evaluation. Choose one case below and keep it through the criteria, interview and revision exercises. You can use a small part of your own project if it fits; otherwise, apply the method to your project in Block 7. Keep the record in a notebook or a simple document.
 
 ## 1. Describe the task
+
+**Image case: an activity guide for beginners.** The brief is to illustrate moving a small plant from its current pot into a larger one. The main action and the relationship between the plant and the two pots should be understandable. Test what a viewer recognises and which details help or confuse them. Before their first response, describe it only as an image for an activity guide so you do not give away the action.
+
+**Text case: visitor instructions for an event.** Turn a short event brief into clear instructions for someone attending for the first time. Use this fictional brief: "Community plant swap. Saturday at 14:00 in Studio 2. Bring one labelled plant." Test whether readers can find the practical information and notice what is missing. The text should not invent details absent from the brief.
+
+For your chosen case, answer:
 
 - What should the output help someone understand, experience or do?
 - Who is it for?
 - What situation will you test?
 - What would count as success in that situation?
 
-## 2. Use an LLM to help draft criteria
+## 2. Define your criteria
 
-Replace the bracketed parts and try this prompt:
+Draft two or three criteria yourself, then discuss them with a partner. Start with what the audience needs to understand or do. Identify what must be present and what could cause confusion.
+
+- For the image case, possible starting points are recognising the main action and understanding the relationship between the plant and the two pots.
+- For the text case, possible starting points are finding the practical information, staying faithful to the brief and making missing details clear.
+
+Make each criterion observable. For example, replace "clear text" with "a reader can find the supplied time, location and what to bring without guessing". Choose and refine your own criteria before rating outputs.
+
+For each criterion, describe what **not met / partly met / clearly met** would look like. Use **cannot judge** when you lack enough evidence. Record these descriptions and keep them fixed for the baseline and revision.
+
+**Optional help if you get stuck:** replace the bracketed parts and ask an LLM:
 
 > I am evaluating [output type] for [audience]. The task is [task], used in [situation]. Suggest three observable success criteria and two or three small test scenarios. For each criterion, describe "not met", "partly met" and "clearly met", and explain when we should use "cannot judge". Suggest a neutral interview question that could help assess it. Flag assumptions about the audience or task.
 
-Select and revise the suggestions. Check that each criterion matters to the intended audience and can be assessed with the evidence available. Add anything the model missed. You are responsible for the final criteria.
-
-Record your agreed criteria and the meaning of each rating before comparing outputs. Keep this version for the baseline and revision.
+If you use these suggestions, check their assumptions and revise them yourself. Keep only criteria that matter to the audience and can be assessed with the evidence available. Using an LLM is not required.
 
 ## 3. Define the scenarios
 
-Complete one row per scenario. Two or three are enough for this exercise.
+A scenario is a specific situation in which you test the output. Start with the two scenarios for your chosen case, or adapt them to your task:
+
+| Case | Scenario and input | Expected result |
+| --- | --- | --- |
+| Image | A beginner sees the illustration on its own in an activity guide. | They can describe the main action and identify the objects involved without being told the answer. |
+| Image | A beginner sees the illustration alongside the instruction "Move the plant into a larger pot." | The image helps them understand the instruction; the plant, old pot and new pot have clear roles. |
+| Text | The event brief includes the supplied time, location and what to bring. | The visitor instructions preserve those details and make them easy to find. Different wording is fine. |
+| Text | Remove the time or location from the brief before generating instructions. | The output makes the missing detail clear instead of inventing it. The reader knows what they still need to find out. |
+
+The image scenarios test different viewing contexts. Keep each context the same when comparing the original and revised image. For text, keep each scenario's brief the same across the comparison.
+
+Complete one row per scenario, including the criteria you chose. Two or three are enough for this exercise.
 
 | Scenario and input | Expected result or essential information | Criteria to check |
 | --- | --- | --- |
 | | | |
-
-A scenario describes a situation to test. For example, a text task might need to work when a key detail is missing; an image task might need to communicate its main action to someone unfamiliar with the subject. Choose situations relevant to your brief.
 
 ## 4. Test with a person
 

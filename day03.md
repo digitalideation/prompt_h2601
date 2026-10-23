@@ -4,15 +4,15 @@
 
 **Duration:** 140 minutes, including a 10-minute break.  
 **Delivery:** Online or in person. The activities and learning goals are the same.  
-**Tools:** Human feedback, an LLM for drafting criteria, and a small prepared Jupyter Notebook for automated feedback through OpenRouter. Replicate remains available for generation.
+**Tools:** Human feedback and a small prepared Jupyter Notebook for automated feedback through OpenRouter. An LLM can offer optional help if you get stuck drafting criteria. Replicate remains available for generation.
 
 How can you tell whether a prompt or workflow change improved the result? We will define success, test outputs with people, make a revision, then compare human judgments with automated feedback.
 
-This is the session outline. Worked examples and the evaluation notebook will be added here.
+This is the session outline. The worksheet includes image and text cases; sample outputs and the evaluation notebook will be added here.
 
 ## Learning goals
 
-- Define a few observable success criteria for a specific task and audience, using an LLM to help draft them.
+- Define a few observable success criteria for a specific task and audience.
 - Plan two or three test scenarios with clear expected results.
 - Gather useful feedback through short interviews, observations and a simple rating scale.
 - Use that feedback to revise a prompt and compare the resulting outputs.
@@ -23,7 +23,7 @@ This is the session outline. Worked examples and the evaluation notebook will be
 | Block | Activity | Minutes |
 | --- | --- | ---: |
 | 1 | PromptVision: preference and success | 10 |
-| 2 | Draft criteria with an LLM and define scenarios | 15 |
+| 2 | Define criteria and test scenarios | 15 |
 | 3 | Human evaluation and short interviews | 25 |
 | 4 | Revision and comparison | 15 |
 | | Break | 10 |
@@ -35,15 +35,27 @@ This is the session outline. Worked examples and the evaluation notebook will be
 
 ## Block 1: PromptVision as a starting point
 
-Return briefly to the [PromptVision entries](./results/promptvision/). Listen to a short excerpt and ask: do you enjoy it, and does it fulfil its intended brief?
+In PromptVision, you invented an imaginary country and gave it a story, sound and visual identity. Return to the [entries](./results/promptvision/), read one country's story, look at its source and cover images, and listen to a short excerpt. What kind of place comes across? Which details give you that impression?
 
-Those questions can lead to different answers. Mood, musical structure, lyrics and personal taste may all influence your judgment. Use the discussion to identify possible criteria, then move to more manageable image and text examples for the practical exercises.
+Then reveal the prompt and compare your impressions with the creative intention. For example, [Lumora's story and prompt](./results/promptvision/01_Lumora/entry.txt) connect a mountain kingdom and its musical traditions with bells, flutes and choir. Do the sound and images help convey that world? Point to something you heard or saw, and explain the connection.
+
+Discuss briefly with a partner:
+
+- What do you enjoy about the entry?
+- Which part of the country's identity comes across, and what supports your interpretation?
+- What would you change to communicate that identity more clearly?
+
+Use those answers to propose one possible criterion, such as whether the sound and images support a chosen aspect of the country's story. We are now turning a creative intention into something we can discuss and test. You do not need to guess the exact story or agree on one interpretation.
+
+Next, use a smaller image or text task to practise defining criteria, gathering feedback and testing a revision.
 
 ## Block 2: Draft criteria and define scenarios
 
-Start with a task, an intended audience and the situation in which the output will be used. Ask an LLM to propose a few success criteria and possible test situations. The [worksheet](./activities/evaluation_clinic.md) includes a starting prompt.
+Choose one of the two cases in the [worksheet](./activities/evaluation_clinic.md#1-describe-the-task): an image showing a beginner how a plant is moved into a larger pot, or short visitor instructions written from an event brief. You can use a small part of your own project if it fits the exercise. Otherwise, use a supplied case and return to your project in Block 7.
 
-Review the suggestions yourself. Keep two or three criteria you can actually observe, explain why they matter and rewrite anything vague. A phrase such as "high quality" needs a more precise description.
+Start with the task, audience and situation. Draft two or three criteria yourself, then discuss them with a partner. What should someone understand or be able to do? What must be present? What would make the output misleading or confusing?
+
+Keep criteria you can actually observe and explain why they matter. A phrase such as "high quality" needs a more precise description. If you get stuck, the worksheet includes an optional LLM prompt; review any suggestions before using them.
 
 Use the same scale for each criterion, with descriptions specific to your task:
 
@@ -58,7 +70,9 @@ Choose two or three scenarios. For each, record the input, expected result and c
 
 ## Block 3: Human evaluation and interviews
 
-Work in pairs or small groups with image and text examples. Give a participant the task context and output, then let them respond before explaining your own intentions.
+Continue with your chosen case in pairs or small groups. Give a participant the task context and output, then let them respond before explaining your own intentions.
+
+For the image case, ask what is happening and which visual details help or confuse them. For the text case, ask them to find when and where to attend and what to bring, and to identify anything they still need to know. Keep the same case through the revision in Block 4.
 
 Ask a few neutral questions. What do they understand? What is confusing? What would they do next? Record short quotes or observations.
 
