@@ -4,7 +4,7 @@ Student pages: [Session 3](../day03.md) and [working sheet](../activities/evalua
 
 ## Status and scope
 
-This is the agreed teaching skeleton. The worksheet now specifies an image case, a text case and example scenarios. Sample outputs, worked ratings, reference answers and the evaluation notebook are still to be developed. No new notebook, dependency or model selection is introduced in this change.
+This is the agreed teaching skeleton. The worksheet specifies an image case, a text case, example scenarios and shared generation models. Sample outputs, worked ratings, reference answers and the evaluation notebook are still to be developed. No new notebook or dependency is introduced in this change.
 
 Keep the session at 140 minutes, including a 10-minute break. It must work online or in person. Use pairs or small groups for interviews, either in breakout rooms or around tables.
 
@@ -17,7 +17,7 @@ The central sequence is: define success, draft criteria manually, test with peop
 | PromptVision opening | 10 | Revisit one country's story, images and a short excerpt, then reveal the prompt. Discuss identity, enjoyment and evidence; derive one possible criterion. |
 | Criteria and scenarios | 15 | Choose the image or text case, draft two or three criteria manually and discuss with a partner. Define the rating anchors. Offer LLM help only if needed. |
 | Human evaluation | 25 | Short interviews and observations with the chosen case. Collect individual ratings and reasons before discussion; keep the case for revision. |
-| Revision and comparison | 15 | Translate feedback into one change; compare using the same scenarios and criteria. |
+| Revision and comparison | 15 | Make one prompt revision and generate through Replicate's web UI with the shared model and settings. Compare using the same scenarios and criteria. |
 | Break | 10 | |
 | Small automated evaluator | 30 | Obtain model feedback on text through OpenRouter, structure it with the same scale, and compare with human judgments. Include a short image demonstration only if it fits. |
 | Arena and other approaches | 15 | A/B preference versus task-specific feedback; a brief introduction to specialised decision models. |
@@ -41,6 +41,16 @@ The worksheet offers two cases: an illustration of repotting a plant for beginne
 
 For the image interview, describe an activity guide without naming the action before the participant's first response. Ask what they see happening and what helps or confuses them. For text, ask readers to locate the practical details and identify anything they still need to know. Use a few prepared outputs; students do not need to collect a dataset of good and bad examples. Provide reference information that allows valid paraphrases. Keep viewing contexts and input briefs fixed when comparing baseline and revision within each scenario.
 
+## Generation and revision in Blocks 2 to 4
+
+Use [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) for the image case and [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) for text. Students stick with these shared models and use Replicate's web UI. No notebook is needed in these blocks.
+
+Prepare a small starter pack for each case: the brief, original prompt, model/settings and baseline outputs covering the two scenarios. Students begin with these outputs in Blocks 2 and 3. In Block 4, they make one prompt revision based on feedback and generate again with the same model, settings and scenario inputs. For the image case, reuse the image in both viewing contexts; for text, run the revised prompt on each scenario's brief.
+
+Keep the generation method consistent: text-to-image for Nano Banana and a fresh prediction for each text scenario. Save image editing for a separate exercise. Prepare and record the settings before class, and test access and generation time for both models. Keep sample revised outputs available if a live generation fails. A single comparison is exploratory, since generation can vary between runs.
+
+Students keep prompts, outputs, interview notes and the comparison table in a simple document. Introduce the prepared notebook in Block 5, when the focus moves to automating feedback. The generation models chosen here do not yet fix the OpenRouter evaluator model.
+
 ## Automated exercise: boundaries
 
 The class has OpenRouter tokens in addition to Replicate access. Use OpenRouter as the planned route to a feedback model. Choose the model and minimum notebook setup after the exercise is concrete.
@@ -62,7 +72,7 @@ Reference: [Arena's explanation of preference-based rankings](https://help.arena
 ## Next development steps
 
 1. Select a short excerpt from Lumora and check access to its story, images and revealed prompt. Keep the opening to 10 minutes.
-2. Prepare baseline/revised outputs for the worksheet's repotting and event-instructions cases, plus essential reference information for text. Include an ambiguous image detail and a missing-information text scenario to discuss.
+2. Prepare starter packs and sample revised outputs for the repotting case with Nano Banana 2.1 and the event-instructions case with Gemini 3.5 Flash. Record the prompts and settings, and include essential reference information for text. Include an ambiguous image detail and a missing-information text scenario to discuss.
 3. Work through the manual criteria exercise and check that a short interview can produce useful evidence. Check the optional LLM prompt as a fallback.
 4. Build one small evaluation notebook with an OpenRouter call and a readable comparison table. Include prepared results if API access fails.
 5. Pilot the flow, including model feedback that misses something or disagrees with a person. Check time, access and generation cost.

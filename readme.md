@@ -44,6 +44,8 @@ In [PromptVision](./day02.md), teams of 2–3 translate a source image into a so
 
 Start by revisiting the imaginary countries from PromptVision, then choose an image or text case to test with people. Draft criteria yourself, with optional LLM help if needed, revise a prompt from the feedback, and compare human judgments with model feedback through OpenRouter. Arena and specialised decision models introduce other evaluation approaches. The [session outline](./day03.md) and [working sheet](./activities/evaluation_clinic.md) include the case briefs and scenarios; sample outputs and the small evaluation notebook will follow.
 
+For the revision exercise, use [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) for images or [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) for text in Replicate's web UI. Keep the model and supplied settings the same as the baseline. Blocks 2 to 4 use a simple document; the prepared notebook begins in Block 5.
+
 ## Competencies
 
 **Professional**

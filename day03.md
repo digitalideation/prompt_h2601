@@ -4,7 +4,7 @@
 
 **Duration:** 140 minutes, including a 10-minute break.  
 **Delivery:** Online or in person. The activities and learning goals are the same.  
-**Tools:** Human feedback and a small prepared Jupyter Notebook for automated feedback through OpenRouter. An LLM can offer optional help if you get stuck drafting criteria. Replicate remains available for generation.
+**Tools:** Replicate's web UI for image and text generation, a simple document for human feedback, and a small prepared Jupyter Notebook introduced in Block 5 for automated feedback through OpenRouter. An LLM can offer optional help if you get stuck drafting criteria.
 
 How can you tell whether a prompt or workflow change improved the result? We will define success, test outputs with people, make a revision, then compare human judgments with automated feedback.
 
@@ -53,6 +53,17 @@ Next, use a smaller image or text task to practise defining criteria, gathering 
 
 Choose one of the two cases in the [worksheet](./activities/evaluation_clinic.md#1-describe-the-task): an image showing a beginner how a plant is moved into a larger pot, or short visitor instructions written from an event brief. You can use a small part of your own project if it fits the exercise. Otherwise, use a supplied case and return to your project in Block 7.
 
+Start with the supplied brief, original prompt and baseline outputs for your chosen case. Blocks 2 and 3 use these outputs; no generation or notebook is needed yet. Keep your criteria, feedback and versions in a simple document.
+
+For the revision in Block 4, stick with the same shared model used for the baseline:
+
+| Case | Model on Replicate |
+| --- | --- |
+| Image | [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) |
+| Text | [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) |
+
+Use Replicate's web UI and the supplied settings. Keep the model and settings the same for the baseline and revision so you can focus on the effect of the prompt change.
+
 Start with the task, audience and situation. Draft two or three criteria yourself, then discuss them with a partner. What should someone understand or be able to do? What must be present? What would make the output misleading or confusing?
 
 Keep criteria you can actually observe and explain why they matter. A phrase such as "high quality" needs a more precise description. If you get stuck, the worksheet includes an optional LLM prompt; review any suggestions before using them.
@@ -80,7 +91,11 @@ Rate the agreed criteria individually before comparing judgments. Add a reason f
 
 ## Block 4: Revise and compare
 
-Choose one issue supported by feedback. Write a prompt revision that addresses it and explain what you expect to improve. Compare a revised output with the baseline, using the same scenarios and criteria.
+Choose one issue supported by feedback. Revise the original prompt to address it and explain what you expect to improve. One prompt revision is enough for this exercise.
+
+In Replicate's web UI, generate again from the revised full prompt using Nano Banana 2.1 for the image case or Gemini 3.5 Flash for the text case. Keep the supplied settings and scenario inputs. Generate the image from text again; image editing is outside this exercise. For text, use a fresh run for each scenario so previous conversation does not affect the comparison.
+
+Place the original and revised outputs side by side. Ask a peer the same interview questions, apply the same criteria and record what improved, what became worse and the evidence for each judgment. Save both prompts and outputs with your feedback in the same document.
 
 Keep both versions and check for new problems as well as improvements. If you change a criterion, reassess both outputs with its new wording. A small comparison helps you choose a next step; it does not establish that the revision will always work.
 

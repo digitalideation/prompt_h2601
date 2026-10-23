@@ -2,7 +2,9 @@
 
 [Session 3](../day03.md)
 
-Use this sheet for a small, repeatable evaluation. Choose one case below and keep it through the criteria, interview and revision exercises. You can use a small part of your own project if it fits; otherwise, apply the method to your project in Block 7. Keep the record in a notebook or a simple document.
+Use this sheet for a small, repeatable evaluation. Choose one case below and keep it through the criteria, interview and revision exercises. You can use a small part of your own project if it fits; otherwise, apply the method to your project in Block 7. Keep your record in a simple document for Blocks 2 to 4. The prepared notebook comes in Block 5.
+
+Start with the supplied brief, original prompt, settings and baseline outputs. Stick with [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) for images and [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) for text. Use Replicate's web UI when you generate the revision, keeping the same model and settings as the baseline.
 
 ## 1. Describe the task
 
@@ -71,11 +73,19 @@ Record what you observed, then rate each criterion. Use **not met / partly met /
 
 ## 5. Turn feedback into a revision
 
+Choose one issue supported by the interview. Record the change you want to test:
+
 | Observation or quote | Your interpretation | Prompt or workflow change to test |
 | --- | --- | --- |
 | | | |
 
-Keep the original output. Compare the revision using the same scenarios and criteria, and note anything that became worse. If you revise the criteria themselves, use the new version to reassess both outputs.
+Revise the original full prompt, then generate again in Replicate's web UI using the same model, settings and scenario inputs. One prompt revision is enough. For images, generate from text again. For text, start a fresh run for each scenario. Save the full prompts and both versions of each output.
+
+Compare the original and revised outputs side by side. Ask a peer the same interview questions and apply the same criteria. Keep the original output and note anything that became worse. If you revise the criteria themselves, use the new version to reassess both outputs.
+
+| Scenario / criterion | Baseline rating | Revised rating | What changed, and what evidence supports your judgment? |
+| --- | --- | --- | --- |
+| | | | |
 
 ## 6. Compare human and automated feedback
 
