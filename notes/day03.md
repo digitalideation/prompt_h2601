@@ -49,11 +49,11 @@ Students use both cases in Blocks 2 and 3 with the supplied brief, original prom
 
 ## Automated exercise: boundaries
 
-The [standalone image evaluator notebook](../notebooks/05_image_evaluator.ipynb) uses one `%pip install -q openai` cell, a hidden OpenRouter key input and two uploaded image filenames. It evaluates each PNG directly with a vision-capable model via OpenRouter, using a small rubric and the four human rating categories. No extra image dependencies, embeddings or helper modules. It is designed for JupyterHub or Colab.
+The [standalone image evaluator notebook](../notebooks/05_image_evaluator.ipynb) and [text evaluator notebook](../notebooks/06_text_evaluator.ipynb) each use one `%pip install -q openai` cell, a hidden OpenRouter key input and two uploaded image filenames. The image evaluator assesses PNGs with a vision model; the text evaluator compares pasted generated instructions with an event brief. Both use OpenRouter, a small rubric and the four human rating categories. No extra image dependencies, embeddings or helper modules. Each notebook offers an optional criterion-change experiment on the same output; students must keep the original rubric fixed for baseline-versus-revision comparisons. It is designed for JupyterHub or Colab.
 
 Use the same scenario, criteria, model and evaluator instructions for both images. Students compare the model's visible evidence with their interviews. The vision model knows the brief, so it cannot replicate an unaided interview participant's interpretation. Responses may vary; no single judgment is ground truth.
 
-The notebook has not been live-tested against OpenRouter because no class token is available. Before class, confirm the `google/gemini-3.5-flash` evaluator model still supports image input and test two calls with real PNGs in Colab and JupyterHub. Prepare a clearly labelled fallback result.
+The notebooks have not been live-tested against OpenRouter because no class token is available. Before class, confirm the `google/gemini-3.5-flash` evaluator model still supports image input and test calls with real PNGs and actual generated text in Colab and JupyterHub. Prepare a clearly labelled fallback result.
 
 Ragas, Promptfoo and ImageReward are not required installations. Keep Block 6 open for later discussion of Arena, qualitative methods, text evaluation frameworks and a short student research task.
 
@@ -67,7 +67,7 @@ Reference: [Arena's explanation of preference-based rankings](https://help.arena
 
 1. Produce genuine baseline outputs for the repotting illustration and plant swap text case, recording the prompts and model settings.
 2. Test brief interviews with both cases and one image revision.
-3. Run the new notebook in Colab and JupyterHub against baseline and revised PNGs, then review model feedback for errors.
+3. Test both notebooks in Colab and JupyterHub against real PNGs and text, including the optional criterion-change experiment.
 4. Plan the wider evaluation-method exploration for Block 6.
 
 Student-facing materials stay in the session page and worksheet. Sessions 1 and 2 are unchanged.
