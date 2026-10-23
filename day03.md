@@ -1,126 +1,165 @@
-# Day 03: VibeCoding & Video Interpretation
+# Session 3: Generative AI Evaluation Clinic
 
-*Previous-semester material. See the [course homepage](./readme.md) for the H26 sessions.*
+[Back to the course homepage](./readme.md) | [Evaluation worksheet](./activities/evaluation_clinic.md)
 
-**Duration:** 2 h 30 min.  
-**Focus:** Translating visual rhythm and motion into procedural logic through **p5.js**, then extending those human-coded aesthetics into **AI-generated video interpretations**, inspired by Rafael Rozendaal’s _Internet_ (2002).  
-**Mode:** Browser-based (p5.js Web Editor + Replicate): pairs or small groups of 2–3.
+**Duration:** 140 minutes, including a 10-minute break.  
+**Delivery:** Online or in person. The activities and learning goals are the same.  
+**Tools:** Replicate's web UI for image and text generation, a simple document for human feedback, and two small standalone Jupyter notebooks for automated evaluation through OpenRouter. An LLM can offer optional help if you get stuck drafting criteria.
 
-| Block | Activity                            | Duration       |
-| :---- | :---------------------------------- | :------------- |
-| 1     | Foundations: Net Art & Motion Logic | 20 min         |
-| 2     | VibeCoding Demo & Warm-up           | 15 min         |
-|       | Break                               | 10 min         |
-| 3     | Team VibeCoding Exercise            | 30 min         |
-| 4     | AI Video Interpretation             | 15 min         |
-| 5     | Showcase & Reflection               | 20 min         |
-|       | **Total**                           | **2 h 30 min** |
+How can you tell whether a prompt or workflow change improved the result? We will define success, test outputs with people, make a revision, then compare human judgments with automated feedback.
 
-## 🧱️ Block 1: Foundations: Net Art & Motion Logic
+The [worksheet](./activities/evaluation_clinic.md) includes both case briefs, suggested prompts and scenarios. We will use prepared baseline outputs in class. The two evaluation notebooks are linked in Block 5.
 
-### 1. Introduction to Rafael Rozendaal and _Internet_
+## Learning goals
 
-- Discuss the early 2000s web-art context: minimalism, interactivity, code-as-canvas.
-- View [_Internet_ (2002)](https://www.newrafael.com/internet/): observe how repetition, rhythm, and color produce emotion without narrative.
-- Key themes: **loop**, **pattern**, **interaction**, **vibe through motion**.
+- Define a few observable success criteria for a specific task and audience.
+- Plan two or three test scenarios with clear expected results.
+- Gather useful feedback through short interviews, observations and a simple rating scale.
+- Use that feedback to revise a prompt and compare the resulting outputs.
+- Examine what automated feedback and model rankings can tell you, and what still needs human judgment.
 
-### 2. Conceptual Bridge to VibeCoding
+## Session schedule
 
-- **VibeCoding = prompting through parameters**:  
-  _speed_, _color_, _density_, _rhythm_.
-- Observe how small numeric tweaks shift perception: like prompt refinements in text or sound.
+| Block | Activity | Minutes |
+| --- | --- | ---: |
+| 1 | PromptVision: preference and success | 10 |
+| 2 | Define criteria and test scenarios | 15 |
+| 3 | Human evaluation and short interviews | 25 |
+| 4 | Revision and comparison | 15 |
+| | Break | 10 |
+| 5 | Two tiny automated evaluators | 30 |
+| 6 | Exploring evaluation methods | 15 |
+| 7 | Design a test for your project | 15 |
+| 8 | Takeaways and next test | 5 |
+| | **Total** | **140** |
 
-## 🧱️ Block 2: VibeCoding Demo & Warm-up
+## Block 1: PromptVision as a starting point
 
-### 3. p5.js Demo (Non-coders friendly)
+In PromptVision, you invented an imaginary country and gave it a story, sound and visual identity. Return to the [entries](./results/promptvision/), read one country's story, look at its source and cover images, and listen to a short excerpt. What kind of place comes across? Which details give you that impression?
 
-Explore this minimal sketch:
+Then reveal the prompt and compare your impressions with the creative intention. For example, [Lumora's story and prompt](./results/promptvision/01_Lumora/entry.txt) connect a mountain kingdom and its musical traditions with bells, flutes and choir. Do the sound and images help convey that world? Point to something you heard or saw, and explain the connection.
 
-```js
-let dots = [];
-function setup() {
-  createCanvas(600, 600);
-  for (let i = 0; i < 80; i++)
-    dots.push(createVector(random(width), random(height)));
-}
-function draw() {
-  background(0, 10);
-  stroke(255);
-  for (let p of dots) {
-    p.x += sin(frameCount * 0.01 + p.y * 0.01);
-    p.y += cos(frameCount * 0.01 + p.x * 0.01);
-    point(p.x, p.y);
-  }
-}
-```
+Discuss briefly with a partner:
 
-Explore how adjusting `stroke()`, `sin()` speed, or the number of dots changes the vibe.
+- What do you enjoy about the entry?
+- Which part of the country's identity comes across, and what supports your interpretation?
+- What would you change to communicate that identity more clearly?
 
-### 4. Vibe Prompts (Verbal Control)
+Use those answers to propose one possible criterion, such as whether the sound and images support a chosen aspect of the country's story. We are now turning a creative intention into something we can discuss and test. You do not need to guess the exact story or agree on one interpretation.
 
-Try descriptions such as:
+Next, use a smaller image or text task to practise defining criteria, gathering feedback and testing a revision.
 
-> “Make it calmer.” “Add chaos.” “Shift the color toward neon.” “Fade more slowly.”
+## Block 2: Draft criteria and define scenarios
 
-Record the effect of each description → numeric change.
+Work with **both** cases in the [worksheet](./activities/evaluation_clinic.md#1-describe-the-tasks): an image showing a beginner how a plant is moved into a larger pot, and short visitor instructions based on an event brief. These are small practice tasks; your ongoing project does not need to fit them. You will return to your project in Block 7.
 
-## 🧱️ Block 3: Team VibeCoding Exercise
+Start with the supplied briefs, original prompts and baseline outputs. There is no generation or notebook in this block. Keep your criteria, ratings and feedback in a simple document.
 
-**Objective:** Recreate the _feel_ of _Internet_ through parameter manipulation, not replication.
+For later revision, we use the same models that produced the corresponding baseline:
 
-**Structure**
+| Case | Model on Replicate |
+| --- | --- |
+| Image | [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) |
+| Text | [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) |
 
-- Teams of 2 (1 Tuner + 1 Vibe Director).
-- Each uses a shared p5 link (template provided).
-- Directors describe motion and color conceptually; Tuners adjust numbers.
-- Observers (optional) document iterations and take screenshots.
+For **each case**, start from the audience and task. Draft two observable criteria yourself and compare them with a partner. What should somebody recognise, understand or be able to do? What essential details should be present, and what could mislead them? You can ask an LLM for suggestions if you get stuck, but it is not required.
 
-**Focus Areas**
+Use the same rating scale for both cases:
 
-| Aspect      | Prompt-style Guidance                          |
-| :---------- | :--------------------------------------------- |
-| Composition | “Like a constellation: sparse but connected.” |
-| Motion      | “Oscillate like breathing, not chaos.”         |
-| Color       | “Digital glow on black: cold light.”          |
-| Tempo       | “Start slow, accelerate, then stillness.”      |
+| Rating | Meaning |
+| --- | --- |
+| Not met | The required feature is absent or the output fails this criterion. |
+| Partly met | Some of the requirement is satisfied, but something important is missing or unclear. |
+| Clearly met | The output satisfies the criterion, supported by an observation. |
+| Cannot judge | The available output or evidence is insufficient to assess this criterion. |
 
-**Output:** looping p5 sketch + saved first and last frames.
+Choose **one clear scenario per case** to begin with. The worksheet offers a second scenario for each if you have time. Note the situation, expected result and criteria before collecting feedback. For images, the expectation may be what someone can identify or understand. For text, it may include essential facts and what should happen when information is missing.
 
-## 🧱️ Block 4: AI Video Interpretation
+## Block 3: Human evaluation and interviews
 
-**Goal:** Use AI to “interpret” the transition between the two frames.
+Test **both the image and the text example** with a partner. Keep the interviews short and switch roles so you both experience asking questions and giving feedback.
 
-**Steps**
+For the image, first show it as an illustration for an activity guide, without naming the action. Ask what the person thinks is happening and which details help or confuse them. Then show the repotting instruction and ask whether the illustration supports it.
 
-1. Export your first and last frames (`saveFrame()` or screenshot).
-2. Share the frames for the Replicate image-to-video demonstration and compare the resulting 3–5 s videos.
-3. Optional audio sync: add your Day 02 _PromptVision_ track as a soundtrack.
+For the text, ask the person to find when and where the event takes place, what to bring and which information is missing. Ask what they would do next.
 
-👉 Full step-by-step setup, p5 account instructions, and submission details:
-[`VibeCoding Class Flow`](./activities/vibecoding.md)
+Do not explain or defend the output before the participant responds. Record a short observation or quote, then individually rate the criteria you drafted in Block 2. Compare the ratings and discuss any differences. Keep what the person actually said separate from your interpretation.
 
-## 🧱️ Block 5: Showcase & Reflection
+If time allows, try the second scenario for each case. These quick peer tests are useful, but classmates do not necessarily represent the intended audience.
 
-**Gallery Format**
+## Block 4: Revise and compare
 
-- View the p5 loops alongside their AI videos.
-- Quick commentary: what changed? what did the AI exaggerate or lose?
+**Focus on the image.** Choose one issue supported by the interview feedback and revise the original image prompt to address it. Write down what you expect to improve.
 
-**Discussion Prompts**
+In Replicate's web UI, generate a new illustration from your revised full prompt with **Nano Banana 2.1**. Keep the supplied settings and the same scenario. Generate from text again; editing the original image is outside this exercise.
 
-- “What parameter most defined your vibe?”
-- “Did the AI capture your intended motion?”
-- “Where does authorship sit in this chain?”
+Compare the baseline and revised images side by side. Ask a peer the same questions and apply the **same criteria and scale**. Record what improved, what became worse and the visible evidence. Save both PNGs and prompts: you will use these images again in Block 5.
 
-**Optional Audience Highlights**
+**If you have time**, repeat the process for the text case with **Gemini 3.5 Flash**. Run the revised prompt in a fresh request using the same brief and settings.
 
-- 💫 _Most Hypnotic Loop_
-- ⚡ _Best AI Interpretation_
-- 🪞 _Closest to Rozendaal’s Spirit_
+One prompt revision is enough. If you change any criterion, reassess both outputs using its new wording. A single comparison provides useful observations, not proof that the new prompt always performs better.
 
-### ✅ Learning Outcomes
+## Block 5: Two tiny automated evaluators
 
-- Describe and control visual motion and mood through parameterized logic.
-- Translate artistic intuition into computational form.
-- Extend human-coded aesthetics into AI video interpretations.
-- Reflect critically on machine perception of vibe and authorship.
+Explore two independent notebooks, each available in JupyterHub and Google Colab:
+
+- [Image evaluator](./notebooks/05_image_evaluator.ipynb) ([Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb)): compare baseline and revised PNGs with the **same criteria**, and check model feedback against human interviews.
+- [Text evaluator](./notebooks/06_text_evaluator.ipynb) ([Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/06_text_evaluator.ipynb)): paste your generated visitor instructions, compare them with the **original event brief**, and inspect ratings and reasons.
+
+Both use a prepared OpenRouter model call and the four-category human rating scale. **Personalise the criteria** to match your own scenarios rather than accepting them unchanged.
+
+**Optional test material:** If you do not have suitable outputs of your own, download the practice images ([baseline PNG](./assets/evaluation-clinic/baseline.png) and [revised PNG](./assets/evaluation-clinic/revised.png)) or use the [sample visitor instructions](./assets/evaluation-clinic/text-evaluator-examples.txt). Try to identify the problems before reading model feedback. These are prepared teaching examples, not verified generations or evidence from a controlled prompt experiment.
+
+Each notebook ends with an **optional criterion experiment**: change one criterion and evaluate the **same output** again. Does the rating change? Keep the original criteria fixed when comparing baseline and revised generations, otherwise you may be measuring a different evaluator instead of a better result.
+
+If time is short, complete one notebook and explore the other as an extension. Neither requires embeddings, an evaluation framework or writing API code.
+
+## Block 6: Exploring evaluation methods
+
+You have tested outputs with people and asked models to apply your criteria. What other approaches are available, and how would you choose one for your own project?
+
+**3 minutes: From preference to task success.** Look at the [Arena leaderboard](https://arena.ai/leaderboard). Arena ranks models using human preferences from head-to-head comparisons. If people prefer one output, does that mean it meets the requirements of your particular task?
+
+**8 minutes: Mini-research in pairs.** Choose **one** approach to investigate. You can choose a different method if it better fits your project.
+
+| Approach | Starting point | Question to explore |
+| --- | --- | --- |
+| Human A/B preferences | [Arena](https://arena.ai/leaderboard) | What can preference votes reveal, and what do they miss? |
+| Repeatable prompt tests | [Promptfoo](https://www.promptfoo.dev/docs/intro/) | How could you check a prompt against several scenarios and expected conditions? |
+| Source-grounded answer evaluation | [Ragas](https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/) | How could you check whether a generated answer is supported by its source information? |
+| Another method for your modality | Find a relevant approach for your text, image, audio or video project | What evidence would it use to judge success? |
+
+Use documentation or examples to answer three questions in the [worksheet](./activities/evaluation_clinic.md#7-explore-an-evaluation-method):
+
+1. What does the approach evaluate, and what inputs or evidence does it need?
+2. What could it miss or judge incorrectly?
+3. How might you use it for a specific task in your project?
+
+**4 minutes: Share.** A few pairs briefly explain what they found and one limitation. Compare the approaches. You do not need to install a framework or complete a technical demonstration.
+
+## Block 7: Design a test for your project
+
+Use the [worksheet](./activities/evaluation_clinic.md#8-design-a-small-evaluation-for-your-project) to plan a small evaluation for **your own text, image, audio, video or multimodal project**. If your project is not defined yet, choose a possible output. You are designing a test, not running it now.
+
+**2 minutes: Choose one task and audience.** What should one specific output help someone understand, do or experience? Keep the scope narrow enough to test.
+
+**8 minutes: Draft your evaluation plan.** Write two observable success criteria and two scenarios: one typical use and one situation where the output might fail. State what you would expect to see, hear or read. Plan one short human test, including whom you would ask and a neutral question or task. Choose an automated check or another method from Block 6 **if it would be useful**, and note what it could miss.
+
+**3 minutes: Check with a partner.** Are the criteria observable? Would the scenarios reveal a failure? What evidence would justify a revision?
+
+**2 minutes: Choose the next step.** Decide on the smallest test you could realistically run for your project and what result would lead you to change the prompt or workflow.
+
+For audio and video, consider how much material someone needs to experience: a short excerpt may be enough to judge mood or a visual detail, but not a whole narrative or sequence.
+
+## Block 8: Takeaways and next test
+
+Look back at your human observations, comparison ratings and automated feedback. Keep them together with your prompts, outputs and new project evaluation plan. No polished report or additional notebook is required.
+
+**2 minutes:** Identify one finding supported by today's evidence and one limitation or disagreement. Remember that changing the evaluation criteria is not the same as improving an output.
+
+**3 minutes:** Complete the two-sentence exit ticket in the [worksheet](./activities/evaluation_clinic.md#9-finish-with-a-next-step):
+
+- **Today I saw evidence that...**
+- **For my project, the next test I will run is...**
+
+Your project plan describes a test you intend to run, not a result you have already demonstrated.
