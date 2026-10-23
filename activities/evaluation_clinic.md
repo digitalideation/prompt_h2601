@@ -98,15 +98,15 @@ Compare the images side by side, ask the same interview questions and apply the 
 
 ## 6. Compare human and automated feedback
 
-Open the [simple image evaluator notebook](../notebooks/05_image_evaluator.ipynb) in JupyterHub or [Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb). Upload both PNGs and use **the same criteria** you used with people. The prepared cells request feedback from a vision model through OpenRouter.
+Choose the [image evaluator](../notebooks/05_image_evaluator.ipynb) ([Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb)) or the [text evaluator](../notebooks/06_text_evaluator.ipynb) ([Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/06_text_evaluator.ipynb)), then try the other if time permits.
 
-Compare each model rating and explanation with your own evidence. Does it refer to something visible? Does it miss a problem a participant noticed? The model can describe what it sees, but it cannot replace an interview about what a person understood.
+For images, compare original and revised PNGs. For text, paste your actual visitor instructions and compare them with the event brief. **Adapt the evaluator criteria** from your human tests and inspect the ratings and explanations.
 
-| Image / scenario / criterion | Human rating and reason | Model rating and reason | Agreement or difference to investigate |
+| Output / scenario / criterion | Human rating and reason | Model rating and reason | Agreement or difference to investigate |
 | --- | --- | --- | --- |
 | | | | |
 
-Keep the same evaluator model and instructions for baseline and revision. You do not need to combine everything into one overall score.
+**Optional experiment:** change one evaluator criterion and rerun it on the same output. What changed in the model's judgment, even though the output did not change? Keep the original criteria fixed for baseline-versus-revision comparisons. Do not collapse everything into a single score.
 
 ## 7. Decide what to do next
 
