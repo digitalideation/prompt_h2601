@@ -4,11 +4,11 @@
 
 **Duration:** 140 minutes, including a 10-minute break.  
 **Delivery:** Online or in person. The activities and learning goals are the same.  
-**Tools:** Replicate's web UI for image and text generation, a simple document for human feedback, and a small prepared Jupyter Notebook introduced in Block 5 for automated feedback through OpenRouter. An LLM can offer optional help if you get stuck drafting criteria.
+**Tools:** Replicate's web UI for image and text generation, a simple document for human feedback, and two small standalone Jupyter notebooks for automated evaluation through OpenRouter. An LLM can offer optional help if you get stuck drafting criteria.
 
 How can you tell whether a prompt or workflow change improved the result? We will define success, test outputs with people, make a revision, then compare human judgments with automated feedback.
 
-The [worksheet](./activities/evaluation_clinic.md) includes both case briefs, suggested prompts and scenarios. We will use prepared baseline outputs in class. The image evaluation notebook is linked in Block 5.
+The [worksheet](./activities/evaluation_clinic.md) includes both case briefs, suggested prompts and scenarios. We will use prepared baseline outputs in class. The two evaluation notebooks are linked in Block 5.
 
 ## Learning goals
 
@@ -27,10 +27,10 @@ The [worksheet](./activities/evaluation_clinic.md) includes both case briefs, su
 | 3 | Human evaluation and short interviews | 25 |
 | 4 | Revision and comparison | 15 |
 | | Break | 10 |
-| 5 | A tiny automated evaluator | 30 |
-| 6 | Arena and other evaluation approaches | 15 |
-| 7 | Apply the method to your project | 15 |
-| 8 | Wrap-up | 5 |
+| 5 | Two tiny automated evaluators | 30 |
+| 6 | Exploring evaluation methods | 15 |
+| 7 | Design a test for your project | 15 |
+| 8 | Takeaways and next test | 5 |
 | | **Total** | **140** |
 
 ## Block 1: PromptVision as a starting point
@@ -108,7 +108,7 @@ Explore two independent notebooks, each available in JupyterHub and Google Colab
 
 Both use a prepared OpenRouter model call and the four-category human rating scale. **Personalise the criteria** to match your own scenarios rather than accepting them unchanged.
 
-**Optional test material:** If you do not have suitable outputs of your own, use the example baseline and revised images shared with the class, or the [sample visitor instructions](./assets/evaluation-clinic/text-evaluator-examples.txt). Try to identify the problems before reading model feedback. The examples are for practising evaluation, not for proving that a particular prompt consistently improves an output.
+**Optional test material:** If you do not have suitable outputs of your own, download the practice images ([baseline PNG](./assets/evaluation-clinic/baseline.png) and [revised PNG](./assets/evaluation-clinic/revised.png)) or use the [sample visitor instructions](./assets/evaluation-clinic/text-evaluator-examples.txt). Try to identify the problems before reading model feedback. These are prepared teaching examples, not verified generations or evidence from a controlled prompt experiment.
 
 Each notebook ends with an **optional criterion experiment**: change one criterion and evaluate the **same output** again. Does the rating change? Keep the original criteria fixed when comparing baseline and revised generations, otherwise you may be measuring a different evaluator instead of a better result.
 
@@ -137,14 +137,29 @@ Use documentation or examples to answer three questions in the [worksheet](./act
 
 **4 minutes: Share.** A few pairs briefly explain what they found and one limitation. Compare the approaches. You do not need to install a framework or complete a technical demonstration.
 
-## Block 7: Apply the method to your project
+## Block 7: Design a test for your project
 
-Outline a small evaluation procedure for your own text, image, audio, video or multimodal project. Use the worksheet to identify the audience, scenarios, criteria, people to involve and a possible automated check.
+Use the [worksheet](./activities/evaluation_clinic.md#8-design-a-small-evaluation-for-your-project) to plan a small evaluation for **your own text, image, audio, video or multimodal project**. If your project is not defined yet, choose a possible output. You are designing a test, not running it now.
 
-Decide what evidence would make you revise the prompt or workflow. For audio and video, consider what a short excerpt can reveal and what needs longer viewing or listening.
+**2 minutes: Choose one task and audience.** What should one specific output help someone understand, do or experience? Keep the scope narrow enough to test.
 
-## Block 8: Keep a useful record
+**8 minutes: Draft your evaluation plan.** Write two observable success criteria and two scenarios: one typical use and one situation where the output might fail. State what you would expect to see, hear or read. Plan one short human test, including whom you would ask and a neutral question or task. Choose an automated check or another method from Block 6 **if it would be useful**, and note what it could miss.
 
-Keep your scenarios, criteria, human feedback, baseline and revision, automated feedback and next decision together.
+**3 minutes: Check with a partner.** Are the criteria observable? Would the scenarios reveal a failure? What evidence would justify a revision?
 
-Finish with one sentence: **"Based on this evidence, the next change I would test is..."**
+**2 minutes: Choose the next step.** Decide on the smallest test you could realistically run for your project and what result would lead you to change the prompt or workflow.
+
+For audio and video, consider how much material someone needs to experience: a short excerpt may be enough to judge mood or a visual detail, but not a whole narrative or sequence.
+
+## Block 8: Takeaways and next test
+
+Look back at your human observations, comparison ratings and automated feedback. Keep them together with your prompts, outputs and new project evaluation plan. No polished report or additional notebook is required.
+
+**2 minutes:** Identify one finding supported by today's evidence and one limitation or disagreement. Remember that changing the evaluation criteria is not the same as improving an output.
+
+**3 minutes:** Complete the two-sentence exit ticket in the [worksheet](./activities/evaluation_clinic.md#9-finish-with-a-next-step):
+
+- **Today I saw evidence that...**
+- **For my project, the next test I will run is...**
+
+Your project plan describes a test you intend to run, not a result you have already demonstrated.
