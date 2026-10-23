@@ -8,18 +8,18 @@ This is the agreed teaching skeleton. The worksheet specifies an image case, a t
 
 Keep the session at 140 minutes, including a 10-minute break. It must work online or in person. Use pairs or small groups for interviews, either in breakout rooms or around tables.
 
-The central sequence is: define success, draft criteria manually, test with people, revise, compare, then automate selected checks. LLM help with criteria is optional if students get stuck. Human feedback remains central. PromptVision supplies a short opening, not the theme of every exercise. Practical work moves to images and text; text is the main automated exercise. Audio/video evaluation remains a brief discussion.
+The central sequence is: define success, draft criteria manually, test with people, revise, compare, then automate selected checks. LLM help with criteria is optional if students get stuck. Human feedback remains central. PromptVision supplies a short opening, not the theme of every exercise. Students test both image and text with people, then focus image revision and automated evaluation on the same images. Audio/video evaluation remains a brief discussion.
 
 ## Agreed sequence
 
 | Block | Minutes | Facilitation focus |
 | --- | ---: | --- |
 | PromptVision opening | 10 | Revisit one country's story, images and a short excerpt, then reveal the prompt. Discuss identity, enjoyment and evidence; derive one possible criterion. |
-| Criteria and scenarios | 15 | Choose the image or text case, draft two or three criteria manually and discuss with a partner. Define the rating anchors. Offer LLM help only if needed. |
-| Human evaluation | 25 | Short interviews and observations with the chosen case. Collect individual ratings and reasons before discussion; keep the case for revision. |
-| Revision and comparison | 15 | Make one prompt revision and generate through Replicate's web UI with the shared model and settings. Compare using the same scenarios and criteria. |
+| Criteria and scenarios | 15 | Test both cases, draft two observable criteria per case, choose one scenario for each, and make LLM help optional. |
+| Human evaluation | 25 | Test both image and text with short interviews, recording ratings and evidence. |
+| Revision and comparison | 15 | Revise the image in Replicate, compare with the same criteria and optionally revise the text. |
 | Break | 10 | |
-| Small automated evaluator | 30 | Obtain model feedback on text through OpenRouter, structure it with the same scale, and compare with human judgments. Include a short image demonstration only if it fits. |
+| Small automated evaluator | 30 | Run the standalone vision evaluator on original and revised PNGs, comparing model and human feedback. |
 | Arena and other approaches | 15 | A/B preference versus task-specific feedback; a brief introduction to specialised decision models. |
 | Project application | 15 | Students outline a small evaluation procedure for their own modality and audience. |
 | Wrap-up | 5 | One evidence-based next change. |
@@ -37,31 +37,25 @@ Manual drafting is the default and preferred approach. Begin with the audience's
 
 Interviews should elicit understanding and reasons. Let participants respond before creators defend or explain their output. Separate quotes/observations from interpretations and proposed changes. Preserve disagreements rather than forcing a single average. Discuss the limits of testing only with classmates.
 
-The worksheet offers two cases: an illustration of repotting a plant for beginners, and visitor instructions based on a fictional plant-swap event brief. Each has two suggested scenarios. Students choose one case for Blocks 2 to 4; they do not need to complete both. A suitable small part of an existing project is also possible, but is not required. Block 7 remains the dedicated project application.
+The worksheet offers two cases: an illustration of repotting a plant for beginners, and visitor instructions based on a fictional plant-swap event brief. Each has two suggested scenarios. Students test both cases in Blocks 2 and 3, then focus the revision on the image. A text revision is optional. Block 7 remains the dedicated project application.
 
 For the image interview, describe an activity guide without naming the action before the participant's first response. Ask what they see happening and what helps or confuses them. For text, ask readers to locate the practical details and identify anything they still need to know. Use a few prepared outputs; students do not need to collect a dataset of good and bad examples. Provide reference information that allows valid paraphrases. Keep viewing contexts and input briefs fixed when comparing baseline and revision within each scenario.
 
 ## Generation and revision in Blocks 2 to 4
 
-Use [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) for the image case and [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) for text. Students stick with these shared models and use Replicate's web UI. No notebook is needed in these blocks.
+Students use both cases in Blocks 2 and 3 with the supplied brief, original prompt, settings and actual baseline outputs. They start with one scenario per case, adding a second if time allows. Blocks 2 to 4 use Replicate's web UI and a simple document, not Jupyter. Block 4 prioritises revising the image via Nano Banana 2.1 with the original settings; revising the text via Gemini 3.5 Flash is optional. Keep the baseline and revised PNGs for Block 5.
 
-Prepare a small starter pack for each case: the brief, original prompt, model/settings and baseline outputs covering the two scenarios. Students begin with these outputs in Blocks 2 and 3. In Block 4, they make one prompt revision based on feedback and generate again with the same model, settings and scenario inputs. For the image case, reuse the image in both viewing contexts; for text, run the revised prompt on each scenario's brief.
-
-Keep the generation method consistent: text-to-image for Nano Banana and a fresh prediction for each text scenario. Save image editing for a separate exercise. Prepare and record the settings before class, and test access and generation time for both models. Keep sample revised outputs available if a live generation fails. A single comparison is exploratory, since generation can vary between runs.
-
-Students keep prompts, outputs, interview notes and the comparison table in a simple document. Introduce the prepared notebook in Block 5, when the focus moves to automating feedback. The generation models chosen here do not yet fix the OpenRouter evaluator model.
+**Preparation:** The baseline image and text outputs are not yet included, because no classroom Replicate credentials were provided. Generate authentic outputs from the worksheet prompts and record actual settings, or provide them in class. Do not present invented images or handwritten text as model outputs. Pilot the interview schedule and retain fallback saved outputs.
 
 ## Automated exercise: boundaries
 
-The class has OpenRouter tokens in addition to Replicate access. Use OpenRouter as the planned route to a feedback model. Choose the model and minimum notebook setup after the exercise is concrete.
+The [standalone image evaluator notebook](../notebooks/05_image_evaluator.ipynb) uses one `%pip install -q openai` cell, a hidden OpenRouter key input and two uploaded image filenames. It evaluates each PNG directly with a vision-capable model via OpenRouter, using a small rubric and the four human rating categories. No extra image dependencies, embeddings or helper modules. It is designed for JupyterHub or Colab.
 
-The intended notebook should make the process visible: task/scenario, output, criteria, optional reference, model comments, then structured ratings with short explanations. Compare with human feedback and repeat on a revision. Record the evaluator model and instructions, and hold them fixed across the comparison.
+Use the same scenario, criteria, model and evaluator instructions for both images. Students compare the model's visible evidence with their interviews. The vision model knows the brief, so it cannot replicate an unaided interview participant's interpretation. Responses may vary; no single judgment is ground truth.
 
-Keep dependencies and code small, using the JupyterHub/Colab approach students know. Avoid a required local model installation, custom helper system or new interface. Do not implement the notebook during this skeleton stage.
+The notebook has not been live-tested against OpenRouter because no class token is available. Before class, confirm the `google/gemini-3.5-flash` evaluator model still supports image input and test two calls with real PNGs in Colab and JupyterHub. Prepare a clearly labelled fallback result.
 
-Embeddings are optional. An image demonstration may use direct image input or an image description. Explain that a description-based evaluator cannot assess omitted visual details, and that a model's feedback needs checking against human observations.
-
-Ragas and Promptfoo are set aside. There is no committed ImageReward exercise. [Laya](https://github.com/NandhaKishorM/laya) and [Kev](https://github.com/jaredpalmer/kev) are brief decision-model references, not required practical tools.
+Ragas, Promptfoo and ImageReward are not required installations. Keep Block 6 open for later discussion of Arena, qualitative methods, text evaluation frameworks and a short student research task.
 
 ## Arena discussion
 
@@ -71,11 +65,9 @@ Reference: [Arena's explanation of preference-based rankings](https://help.arena
 
 ## Next development steps
 
-1. Select a short excerpt from Lumora and check access to its story, images and revealed prompt. Keep the opening to 10 minutes.
-2. Prepare starter packs and sample revised outputs for the repotting case with Nano Banana 2.1 and the event-instructions case with Gemini 3.5 Flash. Record the prompts and settings, and include essential reference information for text. Include an ambiguous image detail and a missing-information text scenario to discuss.
-3. Work through the manual criteria exercise and check that a short interview can produce useful evidence. Check the optional LLM prompt as a fallback.
-4. Build one small evaluation notebook with an OpenRouter call and a readable comparison table. Include prepared results if API access fails.
-5. Pilot the flow, including model feedback that misses something or disagrees with a person. Check time, access and generation cost.
-6. Choose the brief Arena and decision-model demonstration. Keep further technical detail optional.
+1. Produce genuine baseline outputs for the repotting illustration and plant swap text case, recording the prompts and model settings.
+2. Test brief interviews with both cases and one image revision.
+3. Run the new notebook in Colab and JupyterHub against baseline and revised PNGs, then review model feedback for errors.
+4. Plan the wider evaluation-method exploration for Block 6.
 
-Student-facing material belongs in the session page and activity sheet. Preparation, technical decisions and unresolved details stay here. Sessions 1 and 2, and Week 12, are outside this change.
+Student-facing materials stay in the session page and worksheet. Sessions 1 and 2 are unchanged.
