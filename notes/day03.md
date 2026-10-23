@@ -57,6 +57,8 @@ The notebooks have not been live-tested against OpenRouter because no class toke
 
 Ragas, Promptfoo and ImageReward are not required installations. Keep Block 6 open for later discussion of Arena, qualitative methods, text evaluation frameworks and a short student research task.
 
+The sample images and a combined annotated comparison are prepared separately for instructor review. Keep the annotated comparison **off** the student page so it does not prime their judgments. The optional text-example asset is already linked in Block 5; image binaries must be made available before class.
+
 ## Arena discussion
 
 Use [Arena](https://arena.ai/leaderboard) for text and image comparisons. Discuss what an A/B preference captures, what interview comments add, and whether the tasks and participants behind a ranking match a student's own project. Avoid turning a broad leaderboard position into a guarantee of success on the class brief.
