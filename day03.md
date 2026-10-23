@@ -99,18 +99,18 @@ Compare the baseline and revised images side by side. Ask a peer the same questi
 
 One prompt revision is enough. If you change any criterion, reassess both outputs using its new wording. A single comparison provides useful observations, not proof that the new prompt always performs better.
 
-## Block 5: A tiny automated evaluator
+## Block 5: Two tiny automated evaluators
 
-Open the [image evaluation notebook](./notebooks/05_image_evaluator.ipynb) in JupyterHub or [Google Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb). It uses a vision-capable model through OpenRouter to assess images against your criteria. There is no image generation in this notebook.
+Explore two independent notebooks, each available in JupyterHub and Google Colab:
 
-1. Upload your **baseline and revised PNGs** and enter their filenames.
-2. Review the task, scenario and criteria from Blocks 2 and 3. Edit the notebook's criteria if needed.
-3. Run the prepared evaluator once on the baseline image and once on the revised image.
-4. Read the ratings and brief explanations. Compare them with the observations and ratings from your interviews.
+- [Image evaluator](./notebooks/05_image_evaluator.ipynb) ([Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb)): compare baseline and revised PNGs with the **same criteria**, and check model feedback against human interviews.
+- [Text evaluator](./notebooks/06_text_evaluator.ipynb) ([Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/06_text_evaluator.ipynb)): paste your generated visitor instructions, compare them with the **original event brief**, and inspect ratings and reasons.
 
-Keep the **same criteria, evaluation instructions and evaluator model** for both images. Pay attention to disagreements. A vision model can inspect visible elements, but cannot establish what a real beginner understood or predict everyone's reaction.
+Both use a prepared OpenRouter model call and the four-category human rating scale. **Personalise the criteria** to match your own scenarios rather than accepting them unchanged.
 
-The goal is to understand a small, repeatable evaluation process and its limitations. No embeddings, advanced evaluation framework or extra image-processing library are needed.
+Each notebook ends with an **optional criterion experiment**: change one criterion and evaluate the **same output** again. Does the rating change? Keep the original criteria fixed when comparing baseline and revised generations, otherwise you may be measuring a different evaluator instead of a better result.
+
+If time is short, complete one notebook and explore the other as an extension. Neither requires embeddings, an evaluation framework or writing API code.
 
 ## Block 6: Arena and other approaches
 
