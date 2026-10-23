@@ -101,7 +101,7 @@ One prompt revision is enough. If you change any criterion, reassess both output
 
 ## Block 5: A tiny automated evaluator
 
-Open the [image evaluation notebook](./notebooks/05_image_evaluator.ipynb) in JupyterHub or [Google Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/main/notebooks/05_image_evaluator.ipynb). It uses a vision-capable model through OpenRouter to assess images against your criteria. There is no image generation in this notebook.
+Open the [image evaluation notebook](./notebooks/05_image_evaluator.ipynb) in JupyterHub or [Google Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/session3-evaluation-skeleton/notebooks/05_image_evaluator.ipynb). It uses a vision-capable model through OpenRouter to assess images against your criteria. There is no image generation in this notebook.
 
 1. Upload your **baseline and revised PNGs** and enter their filenames.
 2. Review the task, scenario and criteria from Blocks 2 and 3. Edit the notebook's criteria if needed.
