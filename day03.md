@@ -108,6 +108,8 @@ Explore two independent notebooks, each available in JupyterHub and Google Colab
 
 Both use a prepared OpenRouter model call and the four-category human rating scale. **Personalise the criteria** to match your own scenarios rather than accepting them unchanged.
 
+**Optional test material:** If you do not have suitable outputs of your own, use the example baseline and revised images shared with the class, or the [sample visitor instructions](./assets/evaluation-clinic/text-evaluator-examples.txt). Try to identify the problems before reading model feedback. The examples are for practising evaluation, not for proving that a particular prompt consistently improves an output.
+
 Each notebook ends with an **optional criterion experiment**: change one criterion and evaluate the **same output** again. Does the rating change? Keep the original criteria fixed when comparing baseline and revised generations, otherwise you may be measuring a different evaluator instead of a better result.
 
 If time is short, complete one notebook and explore the other as an extension. Neither requires embeddings, an evaluation framework or writing API code.
