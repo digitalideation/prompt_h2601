@@ -8,7 +8,7 @@
 
 How can you tell whether a prompt or workflow change improved the result? We will define success, test outputs with people, make a revision, then compare human judgments with automated feedback.
 
-This is the session outline. The worksheet includes image and text cases; sample outputs and the evaluation notebook will be added here.
+The [worksheet](./activities/evaluation_clinic.md) includes both case briefs, suggested prompts and scenarios. We will use prepared baseline outputs in class. The image evaluation notebook is linked in Block 5.
 
 ## Learning goals
 
@@ -51,24 +51,20 @@ Next, use a smaller image or text task to practise defining criteria, gathering 
 
 ## Block 2: Draft criteria and define scenarios
 
-Choose one of the two cases in the [worksheet](./activities/evaluation_clinic.md#1-describe-the-task): an image showing a beginner how a plant is moved into a larger pot, or short visitor instructions written from an event brief. You can use a small part of your own project if it fits the exercise. Otherwise, use a supplied case and return to your project in Block 7.
+Work with **both** cases in the [worksheet](./activities/evaluation_clinic.md#1-describe-the-tasks): an image showing a beginner how a plant is moved into a larger pot, and short visitor instructions based on an event brief. These are small practice tasks; your ongoing project does not need to fit them. You will return to your project in Block 7.
 
-Start with the supplied brief, original prompt and baseline outputs for your chosen case. Blocks 2 and 3 use these outputs; no generation or notebook is needed yet. Keep your criteria, feedback and versions in a simple document.
+Start with the supplied briefs, original prompts and baseline outputs. There is no generation or notebook in this block. Keep your criteria, ratings and feedback in a simple document.
 
-For the revision in Block 4, stick with the same shared model used for the baseline:
+For later revision, we use the same models that produced the corresponding baseline:
 
 | Case | Model on Replicate |
 | --- | --- |
 | Image | [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) |
 | Text | [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) |
 
-Use Replicate's web UI and the supplied settings. Keep the model and settings the same for the baseline and revision so you can focus on the effect of the prompt change.
+For **each case**, start from the audience and task. Draft two observable criteria yourself and compare them with a partner. What should somebody recognise, understand or be able to do? What essential details should be present, and what could mislead them? You can ask an LLM for suggestions if you get stuck, but it is not required.
 
-Start with the task, audience and situation. Draft two or three criteria yourself, then discuss them with a partner. What should someone understand or be able to do? What must be present? What would make the output misleading or confusing?
-
-Keep criteria you can actually observe and explain why they matter. A phrase such as "high quality" needs a more precise description. If you get stuck, the worksheet includes an optional LLM prompt; review any suggestions before using them.
-
-Use the same scale for each criterion, with descriptions specific to your task:
+Use the same rating scale for both cases:
 
 | Rating | Meaning |
 | --- | --- |
@@ -77,37 +73,44 @@ Use the same scale for each criterion, with descriptions specific to your task:
 | Clearly met | The output satisfies the criterion, supported by an observation. |
 | Cannot judge | The available output or evidence is insufficient to assess this criterion. |
 
-Choose two or three scenarios. For each, record the input, expected result and criteria you will check. For text, a reference answer can identify essential information while allowing different wording. For images, the expected result might describe what a viewer should recognise or understand.
+Choose **one clear scenario per case** to begin with. The worksheet offers a second scenario for each if you have time. Note the situation, expected result and criteria before collecting feedback. For images, the expectation may be what someone can identify or understand. For text, it may include essential facts and what should happen when information is missing.
 
 ## Block 3: Human evaluation and interviews
 
-Continue with your chosen case in pairs or small groups. Give a participant the task context and output, then let them respond before explaining your own intentions.
+Test **both the image and the text example** with a partner. Keep the interviews short and switch roles so you both experience asking questions and giving feedback.
 
-For the image case, ask what is happening and which visual details help or confuse them. For the text case, ask them to find when and where to attend and what to bring, and to identify anything they still need to know. Keep the same case through the revision in Block 4.
+For the image, first show it as an illustration for an activity guide, without naming the action. Ask what the person thinks is happening and which details help or confuse them. Then show the repotting instruction and ask whether the illustration supports it.
 
-Ask a few neutral questions. What do they understand? What is confusing? What would they do next? Record short quotes or observations.
+For the text, ask the person to find when and where the event takes place, what to bring and which information is missing. Ask what they would do next.
 
-Rate the agreed criteria individually before comparing judgments. Add a reason for each rating. Discuss disagreements and distinguish what someone said from your interpretation of it. A peer test is a useful first check; consider who your actual audience would be.
+Do not explain or defend the output before the participant responds. Record a short observation or quote, then individually rate the criteria you drafted in Block 2. Compare the ratings and discuss any differences. Keep what the person actually said separate from your interpretation.
+
+If time allows, try the second scenario for each case. These quick peer tests are useful, but classmates do not necessarily represent the intended audience.
 
 ## Block 4: Revise and compare
 
-Choose one issue supported by feedback. Revise the original prompt to address it and explain what you expect to improve. One prompt revision is enough for this exercise.
+**Focus on the image.** Choose one issue supported by the interview feedback and revise the original image prompt to address it. Write down what you expect to improve.
 
-In Replicate's web UI, generate again from the revised full prompt using Nano Banana 2.1 for the image case or Gemini 3.5 Flash for the text case. Keep the supplied settings and scenario inputs. Generate the image from text again; image editing is outside this exercise. For text, use a fresh run for each scenario so previous conversation does not affect the comparison.
+In Replicate's web UI, generate a new illustration from your revised full prompt with **Nano Banana 2.1**. Keep the supplied settings and the same scenario. Generate from text again; editing the original image is outside this exercise.
 
-Place the original and revised outputs side by side. Ask a peer the same interview questions, apply the same criteria and record what improved, what became worse and the evidence for each judgment. Save both prompts and outputs with your feedback in the same document.
+Compare the baseline and revised images side by side. Ask a peer the same questions and apply the **same criteria and scale**. Record what improved, what became worse and the visible evidence. Save both PNGs and prompts: you will use these images again in Block 5.
 
-Keep both versions and check for new problems as well as improvements. If you change a criterion, reassess both outputs with its new wording. A small comparison helps you choose a next step; it does not establish that the revision will always work.
+**If you have time**, repeat the process for the text case with **Gemini 3.5 Flash**. Run the revised prompt in a fresh request using the same brief and settings.
+
+One prompt revision is enough. If you change any criterion, reassess both outputs using its new wording. A single comparison provides useful observations, not proof that the new prompt always performs better.
 
 ## Block 5: A tiny automated evaluator
 
-Use a prepared text example to explore a small evaluation workflow in Jupyter. Supply the scenario, output, criteria and reference information where relevant, then obtain model feedback through OpenRouter.
+Open the [image evaluation notebook](./notebooks/05_image_evaluator.ipynb) in JupyterHub or [Google Colab](https://colab.research.google.com/github/digitalideation/prompt_h2601/blob/main/notebooks/05_image_evaluator.ipynb). It uses a vision-capable model through OpenRouter to assess images against your criteria. There is no image generation in this notebook.
 
-First read the comments. Then request a rating and brief explanation for each criterion using the same scale as the human exercise. Compare the feedback with your own observations, check its evidence and record disagreements.
+1. Upload your **baseline and revised PNGs** and enter their filenames.
+2. Review the task, scenario and criteria from Blocks 2 and 3. Edit the notebook's criteria if needed.
+3. Run the prepared evaluator once on the baseline image and once on the revised image.
+4. Read the ratings and brief explanations. Compare them with the observations and ratings from your interviews.
 
-Repeat the check on a revised output while keeping the evaluation instructions fixed. For a short image example, we can assess the image directly with a suitable model or work from a description. A description limits the evaluation to the information it contains.
+Keep the **same criteria, evaluation instructions and evaluator model** for both images. Pay attention to disagreements. A vision model can inspect visible elements, but cannot establish what a real beginner understood or predict everyone's reaction.
 
-The aim is to understand a repeatable process. Direct work with embeddings or a large evaluation framework is not required.
+The goal is to understand a small, repeatable evaluation process and its limitations. No embeddings, advanced evaluation framework or extra image-processing library are needed.
 
 ## Block 6: Arena and other approaches
 
