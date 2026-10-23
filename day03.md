@@ -114,11 +114,28 @@ Each notebook ends with an **optional criterion experiment**: change one criteri
 
 If time is short, complete one notebook and explore the other as an extension. Neither requires embeddings, an evaluation framework or writing API code.
 
-## Block 6: Arena and other approaches
+## Block 6: Exploring evaluation methods
 
-Explore A/B preferences and model comparisons through [Arena](https://arena.ai/leaderboard). What does a preference vote capture? What can an interview or a task-specific criterion add? How relevant is a broad ranking to your own project?
+You have tested outputs with people and asked models to apply your criteria. What other approaches are available, and how would you choose one for your own project?
 
-We will also briefly look at specialised decision models, with [Laya](https://github.com/NandhaKishorM/laya) and [Kev](https://github.com/jaredpalmer/kev) as examples. Consider how a focused rating or decision differs from open-ended feedback.
+**3 minutes: From preference to task success.** Look at the [Arena leaderboard](https://arena.ai/leaderboard). Arena ranks models using human preferences from head-to-head comparisons. If people prefer one output, does that mean it meets the requirements of your particular task?
+
+**8 minutes: Mini-research in pairs.** Choose **one** approach to investigate. You can choose a different method if it better fits your project.
+
+| Approach | Starting point | Question to explore |
+| --- | --- | --- |
+| Human A/B preferences | [Arena](https://arena.ai/leaderboard) | What can preference votes reveal, and what do they miss? |
+| Repeatable prompt tests | [Promptfoo](https://www.promptfoo.dev/docs/intro/) | How could you check a prompt against several scenarios and expected conditions? |
+| Source-grounded answer evaluation | [Ragas](https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/) | How could you check whether a generated answer is supported by its source information? |
+| Another method for your modality | Find a relevant approach for your text, image, audio or video project | What evidence would it use to judge success? |
+
+Use documentation or examples to answer three questions in the [worksheet](./activities/evaluation_clinic.md#7-explore-an-evaluation-method):
+
+1. What does the approach evaluate, and what inputs or evidence does it need?
+2. What could it miss or judge incorrectly?
+3. How might you use it for a specific task in your project?
+
+**4 minutes: Share.** A few pairs briefly explain what they found and one limitation. Compare the approaches. You do not need to install a framework or complete a technical demonstration.
 
 ## Block 7: Apply the method to your project
 
