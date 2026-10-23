@@ -102,6 +102,8 @@ Choose the [image evaluator](../notebooks/05_image_evaluator.ipynb) ([Colab](htt
 
 For images, compare original and revised PNGs. For text, paste your actual visitor instructions and compare them with the event brief. **Adapt the evaluator criteria** from your human tests and inspect the ratings and explanations.
 
+If you do not have both image versions or a text output, use the optional example files shared in class and the [sample text answers](../assets/evaluation-clinic/text-evaluator-examples.txt). The supplied text contains deliberate mistakes: make your own assessment before consulting its discussion notes.
+
 | Output / scenario / criterion | Human rating and reason | Model rating and reason | Agreement or difference to investigate |
 | --- | --- | --- | --- |
 | | | | |
