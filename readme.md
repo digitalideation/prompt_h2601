@@ -16,7 +16,7 @@ Each session lasts **2 h 20 min (140 minutes), including a 10-minute break**. Al
 | --- | --- | --- | --- |
 | 1 | Image & Video Prompting and Workflow Design | Artistic Telephone, storyboard, and visual refinement | [Session materials](./day01.md) |
 | 2 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: visual-to-audio country competition | [Session materials](./day02.md) |
-| 3 | Generative AI Evaluation Clinic | Human and automated evaluation of generated outputs | H26 session materials coming next |
+| 3 | Generative AI Evaluation Clinic | Criteria, human feedback, revision and simple automated evaluation | [Session outline](./day03.md) |
 
 ### [Session 1: Image & Video Prompting and Workflow Design](./day01.md)
 
@@ -36,13 +36,15 @@ Start with Replicate's web UI, then use a prepared Jupyter Notebook to record pr
 
 In [PromptVision](./day02.md), teams of 2–3 translate a source image into a sonic identity for an imaginary digital country, generate a new cover image and enter a Eurovision-style listening show. We use browser tools, a minimal automatic local presentation and ScoreWiz voting; no student notebook is required. See the [activity guide](./activities/promptvision.md).
 
-### Session 3: Generative AI Evaluation Clinic
+### [Session 3: Generative AI Evaluation Clinic](./day03.md)
 
-- Evaluation approaches across text, image, audio, and video generation
-- Hands-on evaluation of text outputs, with image evaluation as a secondary focus
-- Human feedback and simple automated evaluation to compare and improve prompts/workflows
+- Defining task-specific criteria and scenarios, with optional LLM support
+- Human evaluation through interviews, observations and a concrete rating scale
+- Comparing revisions and simple automated feedback across generative workflows
 
-We will compare Arena rankings with our own ratings, try a prepared Ragas text-evaluation exercise, and explore an ImageReward example. We will also discuss what can be evaluated in audio and video. Session materials will be available here.
+Start by revisiting the imaginary countries from PromptVision, then test both an image and text case with people. Draft criteria yourself, with optional LLM help if needed, revise the image prompt from the feedback, and compare human judgments with separate vision and text evaluators through OpenRouter. Students then explore Arena, Promptfoo, Ragas or another evaluation method before designing a small evaluation plan for their own project and identifying a next test. The [session outline](./day03.md) and [working sheet](./activities/evaluation_clinic.md) include the case briefs and scenarios; the [image evaluation notebook](./notebooks/05_image_evaluator.ipynb) and [text evaluation notebook](./notebooks/06_text_evaluator.ipynb) are available; baseline outputs will be provided in class.
+
+For the revision exercise, prioritise [Google Nano Banana 2.1](https://replicate.com/google/nano-banana-2.1) for images. Text revision with [Google Gemini 3.5 Flash](https://replicate.com/google/gemini-3.5-flash) is optional. Keep the model and supplied settings the same as the baseline. Blocks 2 to 4 use a simple document; the two prepared notebooks begin in Block 5.
 
 ## Competencies
 
@@ -69,6 +71,7 @@ We will compare Arena rankings with our own ratings, try a prepared Ragas text-e
 
 - **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
 - **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version and Artistic Telephone](./notebooks/README.md); you edit prompts and run supplied cells. Session 2 uses browser audio tools and a small local instructor presentation generator; no new student notebook is required.
+- **OpenRouter:** use the class API access for optional criteria-drafting help and the Session 3 image and text evaluation notebooks.
 - **Model selection:** use the model list provided for each activity.
 - **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 

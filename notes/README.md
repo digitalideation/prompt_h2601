@@ -7,6 +7,7 @@ This folder contains preparation, pacing, demonstration cues and technical check
 - [Standalone HTML reveal](telephone_reveal_html.md)
 - [Session 2 audio teaching notes](day02.md)
 - [PromptVision show setup and facilitation](promptvision.md)
+- [Session 3 evaluation clinic](day03.md)
 - [VibeCoding notes from the previous semester](vibecoding.md)
 - [Previous online facilitation guide](day03_zoom_guide.md)
 

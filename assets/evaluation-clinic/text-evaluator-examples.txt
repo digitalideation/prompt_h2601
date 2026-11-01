@@ -1,0 +1,23 @@
+SESSION 3 | OPTIONAL TEXT-EVALUATOR EXAMPLES
+
+REFERENCE
+Community plant swap. Saturday at 14:00 in Studio 2. Bring one labelled plant.
+
+BASELINE OUTPUT
+Come to the Community Plant Swap on Saturday at 14:00 in Studio 2. Bring a plant to exchange. Please register online beforehand and arrive 15 minutes early for check-in.
+
+REVISED OUTPUT
+Community Plant Swap
+When: Saturday at 14:00
+Where: Studio 2
+Bring: One labelled plant.
+
+FOR DISCUSSION (check your own conclusions first)
+- The baseline preserves the supplied time and location.
+- It leaves out the instruction to label the plant.
+- It invents online registration and early check-in.
+- The revised version preserves only the information from the source brief.
+- Model ratings need checking against the source and human observations.
+- Use the same criteria for both answers. Changing a criterion while holding the answer fixed is a separate experiment.
+
+Note: These are prepared teaching examples, not actual Gemini or Replicate model outputs.
